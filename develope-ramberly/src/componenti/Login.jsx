@@ -37,22 +37,22 @@ export function Login() {
   };
 
   return (
-    <div className="box">
+    <div>
+      <h3>Logo Ramberly</h3>
       <form className="form" onSubmit={handleLogin}>
-        <h3>Login</h3>
         <label htmlFor="">Email:</label>
         <input
           type="email"
           name="email"
           onChange={handleChange}
-          placeholder="Email..."
+          placeholder="Inserisci la tua Email..."
         />
         <label htmlFor="">Password:</label>
         <input
           type="password"
           name="password"
           onChange={handleChange}
-          placeholder="Password..."
+          placeholder="Inserisci la tua Password..."
         />
         <button type="submit">Login</button>
         {messaggio && <p style={{ color: "red" }}>{messaggio}</p>}
