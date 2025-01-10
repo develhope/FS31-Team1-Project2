@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export function Registrazione() {
   const [data, setData] = useState({
     nome: "",
@@ -37,15 +37,12 @@ export function Registrazione() {
     const existData = localStorage.getItem("users");
     let utentiRegistrati = [];
 
-    // verifica se esiste l'array vuoto
     if (existData) {
       utentiRegistrati = JSON.parse(existData);
     }
 
-    // verifica se l'email esiste o no
     const existEmail = utentiRegistrati.some((x) => x.email === data.email);
 
-    // verifica se l'email non esiste
     if (existEmail) {
       setErrorEmail("Email già registrata");
       return;
@@ -107,6 +104,9 @@ export function Registrazione() {
           {" "}
           Registrati
         </button>
+        <p>
+          Hai già un account? <Link to="/login">Login</Link>
+        </p>
       </form>
     </div>
   );

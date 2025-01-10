@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { UserContext } from "../contesti/useContext";
+import { Link } from "react-router-dom";
 
 export function Login() {
   const [data, setData] = useState({
@@ -55,6 +56,9 @@ export function Login() {
           placeholder="Inserisci la tua Password..."
         />
         <button type="submit">Login</button>
+        <p>
+          Non sei registrato? <Link to="/registrazione">Registrati</Link>
+        </p>
         {messaggio && <p style={{ color: "red" }}>{messaggio}</p>}
       </form>
     </div>
