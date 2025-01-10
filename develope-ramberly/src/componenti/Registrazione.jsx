@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 export function Registrazione() {
   const [data, setData] = useState({
+
     nome: "",
     cognome: "",
     email: "",
@@ -47,16 +48,23 @@ export function Registrazione() {
       setErrorEmail("Email già registrata");
       return;
     }
+    setData((prevData) => ({
+      ...prevData,
+      [id]: (utentiRegistrati.length)+1,
+    }));
+    console.log((utentiRegistrati.length)+1)
 
+    console.log(data)
     utentiRegistrati.push(data);
     localStorage.setItem("users", JSON.stringify(utentiRegistrati));
-    setData({
-      nome: "",
-      cognome: "",
-      email: "",
-      password: "",
-    });
-    console.log("hai cliccato submit");
+    console.log(utentiRegistrati.length)
+    // setData({
+    //   nome: "",
+    //   cognome: "",
+    //   email: "",
+    //   password: "",
+    // });
+    
   };
 
   return (
@@ -68,7 +76,7 @@ export function Registrazione() {
           name="nome"
           id="nome"
           placeholder="Nome..."
-          onChange={handleChange}
+          onChange={handleChange} 
           value={data.nome}
         />
         <label htmlFor="Cognome">Cognome:</label>
