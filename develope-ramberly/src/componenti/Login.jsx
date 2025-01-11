@@ -24,11 +24,10 @@ export function Login() {
     event.preventDefault();
     const users = localStorage.getItem("users");
     const parseUsers = JSON.parse(users);
-    console.log(parseUsers);
     const userExist = parseUsers.find(
       (x) => x.email === data.email && x.password === data.password
     );
-    console.log(userExist);
+
     if (userExist) {
       setMessaggio("login effettuato con successo");
       login(userExist);
@@ -47,6 +46,7 @@ export function Login() {
           name="email"
           onChange={handleChange}
           placeholder="Inserisci la tua Email..."
+          required
         />
         <label htmlFor="">Password:</label>
         <input
@@ -54,6 +54,7 @@ export function Login() {
           name="password"
           onChange={handleChange}
           placeholder="Inserisci la tua Password..."
+          required
         />
         <button type="submit">Login</button>
         <p>

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export function Registrazione() {
   const [data, setData] = useState({
-
     nome: "",
     cognome: "",
     email: "",
@@ -10,6 +9,8 @@ export function Registrazione() {
   });
   const [errore, setErrore] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+
+  const navToCaratteristiche = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,23 +49,23 @@ export function Registrazione() {
       setErrorEmail("Email già registrata");
       return;
     }
-    setData((prevData) => ({
-      ...prevData,
-      [id]: (utentiRegistrati.length)+1,
-    }));
-    console.log((utentiRegistrati.length)+1)
 
-    console.log(data)
-    utentiRegistrati.push(data);
+    const newIdUser = {
+      ...data,
+      id: utentiRegistrati.length + 1,
+    };
+
+    utentiRegistrati.push(newIdUser);
     localStorage.setItem("users", JSON.stringify(utentiRegistrati));
-    console.log(utentiRegistrati.length)
-    // setData({
-    //   nome: "",
-    //   cognome: "",
-    //   email: "",
-    //   password: "",
-    // });
-    
+
+    setData({
+      nome: "",
+      cognome: "",
+      email: "",
+      password: "",
+    });
+
+    navToCaratteristiche("/caratteristiche");
   };
 
   return (
@@ -76,8 +77,9 @@ export function Registrazione() {
           name="nome"
           id="nome"
           placeholder="Nome..."
-          onChange={handleChange} 
+          onChange={handleChange}
           value={data.nome}
+          required
         />
         <label htmlFor="Cognome">Cognome:</label>
         <input
@@ -87,6 +89,7 @@ export function Registrazione() {
           placeholder="Cognome..."
           onChange={handleChange}
           value={data.cognome}
+          required
         />
         <label htmlFor="email">Email:</label>
         <input
@@ -96,6 +99,7 @@ export function Registrazione() {
           placeholder="Email..."
           onChange={handleChange}
           value={data.email}
+          required
         />
         <label htmlFor="Password">Password:</label>
         <input
@@ -105,12 +109,13 @@ export function Registrazione() {
           placeholder="Password..."
           onChange={handleChange}
           value={data.password}
+          required
         />
         {errore && <p style={{ color: "red" }}> {errore}</p>}
         {errorEmail && <p style={{ color: "red" }}> {errorEmail}</p>}
         <button disabled={errore ? true : false} type="submit">
           {" "}
-          Registrati
+          Vai avanti
         </button>
         <p>
           Hai già un account? <Link to="/login">Login</Link>
