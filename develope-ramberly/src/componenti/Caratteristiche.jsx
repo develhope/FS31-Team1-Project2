@@ -5,6 +5,9 @@ export function Caratteristiche() {
   const users = localStorage.getItem("users");
   const parseUsers = JSON.parse(users);
 
+  const user=localStorage.getItem('user')
+  const parseUser=JSON.parse(user)
+
   const [caratteristiche, setCaratteristiche] = useState({
     sesso: "",
     peso: "",
@@ -28,14 +31,13 @@ export function Caratteristiche() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const userIdExist = parseUsers.filter((x) => x.id === caratteristiche.id);
-
+    const userIdExist = parseUsers.find((x) => x.id === caratteristiche.id);
+console.log(userIdExist)
     // userIdExist.push(caratteristiche);
-
-    const userUpdated = { ...userIdExist, ...caratteristiche };
+    const userUpdated = { ...parseUser, ...caratteristiche };
     console.log(userUpdated);
 
-    localStorage.setItem("users", JSON.stringify(userUpdated));
+    localStorage.setItem("user", JSON.stringify(userUpdated));
   };
 
   return (

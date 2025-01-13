@@ -36,6 +36,7 @@ export function Registrazione() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (errore) return;
+    localStorage.setItem('user', JSON.stringify(data))
     const existData = localStorage.getItem("users");
     let utentiRegistrati = [];
 
