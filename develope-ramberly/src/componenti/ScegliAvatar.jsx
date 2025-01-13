@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 export function ScegliAvatar() {
   const [url, setUrl] = useState("");
 
-  const navToCaratteristiche = useNavigate();
+  const navTo = useNavigate();
+  const caratteristiche= ()=>{
+    navTo('/caratteristiche')
+  } 
 
   const user = localStorage.getItem("user");
   const parseUser = JSON.parse(user);
@@ -46,7 +49,7 @@ export function ScegliAvatar() {
       </div>
       <button
         type="button"
-        onClick={() => navToCaratteristiche("/caratteristiche")}
+        onClick={caratteristiche}
       >
         Torna indietro
       </button>
