@@ -36,7 +36,7 @@ export function Registrazione() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (errore) return;
-    localStorage.setItem('user', JSON.stringify(data))
+
     const existData = localStorage.getItem("users");
     let utentiRegistrati = [];
 
@@ -56,7 +56,8 @@ export function Registrazione() {
       id: utentiRegistrati.length + 1,
     };
 
-    utentiRegistrati.push(newIdUser);
+    localStorage.setItem("user", JSON.stringify(data));
+
     localStorage.setItem("users", JSON.stringify(utentiRegistrati));
 
     setData({
