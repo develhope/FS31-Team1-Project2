@@ -5,8 +5,8 @@ export function Caratteristiche() {
   const users = localStorage.getItem("users");
   const parseUsers = JSON.parse(users);
 
-  const user=localStorage.getItem('user')
-  const parseUser=JSON.parse(user)
+  const user = localStorage.getItem("user");
+  const parseUser = JSON.parse(user);
 
   const [caratteristiche, setCaratteristiche] = useState({
     sesso: "",
@@ -28,16 +28,20 @@ export function Caratteristiche() {
     }));
   }
 
+  const navToScegliAvatar = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const userIdExist = parseUsers.find((x) => x.id === caratteristiche.id);
-console.log(userIdExist)
+    console.log(userIdExist);
     // userIdExist.push(caratteristiche);
     const userUpdated = { ...parseUser, ...caratteristiche };
     console.log(userUpdated);
 
     localStorage.setItem("user", JSON.stringify(userUpdated));
+
+    navToScegliAvatar("/scegliavatar");
   };
 
   return (
