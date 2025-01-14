@@ -54,3 +54,9 @@
   color: var(--btn-color);
   background-color: var(--btn-bgr-color);
 }
+ .form select{
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+}
+ /* Scegli avatar */

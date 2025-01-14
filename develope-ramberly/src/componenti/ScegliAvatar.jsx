@@ -39,7 +39,7 @@ export function ScegliAvatar() {
   return (
     <div className="form">
       <h3>Scegli il tuo Avatar</h3>
-      <div>
+      <div className="avatar-container">
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />

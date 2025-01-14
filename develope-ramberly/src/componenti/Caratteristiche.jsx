@@ -49,22 +49,24 @@ export function Caratteristiche() {
       <h4>LE TUE CARATTERISTICHE!</h4>
       <form className="form" onSubmit={handleSubmit}>
         <label>Sesso:</label>
-        <select id="sesso" onChange={handleChange}>
+        <select id="sesso" required onChange={handleChange}>
           Scegli un opzione:
+          <option  value=''>Seleziona</option>
           <option value="uomo">Uomo</option>
           <option value="donna">Donna</option>
         </select>
 
         <label>Inserisci il tuo peso</label>
-        <input type="number" id="peso" />
+        <input type="number" required id="peso" onChange={handleChange} />
 
         <label> Inserisci la tua età!</label>
-        <input type="number" id="eta" />
+        <input type="number" required id="eta" onChange={handleChange} />
 
         <label>Quanto spesso fai attività fisica?</label>
-        <select id="attivita" onChange={handleChange}>
+        <select id="attivita" required onChange={handleChange}>
           Scegli un opzione:
-          <option value="0">Quasi mai</option>
+          <option  value=''>Seleziona</option>
+          <option  value="0">Quasi mai</option>
           <option value="2">1-2 volte a settimana</option>
           <option value="4">3-4 volte a settimana</option>
           <option value="5">Più di 5 volte a settimana</option>
@@ -73,25 +75,28 @@ export function Caratteristiche() {
         <label>
           Hai esperienza con il monitoraggio delle attività fisiche?
         </label>
-        <select id="monitoraggio" onChange={handleChange}>
+        <select id="monitoraggio" required onChange={handleChange}>
           Scegli un opzione:
+          <option value=''>Seleziona</option>
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>
 
         <label>Ti piace allenarti da solo o in gruppo?</label>
-        <select id="gruppo" onChange={handleChange}>
+        <select id="gruppo" required onChange={handleChange}>
           Scegli un opzione:
+          <option  value=''>Seleziona</option>
           <option value="solo">Solo</option>
           <option value="gruppo">Gruppo</option>
           <option value="entrambi">Entrambi</option>
         </select>
 
         <label>
-          Ti piacerebbe partecipare partecipare a sfide o gare tramite l'app?{" "}
+          Ti piacerebbe partecipare partecipare a sfide o gare tramite l'app?
         </label>
-        <select id="sfide" onChange={handleChange}>
+        <select id="sfide" required onChange={handleChange}>
           Scegli un opzione:
+          <option  value=''>Seleziona</option>
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>
