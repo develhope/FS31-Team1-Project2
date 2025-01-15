@@ -1,11 +1,8 @@
-import { useContext, useEffect } from "react";
-import { UserContext } from "../contesti/useContext";
+
+import {  useUserContext } from "../contesti/useContext";
 
 export function NavbarUtente() {
-  const { isLogged, setIsLogged } = useContext(UserContext);
-  useEffect(()=> {
-    console.log(isLogged);
-  }, [])
+  const { userLogged } = useUserContext();
   
   
 
@@ -18,7 +15,7 @@ export function NavbarUtente() {
         <div className="user-info">
           <img id="user-avatar" src="https://placehold.co/40" alt="user-icon" />
           <div>
-            <h3>francesca</h3>
+            <h3>{userLogged.nome}</h3>
             <h5>Livello 1</h5>
           </div>
         </div>
