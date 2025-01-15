@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contesti/useContext";
+
 export function Registrazione() {
   const [data, setData] = useState({
     nome: "",
@@ -9,6 +11,9 @@ export function Registrazione() {
   });
   const [errore, setErrore] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+  const { setIsLogged } = useContext(UserContext);
+
+  setIsLogged(true);
 
   const navToCaratteristiche = useNavigate();
 

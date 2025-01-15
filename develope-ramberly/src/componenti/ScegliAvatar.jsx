@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contesti/useContext";
 
 export function ScegliAvatar() {
   const [url, setUrl] = useState("");
@@ -8,6 +9,10 @@ export function ScegliAvatar() {
   const caratteristiche = () => {
     navTo("/caratteristiche");
   };
+
+  const { setIsLogged } = useContext(UserContext);
+
+  setIsLogged(false);
 
   const user = localStorage.getItem("user");
   const parseUser = JSON.parse(user);
@@ -32,6 +37,10 @@ export function ScegliAvatar() {
     localStorage.setItem("user", JSON.stringify(UpdatedUserImg));
   }
 
+  const login = () => {
+    navTo("/login");
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -39,6 +48,9 @@ export function ScegliAvatar() {
     localStorage.setItem("users", JSON.stringify(parseUsers));
 
     localStorage.setItem("user", "");
+
+    login()
+
   }
 
   return (
