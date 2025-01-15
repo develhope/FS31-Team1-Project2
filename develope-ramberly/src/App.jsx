@@ -6,7 +6,7 @@ import { Registrazione } from "./componenti/Registrazione";
 import { Caratteristiche } from "./componenti/Caratteristiche";
 import { ScegliAvatar } from "./componenti/ScegliAvatar";
 import { PotrestiConoscere } from "./componenti/PotrestiConoscere";
-import { NavbarUtente } from "./componenti/Home";
+import { Home } from "./componenti/Home";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/registrazione" element={<Registrazione />} />
           <Route path="/caratteristiche" element={<Caratteristiche />} />
           <Route path="/scegliavatar" element={<ScegliAvatar />} />
-          <Route path="/home" element={<NavbarUtente />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
         </Routes>
       </UserProvider>

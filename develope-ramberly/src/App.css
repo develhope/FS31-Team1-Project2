@@ -54,13 +54,57 @@
   color: var(--btn-color);
   background-color: var(--btn-bgr-color);
 }
- .form select{
+.form select {
   border: var(--border);
   border-radius: var(--border-radius);
   padding: var(--padding);
 }
- /* Scegli avatar */
-.avatar-container{
+/* Scegli avatar */
+.avatar-container {
   display: flex;
   gap: 10px;
+}
+
+.nav-post-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  text-align: left;
+}
+
+#user-avatar {
+  border-radius: 40px;
+}
+
+#post-avatar {
+  border-radius: initial;
+}
+
+.post-info-container {
+}
+
+.user-info-post {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#post-settings-icon {
+  height: 20px;
+}
+
+.icons-container {
+  display: flex;
+  gap: 20px;
+}
+
+.icons-container img {
+  width: 30px;
+  height: 30px;
 }
