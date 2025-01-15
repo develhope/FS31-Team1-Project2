@@ -5,9 +5,9 @@ export function ScegliAvatar() {
   const [url, setUrl] = useState("");
 
   const navTo = useNavigate();
-  const caratteristiche= ()=>{
-    navTo('/caratteristiche')
-  } 
+  const caratteristiche = () => {
+    navTo("/caratteristiche");
+  };
 
   const user = localStorage.getItem("user");
   const parseUser = JSON.parse(user);
@@ -18,13 +18,18 @@ export function ScegliAvatar() {
   const userImg = {
     ...parseUser,
     img: url,
-  };
+  }
 
   function handleImage(event) {
-    event.preventDefault();
-    setUrl(event.target.src);
+    const src = event.target.src;
+    setUrl(src);
 
-    localStorage.setItem("user", JSON.stringify(userImg));
+    const UpdatedUserImg = {
+      ...parseUser,
+      img: src,
+    }
+
+    localStorage.setItem("user", JSON.stringify(UpdatedUserImg));
   }
 
   function handleSubmit(event) {
@@ -47,10 +52,7 @@ export function ScegliAvatar() {
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
       </div>
-      <button
-        type="button"
-        onClick={caratteristiche}
-      >
+      <button type="button" onClick={caratteristiche}>
         Torna indietro
       </button>
       <button type="submit" onClick={handleSubmit}>

@@ -35,7 +35,10 @@ export function Caratteristiche() {
 
     const userIdExist = parseUsers.find((x) => x.id === caratteristiche.id);
     console.log(userIdExist);
-    // userIdExist.push(caratteristiche);
+
+    // userIdExist.push(caratteristiche)
+    // ;
+    
     const userUpdated = { ...parseUser, ...caratteristiche };
     console.log(userUpdated);
 
