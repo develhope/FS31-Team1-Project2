@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { UserContext } from "../contesti/useContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
   const [data, setData] = useState({
@@ -11,6 +11,8 @@ export function Login() {
 
   const [messaggio, setMessaggio] = useState("");
   const { login } = useContext(UserContext);
+
+  const navToDashboard = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,6 +33,7 @@ export function Login() {
     if (userExist) {
       setMessaggio("login effettuato con successo");
       login(userExist);
+      navToDashboard("/home");
     } else {
       setMessaggio("credenziali errate");
     }
