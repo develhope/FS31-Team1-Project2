@@ -46,22 +46,27 @@ export function PotrestiConoscere() {
     const parseUser = JSON.parse(user);
 
     console.log("Utente iniziale", parseUser);
-  
+
     //creazione chiave seguiti
-    if(!parseUser.seguiti){
-      parseUser.seguiti = []
+    if (!parseUser.seguiti) {
+      parseUser.seguiti = [];
     }
     console.log(parseUser.seguiti);
-    
-    const utentiSeguiti = parseUser.seguiti.some((utente) => utente.id === profile.id)
-    if(!utentiSeguiti){
-      parseUser.seguiti.push({id: profile.id, nome: profile.nome, livello: profile.livello})
+
+    const utentiSeguiti = parseUser.seguiti.some(
+      (utente) => utente.id === profile.id
+    );
+    if (!utentiSeguiti) {
+      parseUser.seguiti.push({
+        id: profile.id,
+        nome: profile.nome,
+        livello: profile.livello,
+      });
     }
     console.log(`profilo aggiunto: ${profile.nome}`);
-    
-    localStorage.setItem("user", JSON.stringify(parseUser))
-    console.log("Utente aggiornato:",parseUser);
-    
+
+    localStorage.setItem("user", JSON.stringify(parseUser));
+    console.log("Utente aggiornato:", parseUser);
   };
 
   return (
@@ -76,17 +81,18 @@ export function PotrestiConoscere() {
                 <span className="user-name"> {profile.nome}</span>
                 <span className="user-level">Livello {profile.livello}</span>
               </div>
-              <button className="add-button" onClick={()=> handleAddProfile(profile)}>
+              <button
+                className="add-button"
+                onClick={() => handleAddProfile(profile)}
+              >
                 {/* <img src="" alt="" className="icon" /> */}
-                <span className="icon">
-                  👤+
-                </span>
+                <span className="icon">👤+</span>
               </button>
             </li>
           ))}
         </ul>
       </div>
-      <div>
+      <div className="b-n-button">
         <button className="back-button" onClick={scegliereSport}>
           Torna indietro
         </button>

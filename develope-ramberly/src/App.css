@@ -108,3 +108,40 @@
   width: 30px;
   height: 30px;
 }
+
+/* Potresti conoscere*/
+
+.users-list-conteiner {
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  gap: 20px;
+  min-height: 35rem;
+  min-width: 18rem;
+}
+
+.users-list-conteiner ul {
+  margin-top: 10px;
+}
+
+.user-item {
+  list-style-type: none;
+}
+
+.back-button,
+.next-button {
+  width: 50%;
+  margin: 3;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  color: var(--btn-color);
+  background-color: var(--btn-bgr-color);
+}
+
+.b-n-button {
+  display: flex;
+  gap: 10px;
+  margin-top: 7rem;
+}
