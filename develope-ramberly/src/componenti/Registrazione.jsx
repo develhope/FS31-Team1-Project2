@@ -43,7 +43,6 @@ export function Registrazione() {
     if (errore) return;
 
     const existData = localStorage.getItem("users");
-
     let utentiRegistrati = [];
 
     if (existData) {
@@ -119,8 +118,8 @@ export function Registrazione() {
           value={data.password}
           required
         />
-        {errore && <p style={{ color: "red" }}> {errore}</p>}
-        {errorEmail && <p style={{ color: "red" }}> {errorEmail}</p>}
+        {errore && <p className="err-msg"> {errore}</p>}
+        {errorEmail && <p className="err-msg"> {errorEmail}</p>}
         <button disabled={errore ? true : false} type="submit">
           {" "}
           Vai avanti

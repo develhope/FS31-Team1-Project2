@@ -11,13 +11,15 @@ export function UserProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [pers, setPers] = useState(persone);
 
-  // localStorage.setItem("users", JSON.stringify(pers));
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(pers));
 
-  // const users = localStorage.getItem("users");
-  // const parseUsers = JSON.parse(users);
+    const users = localStorage.getItem("users");
+    const parseUsers = JSON.parse(users);
 
-  // setPers((pre) => [...pre, parseUsers]);
-  // localStorage.setItem("users", JSON.stringify(pers));
+    setPers((pre) => [...pre, parseUsers]);
+    localStorage.setItem("users", JSON.stringify(pers));
+  }, []);
 
   useEffect(() => {
     const data = localStorage.getItem("user");

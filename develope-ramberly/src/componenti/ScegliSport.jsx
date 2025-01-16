@@ -39,7 +39,7 @@ export default function ScegliSport() {
   };
 
   return (
-    <div className="scegli-sport">
+    <div className="form">
       <h3>Scegli il tuo sport preferito!</h3>
 
       <form className="form-sports" onSubmit={handleSubmit}>
@@ -60,7 +60,6 @@ export default function ScegliSport() {
               onChange={handleChange}
             />
           </div>
-          <hr />
           <div className="checkbox-container">
             <div className="img-sports">
               <img
@@ -77,8 +76,6 @@ export default function ScegliSport() {
               onChange={handleChange}
             />
           </div>
-          <hr />
-
           <div className="checkbox-container">
             <div className="img-sports">
               <img
@@ -95,8 +92,6 @@ export default function ScegliSport() {
               onChange={handleChange}
             />
           </div>
-          <hr />
-
           <div className="checkbox-container">
             <div className="img-sports">
               <img
@@ -105,7 +100,6 @@ export default function ScegliSport() {
                 width={25}
               />
             </div>
-
             <label>Camminata</label>
             <input
               type="checkbox"
@@ -114,7 +108,6 @@ export default function ScegliSport() {
               onChange={handleChange}
             />
           </div>
-          <hr />
         </div>
 
         <div className="b-n-button">

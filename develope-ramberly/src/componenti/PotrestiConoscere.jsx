@@ -41,9 +41,9 @@ export function PotrestiConoscere() {
   };
 
   return (
-    <div className="users-list-conteiner">
+    <div className="form">
       <h3>Potresti conoscere:</h3>
-      <div>
+      <div className="list-container">
         <ul>
           {profiles.map((profile) => (
             <li key={profile.id} className="user-item">

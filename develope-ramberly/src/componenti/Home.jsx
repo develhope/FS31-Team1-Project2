@@ -4,7 +4,7 @@ export function Home() {
   const { userLogged } = useUserContext();
 
   return (
-    <>
+    <div className="form">
       <div className="nav-post-container">
         <div className="user-info">
           <img id="user-avatar" src={userLogged.img} alt="user-icon" />
@@ -57,6 +57,6 @@ export function Home() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
