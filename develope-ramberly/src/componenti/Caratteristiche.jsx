@@ -44,7 +44,9 @@ export function Caratteristiche() {
 
     localStorage.setItem("user", JSON.stringify(userUpdated));
 
-    navToScegliAvatar("/scegliavatar");
+    // navToScegliAvatar("/scegliavatar");
+    navToScegliAvatar("/sceglieresport");
+
   };
 
   return (

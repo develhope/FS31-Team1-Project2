@@ -7,6 +7,7 @@ import { Caratteristiche } from "./componenti/Caratteristiche";
 import { ScegliAvatar } from "./componenti/ScegliAvatar";
 import { PotrestiConoscere } from "./componenti/PotrestiConoscere";
 import { Home } from "./componenti/Home";
+import ScegliSport from "./componenti/ScegliSport";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/caratteristiche" element={<Caratteristiche />} />
           <Route path="/scegliavatar" element={<ScegliAvatar />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/sceglieresport" element={<ScegliSport />} />
 
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
         </Routes>

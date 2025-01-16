@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ScegliSport() {
-  const [user, setUser] = useState(null);
-  const [data, setData] = useState({
+  const [checked, setChecked] = useState({
     running: false,
     escursione: false,
     biking: false,
     camminata: false,
   });
 
-  localStorage.setItem("user", JSON.stringify());
+  const user=localStorage.getItem("user"
+  );
+  const parseUser=JSON.parse(user)
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const checked = event.target.checked;
+const handleChange=(event)=>{
+  const {value, checked}=event.target
+  setChecked((prevState) => ({
+    ...prevState,
+    [value]: checked,
+  }));
+}
+const handleSubmit=(event)=>{
+  event.preventDefault()
+  parseUser.sport = {
+    ...checked,
   };
+localStorage.setItem('user',JSON.stringify(parseUser))
+}
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setData((prevData) => ({
-      ...prevData,
-      [name]: true,
-    }));
-  };
 
   return (
     <div>
@@ -33,29 +36,32 @@ export default function ScegliSport() {
         <label htmlFor="">Running</label>
         <input
           type="checkbox"
-          name="running"
-          value={data.running}
+          value="running"
+          checked={checked.running}
           onChange={handleChange}
         />
         <label htmlFor="">Escursione</label>
         <input
           type="checkbox"
-          name="escursione"
-          value={data.escursione}
+          value="escursione"
           onChange={handleChange}
+          checked={checked.escursione}
+
         />
         <label htmlFor="">Biking</label>
         <input
           type="checkbox"
-          name="biking"
-          value={data.biking}
+          value="biking"
           onChange={handleChange}
+          checked={checked.biking}
+
         />
         <label htmlFor="">Camminata</label>
         <input
           type="checkbox"
-          name="camminata"
-          value={data.camminata}
+          value="camminata"
+          checked={checked.camminata}
+
           onChange={handleChange}
         />
         <button type="submit">Invio</button>
