@@ -8,38 +8,9 @@ export function PotrestiConoscere() {
   const scegliereSport = () => {
     navTo("/sceglieresport");
   };
-  const profiles = [
-    {
-      id: 0,
-      nome: "Eleonora",
-      livello: 42,
-    },
-    {
-      id: 1,
-      nome: "Franco",
-      livello: 22,
-    },
-    {
-      id: 2,
-      nome: "Anna",
-      livello: 6,
-    },
-    {
-      id: 3,
-      nome: "Jasmine",
-      livello: 17,
-    },
-    {
-      id: 4,
-      nome: "Giulia",
-      livello: 36,
-    },
-    {
-      id: 5,
-      nome: "Marco",
-      livello: 45,
-    },
-  ];
+
+  const users = localStorage.getItem("users");
+  const profiles = JSON.parse(users);
 
   const handleAddProfile = (profile) => {
     const user = localStorage.getItem("user");
@@ -76,10 +47,13 @@ export function PotrestiConoscere() {
         <ul>
           {profiles.map((profile) => (
             <li key={profile.id} className="user-item">
-              <div className="user-avatar"></div>
+              <div className="user-avatar">
+                <img src={profile.img} alt={`Profile ${profile.nome}`} />
+              </div>
               <div className="user-info">
                 <span className="user-name"> {profile.nome}</span>
-                <span className="user-level">Livello {profile.livello}</span>
+
+                <span>Livello utente: {Math.floor(Math.random() * 100)} </span>
               </div>
               <button
                 className="add-button"

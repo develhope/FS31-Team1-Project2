@@ -19,6 +19,7 @@ function App() {
           <Route path="/caratteristiche" element={<Caratteristiche />} />
           <Route path="/scegliavatar" element={<ScegliAvatar />} />
           <Route path="/home" element={<Home />} />
+
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
         </Routes>
       </UserProvider>

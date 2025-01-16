@@ -7,7 +7,7 @@ export function Home() {
     <>
       <div className="nav-post-container">
         <div className="user-info">
-          <img id="user-avatar" src="https://placehold.co/40" alt="user-icon" />
+          <img id="user-avatar" src={userLogged.img} alt="user-icon" />
           <div>
             <h3>{userLogged.nome}</h3>
             <h5>Livello 1</h5>
