@@ -8,8 +8,8 @@ export default function ScegliSport() {
     camminata: false,
   });
 
-  const user=localStorage.getItem("user"
-  );
+ 
+  const user=localStorage.getItem("user");
   const parseUser=JSON.parse(user)
 
 const handleChange=(event)=>{
@@ -19,11 +19,15 @@ const handleChange=(event)=>{
     [value]: checked,
   }));
 }
+
+
 const handleSubmit=(event)=>{
   event.preventDefault()
-  parseUser.sport = {
-    ...checked,
+  const selectedSports = Object.keys(checked).filter(sport => checked[sport]);
+  parseUser.sports = {
+    ...selectedSports
   };
+
 localStorage.setItem('user',JSON.stringify(parseUser))
 }
 
@@ -33,14 +37,14 @@ localStorage.setItem('user',JSON.stringify(parseUser))
       <h3>Scegli sport</h3>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="">Running</label>
+        <label >Running</label>
         <input
           type="checkbox"
           value="running"
           checked={checked.running}
           onChange={handleChange}
         />
-        <label htmlFor="">Escursione</label>
+        <label >Escursione</label>
         <input
           type="checkbox"
           value="escursione"
@@ -48,7 +52,7 @@ localStorage.setItem('user',JSON.stringify(parseUser))
           checked={checked.escursione}
 
         />
-        <label htmlFor="">Biking</label>
+        <label>Biking</label>
         <input
           type="checkbox"
           value="biking"
@@ -56,7 +60,7 @@ localStorage.setItem('user',JSON.stringify(parseUser))
           checked={checked.biking}
 
         />
-        <label htmlFor="">Camminata</label>
+        <label>Camminata</label>
         <input
           type="checkbox"
           value="camminata"
@@ -64,7 +68,7 @@ localStorage.setItem('user',JSON.stringify(parseUser))
 
           onChange={handleChange}
         />
-        <button type="submit">Invio</button>
+        <button >Invio</button>
       </form>
     </div>
   );
