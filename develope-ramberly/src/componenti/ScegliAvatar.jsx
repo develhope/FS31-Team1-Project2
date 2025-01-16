@@ -6,8 +6,8 @@ export function ScegliAvatar() {
   const [url, setUrl] = useState("");
 
   const navTo = useNavigate();
-  const caratteristiche = () => {
-    navTo("/caratteristiche");
+  const potrestiConoscere = () => {
+    navTo("/potresticonoscere");
   };
 
   const { setIsLogged } = useContext(UserContext);
@@ -64,12 +64,15 @@ export function ScegliAvatar() {
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
         <img src="https://placehold.co/40" alt="" onClick={handleImage} />
       </div>
-      <button type="button" onClick={caratteristiche}>
+      <div className="form-btn-container">
+      <button type="button" onClick={potrestiConoscere}>
         Torna indietro
       </button>
       <button type="submit" onClick={handleSubmit}>
         Avanti
       </button>
+      </div>
+      
     </div>
   );
 }

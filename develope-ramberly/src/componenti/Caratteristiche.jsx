@@ -62,10 +62,10 @@ export function Caratteristiche() {
         </select>
 
         <label>Inserisci il tuo peso</label>
-        <input type="number" required id="peso" onChange={handleChange} />
+        <input type="number" required id="peso" min={35} max={180} onChange={handleChange} />
 
         <label> Inserisci la tua età!</label>
-        <input type="number" required id="eta" onChange={handleChange} />
+        <input type="number" required id="eta" min={16} max={100} onChange={handleChange} />
 
         <label>Quanto spesso fai attività fisica?</label>
         <select id="attivita" required onChange={handleChange}>
@@ -105,14 +105,16 @@ export function Caratteristiche() {
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>
-
-        <button
+<div className="form-btn-container">
+<button
           type="button"
           onClick={() => navToRegistrazione("/registrazione")}
         >
           Torna indietro
         </button>
         <button type="submit">Avanti</button>
+</div>
+       
       </form>
     </div>
   );

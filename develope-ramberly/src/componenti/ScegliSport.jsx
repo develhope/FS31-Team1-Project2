@@ -39,38 +39,83 @@ export default function ScegliSport() {
   };
 
   return (
-    <div>
-      <h3>Scegli sport</h3>
+    <div className="scegli-sport">
+      <h3>Scegli il tuo sport preferito!</h3>
 
-      <form onSubmit={handleSubmit}>
-        <label>Running</label>
-        <input
-          type="checkbox"
-          value="running"
-          checked={checked.running}
-          onChange={handleChange}
-        />
-        <label>Escursione</label>
-        <input
-          type="checkbox"
-          value="escursione"
-          onChange={handleChange}
-          checked={checked.escursione}
-        />
-        <label>Biking</label>
-        <input
-          type="checkbox"
-          value="biking"
-          onChange={handleChange}
-          checked={checked.biking}
-        />
-        <label>Camminata</label>
-        <input
-          type="checkbox"
-          value="camminata"
-          checked={checked.camminata}
-          onChange={handleChange}
-        />
+      <form className="form-sports" onSubmit={handleSubmit}>
+        <div className="sports-input">
+          <div className="checkbox-container">
+            <div className="img-sports">
+              <img
+                src="src\assets\icons\running.svg"
+                alt="calendar"
+                width={25}
+              />
+            </div>{" "}
+            <label>Running</label>
+            <input
+              type="checkbox"
+              value="running"
+              checked={checked.running}
+              onChange={handleChange}
+            />
+          </div>
+          <hr />
+          <div className="checkbox-container">
+            <div className="img-sports">
+              <img
+                src="src\assets\icons\escursione.svg"
+                alt="calendar"
+                width={25}
+              />
+            </div>{" "}
+            <label>Escursione</label>
+            <input
+              type="checkbox"
+              value="escursione"
+              checked={checked.escursione}
+              onChange={handleChange}
+            />
+          </div>
+          <hr />
+
+          <div className="checkbox-container">
+            <div className="img-sports">
+              <img
+                src="src\assets\icons\biking.svg"
+                alt="calendar"
+                width={25}
+              />
+            </div>{" "}
+            <label>Biking</label>
+            <input
+              type="checkbox"
+              value="biking"
+              checked={checked.biking}
+              onChange={handleChange}
+            />
+          </div>
+          <hr />
+
+          <div className="checkbox-container">
+            <div className="img-sports">
+              <img
+                src="src\assets\icons\camminata.svg"
+                alt="calendar"
+                width={25}
+              />
+            </div>
+
+            <label>Camminata</label>
+            <input
+              type="checkbox"
+              value="camminata"
+              checked={checked.camminata}
+              onChange={handleChange}
+            />
+          </div>
+          <hr />
+        </div>
 
         <div className="b-n-button">
           <button

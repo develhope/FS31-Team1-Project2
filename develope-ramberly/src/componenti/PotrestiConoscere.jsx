@@ -66,7 +66,7 @@ export function PotrestiConoscere() {
           ))}
         </ul>
       </div>
-      <div className="b-n-button">
+      <div className="form-btn-container">
         <button className="back-button" onClick={scegliereSport}>
           Torna indietro
         </button>
