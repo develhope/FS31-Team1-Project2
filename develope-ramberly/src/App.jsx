@@ -21,7 +21,6 @@ function App() {
           <Route path="/scegliavatar" element={<ScegliAvatar />} />
           <Route path="/home" element={<Home />} />
           <Route path="/sceglieresport" element={<ScegliSport />} />
-
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
         </Routes>
       </UserProvider>

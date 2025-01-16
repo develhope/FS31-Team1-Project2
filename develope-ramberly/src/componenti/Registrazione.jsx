@@ -43,6 +43,7 @@ export function Registrazione() {
     if (errore) return;
 
     const existData = localStorage.getItem("users");
+
     let utentiRegistrati = [];
 
     if (existData) {

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
+import persone from "../database";
 
 export const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
@@ -8,6 +9,15 @@ export const useUserContext = () => useContext(UserContext);
 export function UserProvider({ children }) {
   const [userLogged, setUserLogged] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
+  const [pers, setPers] = useState(persone);
+
+  localStorage.setItem("users", JSON.stringify(pers));
+
+  const users = localStorage.getItem("users");
+  const parseUsers = JSON.parse(users);
+
+  setPers((pre) => [...pre, parseUsers]);
+  localStorage.setItem("users", JSON.stringify(pers));
 
   useEffect(() => {
     const data = localStorage.getItem("user");
@@ -29,7 +39,9 @@ export function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{ login, logout, userLogged, isLogged, setIsLogged }}>
+    <UserContext.Provider
+      value={{ login, logout, userLogged, isLogged, setIsLogged }}
+    >
       {children}
     </UserContext.Provider>
   );
