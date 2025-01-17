@@ -5,7 +5,7 @@
   /* --font-color: #2c2c2c; */
   --font-color: #362c28;
   --btn-color: black;
-  --btn-bgr-color: #b2f444;
+  --btn-bgr-color: #71a917;
   --padding-icons: 2px;
   --form-bg-color: white;
   --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -57,7 +57,7 @@
 }
 
 .form {
-  background-color: var(--form-bg-color);
+  background-color: #f2f2f2;
   min-width: 15rem;
   display: flex;
   flex-direction: column;
@@ -79,7 +79,6 @@
   padding: 10px;
 }
 
-
 .form label {
   margin-top: 10px;
   align-self: flex-start;
@@ -98,8 +97,6 @@
   border: var(--border);
   border-radius: var(--border-radius);
   padding: var(--padding);
-  color: var(--btn-color);
-  background-color: var(--btn-bgr-color);
   padding: 10px;
 }
 .form select {
@@ -167,26 +164,34 @@
   min-height: 35rem;
   min-width: 18rem;
 } */
-.list-container{
-display: flex;
-
+.list-container {
+  display: flex;
 }
 .users-list-container ul {
   margin-top: 10px;
 }
 
+.back-button {
+  width: 50%;
+  margin: 3;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  color: white;
+  background-color: #804e2b;
+  font-weight: 800;
+}
 
-.back-button,
 .next-button {
   width: 50%;
   margin: 3;
   border: var(--border);
   border-radius: var(--border-radius);
   padding: var(--padding);
-  color: var(--btn-color);
+  color: white;
   background-color: var(--btn-bgr-color);
+  font-weight: 800;
 }
-
 
 /* scegli sport */
 
@@ -216,7 +221,8 @@ display: flex;
   order: -1;
 }
 .img-sports {
-  background-color: var(--btn-bgr-color);
+  background-color: white;
+  border: 1px solid black;
   border-radius: var(--border-radius);
   padding: var(--padding-icons);
 }
