@@ -7,7 +7,7 @@ export function Home() {
     <div className="form">
       <div className="nav-post-container">
         <div className="user-info">
-          <img id="user-avatar" src={userLogged.img} alt="user-icon" />
+          <img id="user-avatar" src={userLogged.img} width={60} alt="user-icon" />
           <div>
             <h3>{userLogged.nome}</h3>
             <h5>Livello 1</h5>
