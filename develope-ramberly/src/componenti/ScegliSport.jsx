@@ -110,7 +110,7 @@ export default function ScegliSport() {
           </div>
         </div>
 
-        <div className="b-n-button">
+        <div className="form-btn-container">
           <button
             type="button"
             className="back-button"

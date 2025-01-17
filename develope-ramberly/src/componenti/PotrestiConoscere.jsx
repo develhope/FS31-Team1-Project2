@@ -41,7 +41,7 @@ export function PotrestiConoscere() {
   };
 
   return (
-    <div className="form">
+    <div className="form ">
       <h3>Potresti conoscere:</h3>
       <div className="list-container">
         <ul>
