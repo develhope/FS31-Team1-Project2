@@ -111,6 +111,9 @@
   grid-template-rows: repeat(2, 1fr); /* 2 righe, ognuna di 100px */
   gap: 20px;
 }
+.avatar-container img{
+  border-radius: 18px;
+}
 
 .nav-post-container {
   display: flex;
