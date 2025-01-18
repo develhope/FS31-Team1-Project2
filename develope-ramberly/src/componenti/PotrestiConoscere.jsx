@@ -16,47 +16,49 @@ export function PotrestiConoscere() {
     const user = localStorage.getItem("user");
     const parseUser = JSON.parse(user);
 
-    console.log("Utente iniziale", parseUser);
-
     //creazione chiave seguiti
     if (!parseUser.seguiti) {
       parseUser.seguiti = [];
     }
-    console.log(parseUser.seguiti);
+
+    // è stato sostituito il controllo su parseUser.seguiti con il match tra email invece che id, dal momento che non esiste una chiave id in user (id: undefined). Questo faceva aggiungere solo l'utente cliccato per la prima volta. Anche il push dell'oggetto riferito all'utente seguito è fatto con email e non con id.
 
     const utentiSeguiti = parseUser.seguiti.some(
-      (utente) => utente.id === profile.id
+      (utente) => utente.email === profile.email
     );
     if (!utentiSeguiti) {
       parseUser.seguiti.push({
-        id: profile.id,
+        email: profile.email,
         nome: profile.nome,
         livello: profile.livello,
       });
     }
-    console.log(`profilo aggiunto: ${profile.nome}`);
 
     localStorage.setItem("user", JSON.stringify(parseUser));
-    console.log("Utente aggiornato:", parseUser);
   };
 
   return (
-    <div className="form ">
+    <div className="form">
       <h3>Potresti conoscere:</h3>
-      <div className="list-container">
+      <div className="suggested-container">
         <ul>
           {profiles.map((profile) => (
-            <li key={profile.id} className="user-item">
-              <div className="user-avatar">
-                <img src={profile.img} alt={`Profile ${profile.nome}`} />
-              </div>
-              <div className="user-info">
-                <span className="user-name"> {profile.nome}</span>
-
-                <span>Livello utente: {Math.floor(Math.random() * 100)} </span>
+            <li key={profile.id}>
+              <div className="suggested-info">
+                <img
+                  src={profile.img}
+                  alt={`Profile ${profile.nome}`}
+                  width={70}
+                />
+                <div className="name-lvl">
+                  <p> {profile.nome}</p>
+                  <p style={{ fontSize: "13px" }}>
+                    Livello: {Math.floor(Math.random() * 100)}{" "}
+                  </p>
+                </div>
               </div>
               <button
-                className="add-button"
+                id="suggested-btn"
                 onClick={() => handleAddProfile(profile)}
               >
                 {/* <img src="" alt="" className="icon" /> */}

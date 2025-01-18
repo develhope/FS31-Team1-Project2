@@ -111,7 +111,7 @@
   grid-template-rows: repeat(2, 1fr); /* 2 righe, ognuna di 100px */
   gap: 20px;
 }
-.avatar-container img{
+.avatar-container img {
   border-radius: 18px;
 }
 
@@ -121,14 +121,7 @@
   justify-content: space-between;
 }
 
-.user-info {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-  text-align: left;
-}
-
-#user-avatar {
+#home-user-avatar {
   border-radius: 40px;
 }
 
@@ -158,21 +151,38 @@
 
 /* Potresti conoscere */
 
-/* .users-list-container {
+.suggested-container li {
   display: flex;
   flex-direction: column;
-  border: var(--border);
-  border-radius: var(--border-radius);
-  gap: 20px;
-  min-height: 35rem;
-  min-width: 18rem;
-} */
-.list-container {
+  align-items: start;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+.suggested-container ul {
+  padding: 0;
+}
+
+.suggested-info {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
 }
-.users-list-container ul {
-  margin-top: 10px;
+
+.suggested-info .name-lvl {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
 }
+
+#suggested-btn {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* ---------------------------------- */
 
 .back-button {
   width: 50%;

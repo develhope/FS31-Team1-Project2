@@ -11,6 +11,8 @@ export function UserProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [pers, setPers] = useState(persone);
 
+  // da 17 a 24 è stato wrappato con uno useEffect che esegue il setItem di users solo una volta al richiamo del contesto, altrimenti si crea un loop.
+
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(pers));
 
