@@ -6,7 +6,8 @@
   --font-color: #362c28;
   --btn-color: black;
   --btn-bgr-color: #71a917;
-  --padding-icons: 2px;
+  --bg-icons:#AAF400;
+  --padding-icons: 6px;
   --form-bg-color: white;
   --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
@@ -74,8 +75,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  gap: 80px;
-  width: 100%;
+ align-items: center;
+ gap: 70px;
   padding: 10px;
 }
 
@@ -83,6 +84,7 @@
   margin-top: 10px;
   align-self: flex-start;
   text-align: left;
+  font-family: "Avenir-Medium";
 }
 
 .form input {
@@ -98,6 +100,10 @@
   border-radius: var(--border-radius);
   padding: var(--padding);
   padding: 10px;
+ 
+  background-color: var(--btn-bgr-color);
+  color: white;
+ 
 }
 .form select {
   border: var(--border);
@@ -111,7 +117,7 @@
   grid-template-rows: repeat(2, 1fr); /* 2 righe, ognuna di 100px */
   gap: 20px;
 }
-.avatar-container img {
+.avatar-container img{
   border-radius: 18px;
 }
 
@@ -121,7 +127,14 @@
   justify-content: space-between;
 }
 
-#home-user-avatar {
+.user-info {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  text-align: left;
+}
+
+#user-avatar {
   border-radius: 40px;
 }
 
@@ -151,63 +164,28 @@
 
 /* Potresti conoscere */
 
-.suggested-container li {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 5px;
-  margin-bottom: 30px;
-}
-
-.suggested-container ul {
-  padding: 0;
-}
-
-.suggested-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-align: left;
-}
-
-.suggested-info .name-lvl {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-#suggested-btn {
+.list-container ul{
   width: 100%;
-  margin-top: 0;
+  padding: 10px;
+  
 }
+.list-container li {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 
+}
+.list-container button{
+  background-color: #fcac62;
+}
 /* ---------------------------------- */
 
-.back-button {
-  width: 50%;
-  margin: 3;
-  border: var(--border);
-  border-radius: var(--border-radius);
-  padding: var(--padding);
-  color: white;
-  background-color: #804e2b;
-  font-weight: 800;
-}
-
-.next-button {
-  width: 50%;
-  margin: 3;
-  border: var(--border);
-  border-radius: var(--border-radius);
-  padding: var(--padding);
-  color: white;
-  background-color: var(--btn-bgr-color);
-  font-weight: 800;
-}
-
 /* scegli sport */
-
+h3{
+  font-family: "Avenir-Heavy";;
+}
 .sports-input {
   display: flex;
   flex-direction: column;
@@ -234,8 +212,7 @@
   order: -1;
 }
 .img-sports {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: var(--border-radius);
+  background-color: var(--bg-icons);
+  border-radius: 50%;
   padding: var(--padding-icons);
 }

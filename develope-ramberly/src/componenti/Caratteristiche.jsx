@@ -51,7 +51,7 @@ export function Caratteristiche() {
 
   return (
     <div>
-      <h4>LE TUE CARATTERISTICHE!</h4>
+      <h3>Le tue caratteristiche!</h3>
       <form className="form" onSubmit={handleSubmit}>
         <label>Sesso:</label>
         <select id="sesso" required onChange={handleChange}>
@@ -59,7 +59,9 @@ export function Caratteristiche() {
           <option  value=''>Seleziona</option>
           <option value="uomo">Uomo</option>
           <option value="donna">Donna</option>
+          
         </select>
+        <p style={{color:'red', fontSize:'12px'}}>* l'informazione riguardo il sesso è determinante per stabilire i livelli di difficoltà in base alla differenza del corpo femminile da quello maschile</p>
 
         <label>Inserisci il tuo peso</label>
         <input type="number" required id="peso" min={35} max={180} onChange={handleChange} />
