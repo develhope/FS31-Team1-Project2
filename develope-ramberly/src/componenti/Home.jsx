@@ -2,9 +2,9 @@ import { useUserContext } from "../contesti/useContext";
 
 export function Home() {
   const { userLogged } = useUserContext();
-console.log(userLogged)
+  console.log(userLogged);
   return (
-    <div className="form">
+    <div className="home">
       <div className="nav-post-container">
         <div className="user-info">
           <img

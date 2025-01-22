@@ -5,8 +5,10 @@
   /* --font-color: #2c2c2c; */
   --font-color: #362c28;
   --btn-color: black;
-  --btn-bgr-color: #71a917;
-  --bg-icons:#AAF400;
+  /* --btn-bgr-color: #71a917; */
+  --btn-bgr-color: #aaf400;
+  --bg-icons: #aaf400;
+  --home-bg-color: #f7fdf1;
   --padding-icons: 6px;
   --form-bg-color: white;
   --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -57,8 +59,22 @@
   text-align: justify;
 }
 
+.home {
+  background-color: var(--home-bg-color);
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  /* border: var(--border); */
+  border-radius: var(--border-radius);
+  padding: 20px;
+}
+
 .form {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-color: #69747c1f;
   min-width: 15rem;
   display: flex;
   flex-direction: column;
@@ -75,8 +91,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
- align-items: center;
- gap: 70px;
+  align-items: center;
+  gap: 70px;
   padding: 10px;
 }
 
@@ -96,14 +112,15 @@
 
 .form button {
   margin-top: 10px;
-  border: var(--border);
+  border: none;
   border-radius: var(--border-radius);
   padding: var(--padding);
   padding: 10px;
- 
+  font-family: "Avenir-light";
+  font-size: 15px;
   background-color: var(--btn-bgr-color);
-  color: white;
- 
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .form select {
   border: var(--border);
@@ -117,7 +134,7 @@
   grid-template-rows: repeat(2, 1fr); /* 2 righe, ognuna di 100px */
   gap: 20px;
 }
-.avatar-container img{
+.avatar-container img {
   border-radius: 18px;
 }
 
@@ -164,27 +181,35 @@
 
 /* Potresti conoscere */
 
-.list-container ul{
+.list-container ul {
   width: 100%;
   padding: 10px;
-  
 }
 .list-container li {
-  display: flex; 
-  flex-direction: row; 
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
 }
-.list-container button{
+.list-container button {
   background-color: #fcac62;
 }
+
+.user-item {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar img {
+  width: 40px;
+}
+
 /* ---------------------------------- */
 
 /* scegli sport */
-h3{
-  font-family: "Avenir-Heavy";;
+h3 {
+  font-family: "Avenir-Heavy";
 }
 .sports-input {
   display: flex;
