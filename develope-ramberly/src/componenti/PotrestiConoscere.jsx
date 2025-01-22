@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 
 export function PotrestiConoscere() {
   const [seguendo, setSeguendo] = useState([]);
-
+ 
   const navTo = useNavigate();
   const scegliAvatar = () => {
     navTo("/scegliavatar");
@@ -14,7 +15,9 @@ export function PotrestiConoscere() {
 
   const users = localStorage.getItem("users");
   const profiles = JSON.parse(users);
-
+  
+ 
+ 
   const handleAddProfile = (profile) => {
     const user = localStorage.getItem("user");
     const parseUser = JSON.parse(user);
@@ -55,7 +58,7 @@ export function PotrestiConoscere() {
               </div>
               <div className="user-info">
                 <span className="user-name"> {profile.nome}</span>
-                <span>Livello utente: {Math.floor(Math.random() * 100)} </span>
+                <span>Livello utente:{profile.livello} </span>
               </div>
               <button
                 className="add-button"

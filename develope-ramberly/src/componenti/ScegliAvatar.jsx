@@ -57,18 +57,18 @@ export function ScegliAvatar() {
     <div className="form">
       <h3>Scegli il tuo Avatar</h3>
       <div className="avatar-container">
-        <img src="\src\assets\avatar\avatar (1).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (2).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (3).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (4).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (5).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (6).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (7).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (8).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (9).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (10).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (11).svg" width={70} alt="avatar1" onClick={handleImage} />
-        <img src="\src\assets\avatar\avatar (12).svg" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (1).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (2).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (3).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (4).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (5).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (6).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (7).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (8).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (9).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (10).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (11).webp" width={70} alt="avatar1" onClick={handleImage} />
+        <img src="\src\assets\avatar\avatar (12).webp" width={70} alt="avatar1" onClick={handleImage} />
 
       </div>
       <div className="form-btn-container">
