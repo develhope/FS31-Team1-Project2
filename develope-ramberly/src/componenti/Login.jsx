@@ -59,8 +59,10 @@ export function Login() {
           placeholder="Inserisci la tua Password..."
           required
         />
-        
-        <button type="submit">Login</button>
+
+        <button type="submit" className="btnLogin">
+          Login
+        </button>
         <p>
           Non sei registrato? <Link to="/registrazione">Registrati</Link>
         </p>
