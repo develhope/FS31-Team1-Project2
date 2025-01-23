@@ -118,6 +118,7 @@
   padding: 10px;
   font-family: "Avenir-light";
   font-size: 15px;
+
   background-color: var(--btn-bgr-color);
   color: black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -240,4 +241,34 @@ h3 {
   background-color: var(--bg-icons);
   border-radius: 50%;
   padding: var(--padding-icons);
+}
+
+/*Svg torna indietro*/
+.link-class {
+  transform: rotate(180deg);
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.caratteristiche {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+}
+
+.link-h3-class {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.form-sports {
+  width: 100%;
+}
+
+.prosegui {
+  width: 100%;
 }

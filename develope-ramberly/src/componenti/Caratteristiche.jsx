@@ -38,7 +38,7 @@ export function Caratteristiche() {
 
     // userIdExist.push(caratteristiche)
     // ;
-    
+
     const userUpdated = { ...parseUser, ...caratteristiche };
     console.log(userUpdated);
 
@@ -46,34 +46,68 @@ export function Caratteristiche() {
 
     // navToScegliAvatar("/scegliavatar");
     navToScegliAvatar("/sceglieresport");
-
   };
 
   return (
     <div>
-      <h3>Le tue caratteristiche!</h3>
+      <div className="caratteristiche">
+        <a href="/registrazione" className="link-class">
+          <svg
+            width="10"
+            height="20"
+            viewBox="0 0 18 28"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+          >
+            <path
+              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </a>
+        <h3 className="link-h3-class">Le tue caratteristiche!</h3>
+      </div>
+
       <form className="form" onSubmit={handleSubmit}>
         <label>Sesso:</label>
         <select id="sesso" required onChange={handleChange}>
           Scegli un opzione:
-          <option  value=''>Seleziona</option>
+          <option value="">Seleziona</option>
           <option value="uomo">Uomo</option>
           <option value="donna">Donna</option>
-          
         </select>
-        <p style={{color:'red', fontSize:'12px'}}>* l'informazione riguardo il sesso è determinante per stabilire i livelli di difficoltà in base alla differenza del corpo femminile da quello maschile</p>
+        <p style={{ color: "red", fontSize: "12px" }}>
+          * l'informazione riguardo il sesso è determinante per stabilire i
+          livelli di difficoltà in base alla differenza del corpo femminile da
+          quello maschile
+        </p>
 
         <label>Inserisci il tuo peso</label>
-        <input type="number" required id="peso" min={35} max={180} onChange={handleChange} />
+        <input
+          type="number"
+          required
+          id="peso"
+          min={35}
+          max={180}
+          onChange={handleChange}
+        />
 
         <label> Inserisci la tua età!</label>
-        <input type="number" required id="eta" min={16} max={100} onChange={handleChange} />
+        <input
+          type="number"
+          required
+          id="eta"
+          min={16}
+          max={100}
+          onChange={handleChange}
+        />
 
         <label>Quanto spesso fai attività fisica?</label>
         <select id="attivita" required onChange={handleChange}>
           Scegli un opzione:
-          <option  value=''>Seleziona</option>
-          <option  value="0">Quasi mai</option>
+          <option value="">Seleziona</option>
+          <option value="0">Quasi mai</option>
           <option value="2">1-2 volte a settimana</option>
           <option value="4">3-4 volte a settimana</option>
           <option value="5">Più di 5 volte a settimana</option>
@@ -84,7 +118,7 @@ export function Caratteristiche() {
         </label>
         <select id="monitoraggio" required onChange={handleChange}>
           Scegli un opzione:
-          <option value=''>Seleziona</option>
+          <option value="">Seleziona</option>
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>
@@ -92,7 +126,7 @@ export function Caratteristiche() {
         <label>Ti piace allenarti da solo o in gruppo?</label>
         <select id="gruppo" required onChange={handleChange}>
           Scegli un opzione:
-          <option  value=''>Seleziona</option>
+          <option value="">Seleziona</option>
           <option value="solo">Solo</option>
           <option value="gruppo">Gruppo</option>
           <option value="entrambi">Entrambi</option>
@@ -103,20 +137,14 @@ export function Caratteristiche() {
         </label>
         <select id="sfide" required onChange={handleChange}>
           Scegli un opzione:
-          <option  value=''>Seleziona</option>
+          <option value="">Seleziona</option>
           <option value="si">Si</option>
           <option value="no">No</option>
         </select>
-<div className="form-btn-container">
-<button
-          type="button"
-          onClick={() => navToRegistrazione("/registrazione")}
-        >
-          Torna indietro
+
+        <button type="submit" className="prosegui">
+          Avanti
         </button>
-        <button type="submit">Avanti</button>
-</div>
-       
       </form>
     </div>
   );

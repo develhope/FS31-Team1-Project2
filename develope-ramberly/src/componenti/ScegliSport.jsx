@@ -40,7 +40,24 @@ export default function ScegliSport() {
 
   return (
     <div className="form">
-      <h3>Scegli il tuo sport preferito!</h3>
+      <div className="caratteristiche">
+        <a href="/registrazione" className="link-class">
+          <svg
+            width="10"
+            height="20"
+            viewBox="0 0 18 28"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+          >
+            <path
+              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </a>
+        <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
+      </div>
 
       <form className="form-sports" onSubmit={handleSubmit}>
         <div className="sports-input">
@@ -110,18 +127,9 @@ export default function ScegliSport() {
           </div>
         </div>
 
-        <div className="form-btn-container">
-          <button
-            type="button"
-            className="back-button"
-            onClick={caratteristiche}
-          >
-            Torna indietro
-          </button>
-          <button type="submit" className="next-button">
-            Avanti
-          </button>
-        </div>
+        <button type="submit" className="prosegui">
+          Avanti
+        </button>
       </form>
     </div>
   );

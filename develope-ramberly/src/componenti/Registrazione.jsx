@@ -120,9 +120,12 @@ export function Registrazione() {
         />
         {errore && <p className="err-msg"> {errore}</p>}
         {errorEmail && <p className="err-msg"> {errorEmail}</p>}
-        <button disabled={errore ? true : false} type="submit">
-          {" "}
-          Vai avanti
+        <button
+          className="prosegui"
+          disabled={errore ? true : false}
+          type="submit"
+        >
+          Avanti
         </button>
         <p>
           Hai già un account? <Link to="/login">Login</Link>
