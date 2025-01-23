@@ -17,7 +17,15 @@ export function Caratteristiche() {
     sfide: "",
   });
 
-  const navToRegistrazione = useNavigate();
+  const navTo = useNavigate();
+
+  const navToRegistrazione = () => {
+    navTo("/registrazione");
+  };
+
+  const navToScegliSport = () => {
+    navTo("/sceglieresport");
+  };
 
   function handleChange(event) {
     const { id, value } = event.target;
@@ -27,8 +35,6 @@ export function Caratteristiche() {
       [id]: value,
     }));
   }
-
-  const navToScegliAvatar = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,14 +50,17 @@ export function Caratteristiche() {
 
     localStorage.setItem("user", JSON.stringify(userUpdated));
 
-    // navToScegliAvatar("/scegliavatar");
-    navToScegliAvatar("/sceglieresport");
+    navToScegliSport();
   };
 
   return (
     <div>
       <div className="caratteristiche">
-        <a href="/registrazione" className="link-class">
+        <a
+          href="/registrazione"
+          className="link-class"
+          onClick={navToRegistrazione}
+        >
           <svg
             width="10"
             height="20"

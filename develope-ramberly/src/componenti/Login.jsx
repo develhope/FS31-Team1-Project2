@@ -66,7 +66,11 @@ export function Login() {
         <p>
           Non sei registrato? <Link to="/registrazione">Registrati</Link>
         </p>
-        {messaggio && <p style={{ color: "red" }}>{messaggio}</p>}
+        {messaggio && (
+          <p className="err-msg" style={{ textAlign: "center" }}>
+            {messaggio}
+          </p>
+        )}
       </form>
     </div>
   );

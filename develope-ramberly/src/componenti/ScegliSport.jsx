@@ -41,7 +41,11 @@ export default function ScegliSport() {
   return (
     <div className="form">
       <div className="caratteristiche">
-        <a href="/registrazione" className="link-class">
+        <a
+          href="/caratteristiche"
+          className="link-class"
+          onClick={caratteristiche}
+        >
           <svg
             width="10"
             height="20"

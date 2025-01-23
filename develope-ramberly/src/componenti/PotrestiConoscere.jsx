@@ -46,7 +46,11 @@ export function PotrestiConoscere() {
   return (
     <div className="form">
       <div className="caratteristiche">
-        <a href="/sceglieresport" className="link-class">
+        <a
+          href="/sceglieresport"
+          className="link-class"
+          onClick={scegliereSport}
+        >
           <svg
             width="10"
             height="20"
@@ -72,12 +76,11 @@ export function PotrestiConoscere() {
               </div>
               <div className="user-info">
                 <span className="user-name"> {profile.nome}</span>
-                <span>Livello utente:{profile.livello} </span>
+                <span className="user-lev">
+                  livello:{` ${profile.livello}`}{" "}
+                </span>
               </div>
-              <button
-                className="add-button"
-                onClick={() => handleAddProfile(profile)}
-              >
+              <button onClick={() => handleAddProfile(profile)}>
                 {seguendo.some((utente) => utente.email === profile.email)
                   ? "👤-"
                   : "👤+"}

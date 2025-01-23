@@ -6,7 +6,7 @@ export function Home() {
   return (
     <div className="home">
       <div className="nav-post-container">
-        <div className="user-info">
+        <div className="nav-user-info">
           <img
             id="home-user-avatar"
             src={userLogged.img}
@@ -32,10 +32,10 @@ export function Home() {
       {/* ------------------------------------ */}
 
       <div className="nav-post-container">
-        <div className="user-info">
+        <div className="nav-user-info">
           <img id="post-avatar" src="https://placehold.co/40" alt="user-icon" />
           <div className="post-info-container">
-            <div className="user-info-post">
+            <div className="post-user-info">
               <h3>Luca</h3>
               <h5>Amici</h5>
               <a>
