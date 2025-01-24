@@ -53,10 +53,11 @@ export function CreaEvento() {
       <hr style={{ margin: "20px" }} />
 
       {/* ------------------------------------ */}
-
-      <button type="submit" className="prosegui" onClick={handleSubmit}>
-        Avanti
-      </button>
+      <form className="form" onSubmit={handleSubmit}>
+        <button type="submit" className="prosegui">
+          Avanti
+        </button>
+      </form>
     </div>
   );
 }
