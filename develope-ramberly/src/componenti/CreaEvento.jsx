@@ -78,7 +78,6 @@ export function CreaEvento() {
             required
           />
         </div>
-
         <div className="startFinish">
           <div>
             <label htmlFor="">Start:</label>
@@ -99,6 +98,31 @@ export function CreaEvento() {
               placeholder="Luogo d'arrivo..."
               required
             />
+          </div>
+        </div>
+        {/* ----------------------- */}
+        <div className="map-container">
+          <div className="map">
+            <div>
+              <img src="" alt="Mappa" className="map-image" />
+            </div>
+            <button className="difficulty-button">Difficile</button>
+          </div>
+
+          <div className="info-pedaggio">
+            <button className="km-button">km</button>
+            <button className="hr-button">hr</button>
+            <button className="date-button">data</button>
+          </div>
+
+          <div className="action-container">
+            <h3>Chi può partecipare</h3>
+            <select className="select-option">
+              <option value="option1">Solo amici</option>
+              <option value="option2">....</option>
+              <option value="option3">....</option>
+            </select>
+            <button className="pubblish-button">Pubblica evento!</button>
           </div>
         </div>
 
