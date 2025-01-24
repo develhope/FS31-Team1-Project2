@@ -104,7 +104,11 @@ export function CreaEvento() {
         <div className="map-container">
           <div className="map">
             <div>
-              <img src="" alt="Mappa" className="map-image" />
+              <img
+                src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                alt="Mappa"
+                className="map-image"
+              />
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>
