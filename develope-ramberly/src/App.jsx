@@ -8,6 +8,7 @@ import { ScegliAvatar } from "./componenti/ScegliAvatar";
 import { PotrestiConoscere } from "./componenti/PotrestiConoscere";
 import { Home } from "./componenti/Home";
 import ScegliSport from "./componenti/ScegliSport";
+import { CreaEvento } from "./componenti/CreaEvento";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/sceglieresport" element={<ScegliSport />} />
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
+          <Route path="/creaevento" element={<CreaEvento />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>
