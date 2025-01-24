@@ -10,8 +10,14 @@
   --padding-icons: 6px;
   --form-bg-color: #f7fdf1b8;
   --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.133);
+  --border-rds-map: 8px;
+  --btn-color-hard-difficolta:#ec221f;
+  --width-btn-difficolta: 5rem;
+  --padding-difficolta: 8px;
 }
-
+.mappa{
+  border-radius: 8px;
+}
 @font-face {
   font-family: "Avenir-Book";
   src: local("Avenir-Book"),
@@ -63,9 +69,10 @@
   text-align: justify;
 }
 
+/* Home */
 .home {
-  background-color: var(--home-bg-color);
-  min-width: 15rem;
+  
+ width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,8 +81,48 @@
   /* border: var(--border); */
   border-radius: var(--border-radius);
   padding: 20px;
+  border: 1px solid black;
+}
+.icons-container {
+  display: flex;
+  gap: 20px;
 }
 
+.icons-container img {
+  width: 30px;
+  height: 30px;
+}
+.icons-container button{
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #ec221f;
+  border: none;
+  color: white;
+  font-family: 'Avenir-light';
+}
+
+
+.container-partecipanti{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+.container-partecipanti button{
+  border-radius: var(--border-radius);
+  padding: var(--padding-difficolta);
+  background-color: var(--btn-color-hard-difficolta);
+  border: none;
+  font-size: 18px;
+  color: white;
+  width: 5rem;
+  font-family: 'Avenir-light';
+}
+
+
+/* --------------------- */
+/* -------------- */
 .form {
   /* background-color: #f2f2f2; */
   background-color: var(--form-bg-color);
@@ -174,15 +221,6 @@
   height: 20px;
 }
 
-.icons-container {
-  display: flex;
-  gap: 20px;
-}
-
-.icons-container img {
-  width: 30px;
-  height: 30px;
-}
 
 /* Potresti conoscere */
 

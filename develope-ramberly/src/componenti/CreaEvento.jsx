@@ -106,6 +106,7 @@ export function CreaEvento() {
             <div>
               <img
                 src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                width={250}
                 alt="Mappa"
                 className="map-image"
               />

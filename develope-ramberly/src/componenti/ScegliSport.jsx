@@ -16,9 +16,9 @@ export default function ScegliSport() {
   const potresticonoscere = () => {
     navTo("/creaevento");
   };
-  /* const potresticonoscere = () => {
-    navTo("/potresticonoscere");
-  };*/
+  //  const potresticonoscere = () => {
+  //   navTo("/potresticonoscere");
+  // };
 
   const user = localStorage.getItem("user");
   const parseUser = JSON.parse(user);

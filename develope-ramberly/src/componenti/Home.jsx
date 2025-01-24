@@ -47,12 +47,11 @@ export function Home() {
               </a>
             </div>
             <h5>Livello 17</h5>
-            <p>2972 Westheimer Rd. Santa Ana, Illinois 85486</p>
-            <p>Corsetta Mattutina!</p>
-            <p>+24XP!</p>
+            
           </div>
         </div>
         <div className="icons-container">
+          <button>Live chat</button>
           <a>
             <img
               id="post-settings-icon"
@@ -61,6 +60,26 @@ export function Home() {
             />
           </a>
         </div>
+        
+      </div>
+      <div descrizione-evento>
+      <p>Corsetta mattutina!</p>
+      <p style={{fontSize:12}}>Start:Lecce,Via Copertino-Finish:Lecce, Via Pascoli</p>
+      </div>
+      <div map-container>
+      <img
+                src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                width={290}
+                alt="Mappa"
+                className="mappa"
+              />
+      </div>
+      <div className="container-partecipanti">
+        <button>Difficile</button>
+<div>
+  <img src="src\assets\icons\partecipanti.svg" width={40} alt="partecipanti" />
+</div>
+<span>Simone e altri 6 partecipano</span>
       </div>
     </div>
   );
