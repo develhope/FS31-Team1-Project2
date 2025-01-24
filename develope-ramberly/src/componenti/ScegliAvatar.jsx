@@ -54,7 +54,7 @@ export function ScegliAvatar() {
 
   return (
     <div className="form">
-      <p>Step 4/4</p>
+      <p className="superscript">Step 4/4</p>
       <div className="caratteristiche">
         <a href="/potresticonoscere" className="link-class">
           <svg
@@ -71,7 +71,7 @@ export function ScegliAvatar() {
             ></path>
           </svg>
         </a>
-        
+
         <h3 className="link-h3-class">Scegli il tuo avatar!</h3>
       </div>
       <div className="avatar-container">

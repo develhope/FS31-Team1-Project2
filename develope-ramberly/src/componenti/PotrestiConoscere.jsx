@@ -45,9 +45,8 @@ export function PotrestiConoscere() {
 
   return (
     <div className="form">
-      <p>Step 3/4</p>
+      <p className="superscript">Step 3/4</p>
       <div className="caratteristiche">
-      
         <a
           href="/sceglieresport"
           className="link-class"
@@ -67,7 +66,7 @@ export function PotrestiConoscere() {
             ></path>
           </svg>
         </a>
-        
+
         <h3 className="link-h3-class">Potresti conoscere:</h3>
       </div>
       <div className="list-container">

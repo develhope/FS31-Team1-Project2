@@ -39,9 +39,8 @@ export default function ScegliSport() {
   };
 
   return (
-    
     <div className="form">
-      <p>Step 2/4</p>
+      <p className="superscript">Step 2/4</p>
       <div className="caratteristiche">
         <a
           href="/caratteristiche"
@@ -62,10 +61,8 @@ export default function ScegliSport() {
             ></path>
           </svg>
         </a>
-        
-        <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
-        
 
+        <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
       </div>
 
       <form className="form-sports" onSubmit={handleSubmit}>

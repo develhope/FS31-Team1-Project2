@@ -51,6 +51,11 @@
   color: var(--font-color);
 }
 
+.superscript {
+  font-family: "Avenir-light";
+  font-size: 13px;
+}
+
 .err-msg {
   font-size: 12px;
   color: red;
