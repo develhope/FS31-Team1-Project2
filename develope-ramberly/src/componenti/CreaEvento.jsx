@@ -1,7 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
+import { useState } from "react";
 
 export function CreaEvento() {
+  const [data, setData] = useState({
+    evento: "",
+    start: "",
+    finish: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const { userLogged } = useUserContext();
   const navTo = useNavigate();
   const daInserire = () => {
@@ -16,7 +32,7 @@ export function CreaEvento() {
 
   console.log(userLogged);
   return (
-    <div className="home">
+    <div className="form">
       <div className="caratteristiche">
         <a href="/" className="link-class">
           <svg
@@ -50,10 +66,42 @@ export function CreaEvento() {
           </div>
         </div>
       </div>
-      <hr style={{ margin: "20px" }} />
-
       {/* ------------------------------------ */}
       <form className="form" onSubmit={handleSubmit}>
+        <div className="eventName">
+          <label htmlFor="">Nome evento:</label>
+          <input
+            type="text"
+            name="evento"
+            onChange={handleChange}
+            placeholder="Inserisci nome evento"
+            required
+          />
+        </div>
+
+        <div className="startFinish">
+          <div>
+            <label htmlFor="">Start:</label>
+            <input
+              type="text"
+              name="start"
+              onChange={handleChange}
+              placeholder="Luogo partenza..."
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="">Finish:</label>
+            <input
+              type="text"
+              name="finish"
+              onChange={handleChange}
+              placeholder="Luogo d'arrivo..."
+              required
+            />
+          </div>
+        </div>
+
         <button type="submit" className="prosegui">
           Avanti
         </button>
