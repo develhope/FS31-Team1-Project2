@@ -52,7 +52,6 @@
   height: 100vh; */
   margin: 0 auto;
   /* padding: 1vh 5vw; */
-  padding: 1vh 14vw;
   text-align: center;
   color: var(--font-color);
 }
@@ -72,12 +71,11 @@
 /* Home */
 .home {
   
- width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  
   /* border: var(--border); */
   border-radius: var(--border-radius);
   padding: 20px;
@@ -136,6 +134,20 @@
   border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: var(--box-shadow);
+}
+.registrazione{
+  background-color: var(--form-bg-color);
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  /* border: var(--border); */
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  max-width: 2rem;
 }
 
 .form-btn-container {
@@ -345,4 +357,76 @@ h3 {
 .startFinish {
   display: flex;
   gap: 10px;
+}
+
+/* Eventi preferiti */
+.utente-titolo{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.eventi-preferiti{
+ border: var(--border);
+ border-radius: var(--border-radius);
+ padding: var(--padding);
+background-color: var(--form-bg-color)
+  
+}
+.title-preferiti{
+  
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+.box-dati-preferiti{
+  display: flex;
+  gap: 10px;
+
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: var(--border);
+  margin-right: 5px;
+  background-color: #fdbd81;
+}
+.info-evento-preferiti{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.map-preferiti{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.btn-eventi-preferiti{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.red-btn{
+  border-radius: var(--border-radius);
+  padding: 5px;
+  background-color: var(--btn-color-hard-difficolta);
+  border: none;
+  font-size: 18px;
+  color: white;
+  width: 5rem;
+  font-family: 'Avenir-Heavy';
+}
+.btn-facile{
+  border-radius: var(--border-radius);
+  padding: 5px;
+  background-color: var(--btn-bgr-color);
+  border: none;
+  font-size: 18px;
+  color: white;
+  
+  width: 5rem;
+  font-family: 'Avenir-Heavy';
 }

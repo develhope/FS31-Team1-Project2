@@ -77,7 +77,7 @@ export function Registrazione() {
 
   return (
     <div>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form registrazione" onSubmit={handleSubmit}>
         <label htmlFor="Nome">Nome:</label>
         <input
           type="text"

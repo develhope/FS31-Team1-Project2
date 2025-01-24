@@ -9,10 +9,12 @@ import { PotrestiConoscere } from "./componenti/PotrestiConoscere";
 import { Home } from "./componenti/Home";
 import ScegliSport from "./componenti/ScegliSport";
 import { CreaEvento } from "./componenti/CreaEvento";
+import { EventiPreferiti } from "./componenti/EventiPreferiti";
 
 function App() {
   return (
     <BrowserRouter>
+      
       <UserProvider>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -24,9 +26,12 @@ function App() {
           <Route path="/sceglieresport" element={<ScegliSport />} />
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
           <Route path="/creaevento" element={<CreaEvento />} />
+          <Route path="/eventipreferiti" element={<EventiPreferiti />} />
+
         </Routes>
       </UserProvider>
     </BrowserRouter>
+  
   );
 }
 

@@ -75,7 +75,7 @@ export function Home() {
               />
       </div>
       <div className="container-partecipanti">
-        <button>Difficile</button>
+        <button className="red-btn">Difficile</button>
 <div>
   <img src="src\assets\icons\partecipanti.svg" width={70} alt="partecipanti" />
 </div>
