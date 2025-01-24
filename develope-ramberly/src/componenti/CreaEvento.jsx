@@ -113,26 +113,47 @@ export function CreaEvento() {
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>
-
-          <div className="info-pedaggio">
-            <button className="km-button">km</button>
-            <button className="hr-button">hr</button>
-            <button className="date-button">data</button>
-          </div>
-
-          <div className="action-container">
-            <h3>Chi può partecipare</h3>
-            <select className="select-option">
-              <option value="option1">Solo amici</option>
-              <option value="option2">....</option>
-              <option value="option3">....</option>
-            </select>
-            <button className="pubblish-button">Pubblica evento!</button>
-          </div>
         </div>
 
+        <div className="event-form">
+          <div className="event-details">
+            <div className="event-items">
+              <span className="event-icon">🏃‍♂️</span>
+              <p className="event-value">10,00</p>
+              <span className="event-unit">km</span>
+            </div>
+            <div className="event-items">
+              <span className="event-icon">⏱</span>
+              <p className="event-value">18:00 </p>
+              <span className="event-unit">hr</span>
+            </div>
+            <div className="event-items">
+              <span className="event-icon">📅</span>
+              <p className="event-value">25/01/2025</p>
+              <span className="event-unit">data</span>
+            </div>
+          </div>
+        </div>
+        {/* ------------------------------------ */}
+
+        <div className="event-privacy">
+            <label htmlFor="" className="privacy-label">
+              Chi può partecipare
+            </label>
+            <select
+              name="partecipanti"
+              id="partecipanti"
+              className="privacy-select"
+            >
+              <option value="solo-amici">Solo amici</option>
+              <option value="pubblico">Pubblico</option>
+              <option value="privato">Privato</option>
+            </select>
+          </div>
+        {/* ------------------------------------ */}
+
         <button type="submit" className="prosegui">
-          Avanti
+        Pubblica evento!
         </button>
       </form>
     </div>

@@ -359,6 +359,58 @@ h3 {
   gap: 10px;
 }
 
+/*Crea Evento*/
+.event-form {
+  background-color: var(--form-bg-color);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  /* box-shadow: var(--box-shadow); */
+}
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.event-items {
+  text-align: center;
+  color: var(--font-color);
+}
+.event-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+  padding: var(--padding-icons);
+  border-radius: 50%;
+}
+.event-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+.event-unit {
+  font-size: 14px;
+  color: #666;
+}
+.event-privacy {
+  margin-top: 16px;
+}
+.privacy-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.privacy-select {
+  width: 100%;
+  padding: 12px;
+  color: var(--btn-color);
+  background-color: var(--form-bgr-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+
 /* Eventi preferiti */
 .utente-titolo{
   display: flex;
