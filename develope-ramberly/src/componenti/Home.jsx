@@ -77,9 +77,9 @@ export function Home() {
       <div className="container-partecipanti">
         <button>Difficile</button>
 <div>
-  <img src="src\assets\icons\partecipanti.svg" width={40} alt="partecipanti" />
+  <img src="src\assets\icons\partecipanti.svg" width={70} alt="partecipanti" />
 </div>
-<span>Simone e altri 6 partecipano</span>
+<span style={{fontSize:12}}>Simone e altri 6 partecipano</span>
       </div>
     </div>
   );

@@ -13,12 +13,12 @@ export default function ScegliSport() {
   const caratteristiche = () => {
     navTo("/caratteristiche");
   };
-  const potresticonoscere = () => {
-    navTo("/creaevento");
-  };
-  //  const potresticonoscere = () => {
-  //   navTo("/potresticonoscere");
+  // const potresticonoscere = () => {
+  //   navTo("/creaevento");
   // };
+   const potresticonoscere = () => {
+    navTo("/potresticonoscere");
+  };
 
   const user = localStorage.getItem("user");
   const parseUser = JSON.parse(user);
@@ -68,7 +68,7 @@ export default function ScegliSport() {
         <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
       </div>
 
-      <form className="form-sports" onSubmit={handleSubmit}>
+      <form  className="form-sports"  onSubmit={handleSubmit}>
         <div className="sports-input">
           <div className="checkbox-container">
             <div className="img-sports">
