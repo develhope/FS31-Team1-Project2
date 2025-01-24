@@ -79,6 +79,7 @@ export function Caratteristiche() {
       </div>
 
       <form className="form" onSubmit={handleSubmit}>
+      <p>Step 1/4</p>
         <label>Sesso:</label>
         <select id="sesso" required onChange={handleChange}>
           Scegli un opzione:
