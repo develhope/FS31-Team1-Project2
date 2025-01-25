@@ -10,11 +10,11 @@ import { Home } from "./componenti/Home";
 import ScegliSport from "./componenti/ScegliSport";
 import { CreaEvento } from "./componenti/CreaEvento";
 import { EventiPreferiti } from "./componenti/EventiPreferiti";
+import { MapComponent } from "./componenti/MapComponent";
 
 function App() {
   return (
     <BrowserRouter>
-      
       <UserProvider>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -27,11 +27,10 @@ function App() {
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
           <Route path="/creaevento" element={<CreaEvento />} />
           <Route path="/eventipreferiti" element={<EventiPreferiti />} />
-
+          <Route path="/map" element={<MapComponent />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>
-  
   );
 }
 
