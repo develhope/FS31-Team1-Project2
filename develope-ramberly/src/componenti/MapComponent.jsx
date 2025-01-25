@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export function MapComponent() {
   //impostiamo i riferimenti per la manipolzione della mappa e per la gestione del suo conteniutore
@@ -49,7 +50,10 @@ export function MapComponent() {
       zoom: 10,
     });
 
-    new mapboxgl.Marker().setLngLat(userLocation).addTo(mapRef.current);
+    // Aggiungo il marker alla mappa
+    const marker = new mapboxgl.Marker()
+      .setLngLat(userLocation) // Coordinate del marker
+      .addTo(mapRef.current); // Aggiungo alla mappa
 
     return () => {
       if (mapRef.current) {
@@ -75,7 +79,7 @@ export function MapComponent() {
         <div
           id="map-box"
           ref={mapContainerRef}
-          style={{ width: "100%", height: "500px" }}
+          style={{ width: "2000px", height: "500px" }}
         />
       ) : (
         <p>Loading map...</p>
