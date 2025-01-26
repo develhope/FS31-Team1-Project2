@@ -53,105 +53,107 @@ export function ScegliAvatar() {
   }
 
   return (
-    <div className="form">
-      <p className="superscript">Step 4/4</p>
-      <div className="caratteristiche">
-        <a href="/potresticonoscere" className="link-class">
-          <svg
-            width="10"
-            height="20"
-            viewBox="0 0 18 28"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
-          >
-            <path
-              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </a>
+    <div className="main-container">
+      <div className="form">
+        <p className="superscript">Step 4/4</p>
+        <div className="caratteristiche">
+          <a href="/potresticonoscere" className="link-class">
+            <svg
+              width="10"
+              height="20"
+              viewBox="0 0 18 28"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+            >
+              <path
+                d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </a>
 
-        <h3 className="link-h3-class">Scegli il tuo avatar!</h3>
-      </div>
-      <div className="avatar-container">
-        <img
-          src="\src\assets\avatar\avatar (1).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (2).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (3).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (4).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (5).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (6).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (7).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (8).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (9).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (10).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (11).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-        <img
-          src="\src\assets\avatar\avatar (12).webp"
-          width={70}
-          alt="avatar1"
-          onClick={handleImage}
-        />
-      </div>
+          <h3 className="link-h3-class">Scegli il tuo avatar!</h3>
+        </div>
+        <div className="avatar-container">
+          <img
+            src="\src\assets\avatar\avatar (1).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (2).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (3).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (4).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (5).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (6).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (7).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (8).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (9).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (10).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (11).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+          <img
+            src="\src\assets\avatar\avatar (12).webp"
+            width={70}
+            alt="avatar1"
+            onClick={handleImage}
+          />
+        </div>
 
-      <button type="submit" className="prosegui" onClick={handleSubmit}>
-        Avanti
-      </button>
+        <button type="submit" className="prosegui" onClick={handleSubmit}>
+          Avanti
+        </button>
+      </div>
     </div>
   );
 }

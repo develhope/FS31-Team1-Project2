@@ -44,57 +44,59 @@ export function PotrestiConoscere() {
   };
 
   return (
-    <div className="form">
-      <p className="superscript">Step 3/4</p>
-      <div className="caratteristiche">
-        <a
-          href="/sceglieresport"
-          className="link-class"
-          onClick={scegliereSport}
-        >
-          <svg
-            width="10"
-            height="20"
-            viewBox="0 0 18 28"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+    <div className="main-container">
+      <div className="form">
+        <p className="superscript">Step 3/4</p>
+        <div className="caratteristiche">
+          <a
+            href="/sceglieresport"
+            className="link-class"
+            onClick={scegliereSport}
           >
-            <path
-              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </a>
+            <svg
+              width="10"
+              height="20"
+              viewBox="0 0 18 28"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+            >
+              <path
+                d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </a>
 
-        <h3 className="link-h3-class">Potresti conoscere:</h3>
-      </div>
-      <div className="list-container">
-        <ul>
-          {profiles.map((profile) => (
-            <li key={profile.id} className="user-item">
-              <div className="user-avatar">
-                <img src={profile.img} alt={`Profile ${profile.nome}`} />
-              </div>
-              <div className="user-info">
-                <span className="user-name"> {profile.nome}</span>
-                <span className="user-lev">
-                  livello:{` ${profile.livello}`}{" "}
-                </span>
-              </div>
-              <button onClick={() => handleAddProfile(profile)}>
-                {seguendo.some((utente) => utente.email === profile.email)
-                  ? "👤-"
-                  : "👤+"}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <h3 className="link-h3-class">Potresti conoscere:</h3>
+        </div>
+        <div className="list-container">
+          <ul>
+            {profiles.map((profile) => (
+              <li key={profile.id} className="user-item">
+                <div className="user-avatar">
+                  <img src={profile.img} alt={`Profile ${profile.nome}`} />
+                </div>
+                <div className="user-info">
+                  <span className="user-name"> {profile.nome}</span>
+                  <span className="user-lev">
+                    livello:{` ${profile.livello}`}{" "}
+                  </span>
+                </div>
+                <button onClick={() => handleAddProfile(profile)}>
+                  {seguendo.some((utente) => utente.email === profile.email)
+                    ? "👤-"
+                    : "👤+"}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <button className="prosegui" onClick={scegliAvatar}>
-        Avanti
-      </button>
+        <button className="prosegui" onClick={scegliAvatar}>
+          Avanti
+        </button>
+      </div>
     </div>
   );
 }

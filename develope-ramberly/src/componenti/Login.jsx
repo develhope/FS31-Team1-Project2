@@ -40,7 +40,7 @@ export function Login() {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h3>Logo Ramberly</h3>
       <form className="form" onSubmit={handleLogin}>
         <label htmlFor="">Email:</label>
@@ -60,9 +60,7 @@ export function Login() {
           required
         />
 
-        <button type="submit" className="btnLogin">
-          Login
-        </button>
+        <button type="submit">Login</button>
         <p>
           Non sei registrato? <Link to="/registrazione">Registrati</Link>
         </p>

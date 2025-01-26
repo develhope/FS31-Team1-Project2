@@ -12,27 +12,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #69747c1f;
-    /* background-image: url("/public/Progetto_senza_titolo.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; */
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
