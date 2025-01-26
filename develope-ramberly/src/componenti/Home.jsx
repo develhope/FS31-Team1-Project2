@@ -4,9 +4,9 @@ export function Home() {
   const { userLogged } = useUserContext();
 
   return (
-    <>
-      <div className="nav-post-container">
-        <div className="nav-user-info">
+    <div className="home-container">
+      <div className="nav-top-home">
+        <div className="nav-top-home-info">
           <img
             id="home-user-avatar"
             src={userLogged.img}
@@ -28,8 +28,8 @@ export function Home() {
         </div>
       </div>
       <div className="home">
-        <div className="nav-post-container">
-          <div className="nav-user-info">
+        <div className="nav-post">
+          <div className="nav-post-user-info">
             <img
               id="post-avatar"
               src="https://placehold.co/40"
@@ -67,10 +67,10 @@ export function Home() {
             Start:Lecce,Via Copertino-Finish:Lecce, Via Pascoli
           </p>
         </div>
-        <div map-container>
+        <div className="map-container">
           <img
             src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-            width={290}
+            // width={290}
             alt="Mappa"
             className="mappa"
           />
@@ -115,7 +115,7 @@ export function Home() {
 
         {/* ------------------------------------ */}
       </div>
-      <navbar className="nav-home">
+      <navbar className="nav-bottom-home">
         <a>
           <img src="src\assets\navbar\utente.svg" alt="utente" />
         </a>
@@ -124,7 +124,7 @@ export function Home() {
         </a>
         <a>
           <img
-            id="nav-home-addEvent"
+            id="nav-bottom-home-addEvent"
             src="src\assets\navbar\addEvent.svg"
             alt="addEvent"
           />
@@ -136,6 +136,6 @@ export function Home() {
           <img src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
         </a>
       </navbar>
-    </>
+    </div>
   );
 }
