@@ -98,26 +98,26 @@ export function MapComponent() {
 
         // Aggiungi il percorso alla mappa come linea
         mapRef.current.addLayer({
-          id: "route",
-          type: "line",
+          id: "route", // Identificativo unico per il layer della linea
+          type: "line", // Tipo di layer: in questo caso una linea per rappresentare il percorso
           source: {
-            type: "geojson",
+            type: "geojson", // Tipo di sorgente: formato GeoJSON per rappresentare i dati geografici
             data: {
-              type: "Feature",
-              properties: {},
+              type: "Feature", // Specifica che stiamo usando una "feature" GeoJSON
+              properties: {}, // Proprietà opzionali della feature (può essere usato per metadati)
               geometry: {
-                type: "LineString",
-                coordinates: route,
+                type: "LineString", // Tipo di geometria: una linea con coordinate connesse
+                coordinates: route, // Coordinate del percorso ottenute dalla Directions API
               },
             },
           },
           layout: {
-            "line-join": "round",
-            "line-cap": "round",
+            "line-join": "round", // Unisce i segmenti della linea con angoli arrotondati
+            "line-cap": "round", // Termina le estremità della linea in modo arrotondato
           },
           paint: {
-            "line-color": "#ff0000", // Colore della linea
-            "line-width": 4,
+            "line-color": "#ff0000", // Colore della linea: rosso (#ff0000)
+            "line-width": 4, // Spessore della linea in pixel
           },
         });
       }
