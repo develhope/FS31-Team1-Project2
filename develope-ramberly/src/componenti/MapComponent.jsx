@@ -9,10 +9,13 @@ export function MapComponent() {
   //imposto lo useState della posizione del mio utente per gestirla in seguito all'interno dello useEffetct e determinare quindi le coordinate dello user
   const [userLocation, setUserLocation] = useState(null);
 
+  //M: Aggiunto romecoordinates per capire come viene aggiunto un secondo marker
+  const romeCoordinates = [12.4964, 41.9028];
+
   useEffect(() => {
     //controllo l'esistenza di navigator.geolocation prima di andare a recuperare le informazioni delle coordinate
     if (navigator.geolocation) {
-      //uso getcurrent position per ottenere i valori di latitudine e longitudine e li destrutturo partendo dal position.coords
+      //uso getcurrent position per ottenere i valo ri di latitudine e longitudine e li destrutturo partendo dal position.coords
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
@@ -71,6 +74,58 @@ export function MapComponent() {
     });
   };
 
+  //M: Funzione per creare un nuovo Marker
+  const handleAddMarker = () => {
+    if (mapRef.current) {
+      new mapboxgl.Marker()
+        .setLngLat(romeCoordinates) // Posiziona il marker al centro attuale della mappa
+        .addTo(mapRef.current);
+    }
+  };
+
+  //M: Funzione asincrona per calcolare la rotta tra userlocation e romecoordinates
+  const calculateRoute = async () => {
+    if (!userLocation || !romeCoordinates) return;
+
+    const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${userLocation[0]},${userLocation[1]};${romeCoordinates[0]},${romeCoordinates[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.routes && data.routes.length > 0) {
+        const route = data.routes[0].geometry.coordinates;
+
+        // Aggiungi il percorso alla mappa come linea
+        mapRef.current.addLayer({
+          id: "route",
+          type: "line",
+          source: {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: route,
+              },
+            },
+          },
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#ff0000", // Colore della linea
+            "line-width": 4,
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching directions:", error);
+    }
+  };
+
   return (
     <>
       {" "}
@@ -87,6 +142,12 @@ export function MapComponent() {
       <button className="map-reset-btm" onClick={handleResetposition}>
         Reset Position
       </button>
+      <button className="map-add-marker-btm" onClick={handleAddMarker}>
+        Add Marker
+      </button>
+      <button onClick={calculateRoute}>Calculate Route</button>
     </>
   );
 }
+/*M: Aggiunti pulsanti per aggiungere marker, per ora alla romacoordinates,
+      e calcolare la rotta */
