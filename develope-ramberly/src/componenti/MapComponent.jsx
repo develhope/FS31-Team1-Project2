@@ -58,6 +58,21 @@ export function MapComponent() {
       .setLngLat(userLocation) // Coordinate del marker
       .addTo(mapRef.current); // Aggiungo alla mappa
 
+    //aggiungo metodo .on  per inserire un marker al click sulla mappa
+    mapRef.current.on("click", (e) => {
+      // introduco un IF per verificare che il mio evento abbia lnglat al suo interno
+      if (!e.lngLat) {
+        console.warn("Click event does not contain lngLat. Ignoring...");
+        return; //se non è verificato la funzione si interrompe
+      }
+      //vado a destrutturare lng e lat dall'oggetto evento ottenuto con il click pewr poter inserire i valori nel marker
+      const { lng, lat } = e.lngLat;
+
+      const targetMarker = new mapboxgl.Marker()
+        .setLngLat([lng, lat])
+        .addTo(mapRef.current);
+    });
+
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
@@ -142,9 +157,9 @@ export function MapComponent() {
       <button className="map-reset-btm" onClick={handleResetposition}>
         Reset Position
       </button>
-      <button className="map-add-marker-btm" onClick={handleAddMarker}>
+      {/* <button className="map-add-marker-btm" onClick={handleAddMarker}>
         Add Marker
-      </button>
+      </button> */}
       <button onClick={calculateRoute}>Calculate Route</button>
     </>
   );
