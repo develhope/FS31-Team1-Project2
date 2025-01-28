@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
 
 export function Home() {
   const { userLogged } = useUserContext();
+
+  const navTo = useNavigate();
 
   return (
     <div className="home-container">
@@ -120,13 +123,21 @@ export function Home() {
           <img src="src\assets\navbar\utente.svg" alt="utente" />
         </a>
         <a>
-          <img src="src\assets\navbar\preferiti.svg" alt="preferiti" />
+          <img
+            src="src\assets\navbar\preferiti.svg"
+            alt="preferiti"
+            onClick={() => navTo("/eventipreferiti")}
+          />
         </a>
-        <a id="nav-bottom-home-addEvent">
+        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
           <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
         </a>
         <a>
-          <img src="src\assets\navbar\map.svg" alt="map" />
+          <img
+            src="src\assets\navbar\map.svg"
+            alt="map"
+            onClick={() => navTo("/map")}
+          />
         </a>
         <a>
           <img src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />

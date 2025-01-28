@@ -13,9 +13,7 @@ export default function ScegliSport() {
   const caratteristiche = () => {
     navTo("/caratteristiche");
   };
-  // const potresticonoscere = () => {
-  //   navTo("/creaevento");
-  // };
+
   const potresticonoscere = () => {
     navTo("/potresticonoscere");
   };

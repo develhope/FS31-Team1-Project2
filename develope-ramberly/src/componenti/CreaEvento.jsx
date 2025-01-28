@@ -20,21 +20,16 @@ export function CreaEvento() {
 
   const { userLogged } = useUserContext();
   const navTo = useNavigate();
-  const daInserire = () => {
-    navTo("/");
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    daInserire();
+    navTo("/home");
   };
 
-  console.log(userLogged);
   return (
     <div className="form">
       <div className="caratteristiche">
-        <a href="/" className="link-class">
+        <a className="link-class" onClick={() => navTo("/home")}>
           <svg
             width="10"
             height="20"
@@ -137,23 +132,23 @@ export function CreaEvento() {
         {/* ------------------------------------ */}
 
         <div className="event-privacy">
-            <label htmlFor="" className="privacy-label">
-              Chi può partecipare
-            </label>
-            <select
-              name="partecipanti"
-              id="partecipanti"
-              className="privacy-select"
-            >
-              <option value="solo-amici">Solo amici</option>
-              <option value="pubblico">Pubblico</option>
-              <option value="privato">Privato</option>
-            </select>
-          </div>
+          <label htmlFor="" className="privacy-label">
+            Chi può partecipare
+          </label>
+          <select
+            name="partecipanti"
+            id="partecipanti"
+            className="privacy-select"
+          >
+            <option value="solo-amici">Solo amici</option>
+            <option value="pubblico">Pubblico</option>
+            <option value="privato">Privato</option>
+          </select>
+        </div>
         {/* ------------------------------------ */}
 
         <button type="submit" className="prosegui">
-        Pubblica evento!
+          Pubblica evento!
         </button>
       </form>
     </div>
