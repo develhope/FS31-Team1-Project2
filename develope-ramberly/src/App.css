@@ -264,10 +264,26 @@ button {
 }
 
 #nav-bottom-home-addEvent {
-  /* width: 66.6px;
-  height: 66.6px; */
-  width: clamp(2.5rem, 100%, 5rem);
-  height: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nav-bottom-home-addEvent::before {
+  background-color: #eceeef;
+  box-shadow: var(--box-shadow-secondary);
+  content: "";
+  position: absolute;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 15%, 50% 15%, 0% 15%, 0% 0%);
+  z-index: -1;
+}
+
+#nav-bottom-home-addEvent img {
+  z-index: 1;
 }
 
 /* --------------------- */

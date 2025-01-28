@@ -122,12 +122,8 @@ export function Home() {
         <a>
           <img src="src\assets\navbar\preferiti.svg" alt="preferiti" />
         </a>
-        <a>
-          <img
-            id="nav-bottom-home-addEvent"
-            src="src\assets\navbar\addEvent.svg"
-            alt="addEvent"
-          />
+        <a id="nav-bottom-home-addEvent">
+          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
         </a>
         <a>
           <img src="src\assets\navbar\map.svg" alt="map" />
