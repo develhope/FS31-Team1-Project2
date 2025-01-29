@@ -1,0 +1,40 @@
+const eventiArr = [
+  {
+    id: 1,
+    creatore_evento: 1,
+    nome_evento: "corsetta mattutina",
+    start: "Via Roma",
+    finish: "Via Italia",
+    distanza: 12.2,
+    orario: "18:00",
+    data: "2025-02-24",
+    img: null,
+    privacy: "1",
+  },
+  {
+    id: 2,
+    creatore_evento: 1,
+    nome_evento: "corsetta pomeridiana",
+    start: "Via Pascoli",
+    finish: "Via Lecce",
+    distanza: 8.1,
+    orario: "18:00",
+    data: "2025-01-18",
+    img: null,
+    privacy: "1",
+  },
+  {
+    id: 3,
+    creatore_evento: 1,
+    nome_evento: "arrampicata notturna",
+    start: "Via Bari",
+    finish: "Via Messina",
+    distanza: 4.4,
+    orario: "18:00",
+    data: "2025-04-05",
+    img: null,
+    privacy: "1",
+  },
+];
+
+export default eventiArr;

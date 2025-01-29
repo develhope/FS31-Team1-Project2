@@ -1,10 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
+import eventiArr from "../databaseEventi";
+import { useSwipeable } from "react-swipeable";
+import { useState } from "react";
 
 export function Home() {
   const { userLogged } = useUserContext();
 
   const navTo = useNavigate();
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handlers = useSwipeable({
+    onSwipedLeft: () => handleSwipe("left"),
+    onSwipedRight: () => handleSwipe("right"),
+    trackMouse: true,
+  });
+
+  const handleSwipe = (direction) => {
+    if (direction === "left" && currentIndex < eventiArr.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    }
+    if (direction === "right" && currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
 
   return (
     <div className="home-container">
@@ -30,94 +49,122 @@ export function Home() {
           </a>
         </div>
       </div>
-      <div className="home">
-        <div className="nav-post">
-          <div className="nav-post-user-info">
-            <img
-              id="post-avatar"
-              src="https://placehold.co/40"
-              alt="user-icon"
-            />
-            <div className="post-info-container">
-              <div className="post-user-info">
-                <h3>Luca</h3>
-                <h5>Amici</h5>
-                <a>
+      <div className="home-wrapper" {...handlers}>
+        <div
+          className="home-carousel"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: "transform 0.3s ease-out",
+          }}
+        >
+          {eventiArr.map((evento) => (
+            <div key={evento.id} className="home-slide">
+              <div className="home">
+                <div className="nav-post">
+                  <div className="nav-post-user-info">
+                    <img
+                      id="post-avatar"
+                      src="https://placehold.co/40"
+                      alt="user-icon"
+                    />
+                    <div className="post-info-container">
+                      <div className="post-user-info">
+                        <h3>Luca</h3>
+                        <h5>Amici</h5>
+                        <a>
+                          <img
+                            id="post-settings-icon"
+                            src="\friends-svgrepo-com.svg"
+                            alt="post settings"
+                          />
+                        </a>
+                      </div>
+                      <h5>Livello 17</h5>
+                    </div>
+                  </div>
+                  <div className="icons-container">
+                    <button>Live chat</button>
+                    <a>
+                      <img
+                        id="post-settings-icon"
+                        src="\dots-horizontal-svgrepo-com.svg"
+                        alt="post settings"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div className="descrizione-evento">
+                  <h3 style={{ fontSize: "clamp(1vw, 5vw, 2rem)" }}>
+                    {evento.nome_evento.toUpperCase()}
+                  </h3>
+                  <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
+                    {`${evento.start} - ${evento.finish}`}
+                  </p>
+                </div>
+                <div className="map-container">
                   <img
-                    id="post-settings-icon"
-                    src="\friends-svgrepo-com.svg"
-                    alt="post settings"
+                    src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                    // width={290}
+                    alt="Mappa"
+                    className="mappa"
                   />
-                </a>
+                </div>
+                <div className="container-partecipanti">
+                  <button className="red-btn">Difficile</button>
+                  <div>
+                    <img
+                      src="src\assets\icons\partecipanti.svg"
+                      width={70}
+                      alt="partecipanti"
+                    />
+                  </div>
+                  <span style={{ fontSize: 12 }}>
+                    Simone e altri 6 partecipano
+                  </span>
+                </div>
+                <div className="info-percorso">
+                  <div className="info-box">
+                    <img src="src\assets\icons\kilometers.svg" alt="distanza" />
+                    <div className="info-box-text">
+                      <h3>{evento.distanza}</h3>
+                      <span>km</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="info-box">
+                    <img src="src\assets\icons\clock.svg" alt="orario" />
+                    <div className="info-box-text">
+                      <h3>{evento.orario}</h3>
+                      <span>hr</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="info-box">
+                    <img src="/src/assets/icons/calendar.svg" alt="data" />
+                    <div className="info-box-text">
+                      <h3>{evento.data}</h3>
+                      <span>data</span>
+                    </div>
+                  </div>
+                </div>
+                <button style={{ fontSize: "18px" }}>Partecipa!</button>
               </div>
-              <h5>Livello 17</h5>
             </div>
-          </div>
-          <div className="icons-container">
-            <button>Live chat</button>
-            <a>
-              <img
-                id="post-settings-icon"
-                src="\dots-horizontal-svgrepo-com.svg"
-                alt="post settings"
-              />
-            </a>
-          </div>
+          ))}
         </div>
-        <div className="descrizione-evento">
-          <h3>Corsetta mattutina!</h3>
-          <p style={{ fontSize: 12 }}>
-            Start:Lecce,Via Copertino-Finish:Lecce, Via Pascoli
-          </p>
-        </div>
-        <div className="map-container">
-          <img
-            src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-            // width={290}
-            alt="Mappa"
-            className="mappa"
-          />
-        </div>
-        <div className="container-partecipanti">
-          <button className="red-btn">Difficile</button>
-          <div>
-            <img
-              src="src\assets\icons\partecipanti.svg"
-              width={70}
-              alt="partecipanti"
-            />
-          </div>
-          <span style={{ fontSize: 12 }}>Simone e altri 6 partecipano</span>
-        </div>
-        <div className="info-percorso">
-          <div className="info-box">
-            <img src="src\assets\icons\kilometers.svg" alt="distanza" />
-            <div className="info-box-text">
-              <h3>10,00</h3>
-              <span>km</span>
-            </div>
-          </div>
-          <hr />
-          <div className="info-box">
-            <img src="src\assets\icons\clock.svg" alt="orario" />
-            <div className="info-box-text">
-              <h3>18:00</h3>
-              <span>hr</span>
-            </div>
-          </div>
-          <hr />
-          <div className="info-box">
-            <img src="/src/assets/icons/calendar.svg" alt="data" />
-            <div className="info-box-text">
-              <h3>25/01/2025</h3>
-              <span>data</span>
-            </div>
-          </div>
-        </div>
-        <button>Partecipa!</button>
-
-        {/* ------------------------------------ */}
       </div>
+      <div className="carousel-dots">
+        {eventiArr.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === currentIndex ? "active" : ""}`}
+            onClick={() => setCurrentIndex(index)}
+          />
+        ))}
+      </div>
+
+      {/* ------------------------------------ */}
+
       <navbar className="nav-bottom-home">
         <a>
           <img src="src\assets\navbar\utente.svg" alt="utente" />

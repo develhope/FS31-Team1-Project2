@@ -101,7 +101,7 @@ button {
 .home-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .nav-top-home {
@@ -138,7 +138,56 @@ button {
   text-align: left;
 }
 
+/* styling carosello */
+
+.home-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.home-carousel {
+  display: flex;
+  transition: transform 0.3s ease-out;
+}
+
+.home-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100vh;
+  /* padding: 0 15px; */
+  box-sizing: border-box;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10vh; /* Regola in base all'altezza del tuo navbar */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.133);
+}
+
+.dot.active {
+  background-color: var(--primary-color);
+  transform: scale(1.2);
+}
+
+/* fine styling carosello */
+
 .home {
+  height: 87.5vh;
   flex: 1;
   box-sizing: border-box;
   background-color: var(--form-bg-color);
@@ -148,11 +197,11 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.7rem;
-  padding: 15px;
+  padding: 1vh 15px 10vh 15px;
 }
 
 .home > * {
-  flex-grow: 1; /* Fa crescere gli elementi al suo interno per occupare lo spazio disponibile */
+  flex-grow: 1;
 }
 
 .home h5 {
@@ -179,6 +228,10 @@ button {
 
 .descrizione-evento p {
   font-family: "Avenir-medium";
+}
+
+.map-container {
+  height: 20vh;
 }
 
 .map-container img {
@@ -211,7 +264,7 @@ button {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-secondary);
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-evenly;
   gap: 5px;
@@ -568,13 +621,13 @@ h3 {
   background-color: var(--form-bg-color);
 }
 .title-preferiti {
-display: flex;
-align-items: center;
-justify-content: center;
-margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-.title-preferiti a{
+.title-preferiti a {
   position: relative;
   right: 120px;
 }
@@ -631,27 +684,26 @@ margin-bottom: 10px;
   font-family: "Avenir-Heavy";
 }
 /* Map component */
-input{
+input {
   padding: 10px;
   border-radius: var(--border-radius);
   border: var(--border);
   width: 15rem;
 }
 
-.search-location{
+.search-location {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: var(--padding);
-  
 }
 
-.search-location a{
+.search-location a {
   position: relative;
   right: 30px;
 }
 
-.btn-search{
+.btn-search {
   width: 5rem;
 }
