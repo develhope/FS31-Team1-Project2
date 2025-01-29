@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export function MapComponent(width) {
-  //impostiamo i riferimenti per la manipolzione della mappa e per la gestione del suo conteniutore
+    //impostiamo i riferimenti per la manipolzione della mappa e per la gestione del suo conteniutore
   const mapRef = useRef();
   const mapContainerRef = useRef();
 
@@ -15,48 +15,44 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
 
   useEffect(() => {
-    //controllo l'esistenza di navigator.geolocation prima di andare a recuperare le informazioni delle coordinate
+        //controllo l'esistenza di navigator.geolocation prima di andare a recuperare le informazioni delle coordinate
     if (navigator.geolocation) {
-      //uso getcurrent position per ottenere i valori di latitudine e longitudine e li destrutturo partendo dal position.coords
+            //uso getcurrent position per ottenere i valori di latitudine e longitudine e li destrutturo partendo dal position.coords
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
         },
-
-        //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
+                //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
           console.error("Error fetching location:", error.message);
           setUserLocation([-74.006, 40.7128]);
         }
       );
     } else {
-      //se navigator.geolocation non è a tru imposto un else per avere in console un errore e impostare comunque la mia posizione di default
+            //se navigator.geolocation non è a tru imposto un else per avere in console un errore e impostare comunque la mia posizione di default
       console.error("Geolocation is not supported by your browser.");
       setUserLocation([-74.006, 40.7128]);
     }
   }, []);
 
   useEffect(() => {
-    //controllo che userLocation esista prima di operare ulteriormente
+     //controllo che userLocation esista prima di operare ulteriormente
     if (!userLocation) return;
-
-    //impostiamo un valore a mapboxgl.accessToken per avere il riferimento al profilo utilizzato per la libreria
+ //impostiamo un valore a mapboxgl.accessToken per avere il riferimento al profilo utilizzato per la libreria
     mapboxgl.accessToken =
       "pk.eyJ1Ijoia2FyYXN1MDBnIiwiYSI6ImNtNmMxb2RjODBjNGQyanNjYWh2anl3aDYifQ.6Y73zxmEAj307vBJe-AmIw";
-
-    //richiamno i riferimenti alla mappa e al suo contenitore per inizializzare la mappa
+ //richiamno i riferimenti alla mappa e al suo contenitore per inizializzare la mappa
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
       zoom: 10,
     });
-
-    // Aggiungo il marker alla mappa
+   // Aggiungo il marker alla mappa
     const userMarker = new mapboxgl.Marker()
-      .setLngLat(userLocation) // Coordinate del marker
-      .addTo(mapRef.current); // Aggiungo alla mappa
+      .setLngLat(userLocation)
+      .addTo(mapRef.current);
 
     return () => {
       if (mapRef.current) {
@@ -64,12 +60,11 @@ export function MapComponent(width) {
       }
     };
   }, [userLocation]); //impostiamo la dipendenza con userLocation in modo che ogni volta che questo valore cambia la mappa venga reinizializzata
-
-  // Gestisce il click sulla mappa e posiziona un marker
+// Gestisce il click sulla mappa e posiziona un marker
   const handleMapClick = (e) => {
     const { lngLat } = e;
 
-    // Rimuovo il marker esistente se presente
+    // Rimuovo il marker esistente se esiste
     if (marker) {
       marker.remove();
     }
@@ -81,19 +76,20 @@ export function MapComponent(width) {
 
     setMarker(newMarker);
 
-    // Rimuovo il percorso precedente, se presente
+    // Rimuovo il percorso precedente, se esistente
     if (routeLayer) {
       mapRef.current.removeLayer(routeLayer.id);
       mapRef.current.removeSource(routeLayer.id);
     }
+
+    // Aggiungo il calcolo del percorso appena dopo il click sulla mappa
+    calculateRoute([lngLat.lng, lngLat.lat]);
   };
+// Funzione per calcolare la rotta
+  const calculateRoute = async (destination) => {
+    if (!userLocation || !destination) return;// mi assicuro che ci siano sia la posizione dell'utente che il marker
 
-  // Funzione per calcolare la rotta
-  const calculateRoute = async () => {
-    if (!userLocation || !marker) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
-
-    const markerCoordinates = marker.getLngLat(); //prendo le coordinate
-    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userLocation[0]},${userLocation[1]};${markerCoordinates.lng},${markerCoordinates.lat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userLocation[0]},${userLocation[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
     try {
       const response = await fetch(url);
@@ -106,7 +102,7 @@ export function MapComponent(width) {
 
         setDistance(distanceInKilometers);
 
-        // Rimuovo il percorso precedente, se presente
+        // Rimuovo il percorso precedente se esistente
         if (routeLayer) {
           mapRef.current.removeLayer(routeLayer.id);
           mapRef.current.removeSource(routeLayer.id);
@@ -114,29 +110,28 @@ export function MapComponent(width) {
 
         const newRouteLayer = {
           id: "route", // Identificativo unico per il layer della linea
-          type: "line", // Tipo di layer: in questo caso una linea per rappresentare il percorso
+          type: "line",// Tipo di layer: in questo caso una linea per rappresentare il percorso
           source: {
-            type: "geojson", // Tipo di sorgente: formato GeoJSON per rappresentare i dati geografici
+            type: "geojson",// Tipo di sorgente: formato GeoJSON per rappresentare i dati geografici
             data: {
               type: "Feature", // Specifica che stiamo usando una "feature" GeoJSON
-              properties: {}, // Proprietà opzionali della feature (può essere usato per metadati)
+              properties: {},// Proprietà opzionali della feature (può essere usato per metadati)
               geometry: {
-                type: "LineString", // Tipo di geometria: una linea con coordinate connesse
-                coordinates: route, // Coordinate del percorso ottenute dalla Directions API
+                type: "LineString",// Tipo di geometria: una linea con coordinate connesse
+                coordinates: route,// Coordinate del percorso ottenute dalla Directions API
               },
             },
           },
           layout: {
-            "line-join": "round", // Unisce i segmenti della linea con angoli arrotondati
+            "line-join": "round",// Unisce i segmenti della linea con angoli arrotondati
             "line-cap": "round", // Termina le estremità della linea in modo arrotondato
           },
           paint: {
-            "line-color": "#ff0000", // Colore della linea: rosso (#ff0000)
-            "line-width": 4, // Spessore della linea in pixel
+            "line-color": "#ff0000",// Colore della linea: rosso (#ff0000)
+            "line-width": 4,// Spessore della linea in pixel
           },
         };
-
-        // Aggiungi la rotta alla mappa
+// Aggiungi la rotta alla mappa
         mapRef.current.addLayer(newRouteLayer);
         setRouteLayer(newRouteLayer);
       }
@@ -144,8 +139,7 @@ export function MapComponent(width) {
       console.error("Error fetching directions:", error);
     }
   };
-
-  // Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
+// Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
   const handleResetPosition = () => {
     if (userLocation) {
       mapRef.current.flyTo({
@@ -154,8 +148,7 @@ export function MapComponent(width) {
       });
     }
   };
-
-  // Funzione per cercare un luogo tramite il nome
+// Funzione per cercare un luogo tramite il nome
   const handleSearch = async () => {
     if (!searchQuery) return;
 
@@ -170,23 +163,26 @@ export function MapComponent(width) {
 
       if (firstResult) {
         const [longitude, latitude] = firstResult.center;
-
-        // Centriamo la mappa sulla posizione trovata
+    // Centriamo la mappa sulla posizione trovata
         mapRef.current.flyTo({
           center: [longitude, latitude],
           zoom: 15,
         });
 
-        // Aggiungiamo il marker
+        // Rimuovo il marker precedente se esiste
         if (marker) {
           marker.remove();
         }
 
+        // Creo un nuovo marker sulla posizione trovata
         const newMarker = new mapboxgl.Marker()
           .setLngLat([longitude, latitude])
           .addTo(mapRef.current);
 
         setMarker(newMarker);
+
+        // Calcolo il percorso verso la nuova posizione cercata
+        calculateRoute([longitude, latitude]);
       } else {
         alert("No results found!");
       }
@@ -197,7 +193,6 @@ export function MapComponent(width) {
 
   return (
     <>
-      {/* Campo di input per la ricerca del luogo */}
       <div>
         <input
           type="text"
@@ -208,7 +203,6 @@ export function MapComponent(width) {
         <button onClick={handleSearch}>Cerca</button>
       </div>
 
-      {/* render condizionale della mappa basato sull'esistenza di userLocation */}
       {userLocation ? (
         <div
           id="map-box"
@@ -228,9 +222,7 @@ export function MapComponent(width) {
       >
         Add Marker
       </button>
-      <button onClick={calculateRoute}>Calculate Route</button>
 
-      {/* Visualizza la distanza calcolata */}
       {distance && (
         <div>
           <p>Distance: {distance} km</p>
