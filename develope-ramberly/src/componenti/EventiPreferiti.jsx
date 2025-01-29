@@ -7,7 +7,7 @@ export function EventiPreferiti() {
     <>
       <div className="title-preferiti">
 
-      <a className="back-to" onClick={() => navTo("/home")}>
+      <a className="link-class" onClick={() => navTo("/home")}>
           <svg
             width="20"
             height="20"
@@ -22,7 +22,11 @@ export function EventiPreferiti() {
             ></path>
           </svg>
         </a>
+
+        <div>
         <h3>EVENTI PREFERITI</h3>
+
+        </div>
       </div>
       <div className="eventi-preferiti">
         <div className="utente-titolo">

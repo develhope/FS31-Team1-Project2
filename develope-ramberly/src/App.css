@@ -470,15 +470,7 @@ h3 {
   display: flex;
   justify-content: center;
 }
-.back-to{
-  transform: rotate(180deg);
-width: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin: 10px;
-  
-}
+
 .caratteristiche {
   display: flex;
   justify-content: space-between;
@@ -576,7 +568,15 @@ width: 30px;
   background-color: var(--form-bg-color);
 }
 .title-preferiti {
-  align-self: center;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.title-preferiti a{
+  position: relative;
+  right: 120px;
 }
 
 .info-evento-preferiti {
@@ -644,7 +644,12 @@ input{
   align-items: center;
   justify-content: center;
   padding: var(--padding);
-  gap: 10px;
+  
+}
+
+.search-location a{
+  position: relative;
+  right: 30px;
 }
 
 .btn-search{

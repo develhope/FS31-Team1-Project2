@@ -197,7 +197,9 @@ const navTo=useNavigate()
     
       <div>
       
-<a className="back-to" onClick={() => navTo("/home")}>
+
+        <div className="search-location">
+        <a className="link-class" onClick={() => navTo("/home")}>
           <svg
             width="20"
             height="20"
@@ -212,7 +214,6 @@ const navTo=useNavigate()
             ></path>
           </svg>
         </a>
-        <div className="search-location">
         <input
           type="text"
           placeholder="Cerca un luogo..."
