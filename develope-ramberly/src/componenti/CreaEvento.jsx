@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
 import { useState } from "react";
+import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
   const [data, setData] = useState({
@@ -31,7 +32,7 @@ export function CreaEvento() {
       <div className="caratteristiche">
         <a className="link-class" onClick={() => navTo("/home")}>
           <svg
-            width="10"
+            width="20"
             height="20"
             viewBox="0 0 18 28"
             aria-hidden="true"
@@ -99,12 +100,7 @@ export function CreaEvento() {
         <div className="map-container">
           <div className="map">
             <div>
-              <img
-                src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-                width={250}
-                alt="Mappa"
-                className="map-image"
-              />
+              <MapComponent></MapComponent>
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>

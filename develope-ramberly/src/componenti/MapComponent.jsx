@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useNavigate } from "react-router-dom";
 
 export function MapComponent(width) {
     //impostiamo i riferimenti per la manipolzione della mappa e per la gestione del suo conteniutore
@@ -13,7 +14,7 @@ export function MapComponent(width) {
   const [distance, setDistance] = useState(null);  // Stato per la distanza calcolata
   const [routeLayer, setRouteLayer] = useState(null); // Stato per il layer del percorso
   const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
-
+const navTo=useNavigate()
   useEffect(() => {
         //controllo l'esistenza di navigator.geolocation prima di andare a recuperare le informazioni delle coordinate
     if (navigator.geolocation) {
@@ -193,14 +194,34 @@ export function MapComponent(width) {
 
   return (
     <>
+    
       <div>
+      
+<a className="back-to" onClick={() => navTo("/home")}>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 18 28"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
+          >
+            <path
+              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </a>
+        <div className="search-location">
         <input
           type="text"
           placeholder="Cerca un luogo..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button onClick={handleSearch}>Cerca</button>
+        <button className="btn-search" onClick={handleSearch}>Cerca</button>
+        </div>
+       
       </div>
 
       {userLocation ? (

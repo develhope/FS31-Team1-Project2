@@ -470,7 +470,15 @@ h3 {
   display: flex;
   justify-content: center;
 }
-
+.back-to{
+  transform: rotate(180deg);
+width: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 10px;
+  
+}
 .caratteristiche {
   display: flex;
   justify-content: space-between;
@@ -568,14 +576,14 @@ h3 {
   background-color: var(--form-bg-color);
 }
 .title-preferiti {
-  display: flex;
-  justify-content: center;
+  align-self: center;
 }
 
 .info-evento-preferiti {
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  justify-content: center;
 }
 .map-preferiti {
   display: flex;
@@ -621,4 +629,24 @@ h3 {
 
   width: 5rem;
   font-family: "Avenir-Heavy";
+}
+/* Map component */
+input{
+  padding: 10px;
+  border-radius: var(--border-radius);
+  border: var(--border);
+  width: 15rem;
+}
+
+.search-location{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding);
+  gap: 10px;
+}
+
+.btn-search{
+  width: 5rem;
 }
