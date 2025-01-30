@@ -707,3 +707,7 @@ input {
 .btn-search {
   width: 5rem;
 }
+
+.suggestions-list{
+  list-style: none;
+}

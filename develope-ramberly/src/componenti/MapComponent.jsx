@@ -14,7 +14,9 @@ export function MapComponent(width) {
   const [distance, setDistance] = useState(null);  // Stato per la distanza calcolata
   const [routeLayer, setRouteLayer] = useState(null); // Stato per il layer del percorso
   const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
-const navTo=useNavigate()
+  const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
+  const navTo = useNavigate();
+
   useEffect(() => {
         //controllo l'esistenza di navigator.geolocation prima di andare a recuperare le informazioni delle coordinate
     if (navigator.geolocation) {
@@ -61,7 +63,8 @@ const navTo=useNavigate()
       }
     };
   }, [userLocation]); //impostiamo la dipendenza con userLocation in modo che ogni volta che questo valore cambia la mappa venga reinizializzata
-// Gestisce il click sulla mappa e posiziona un marker
+
+  // Gestisce il click sulla mappa e posiziona un marker
   const handleMapClick = (e) => {
     const { lngLat } = e;
 
@@ -86,7 +89,8 @@ const navTo=useNavigate()
     // Aggiungo il calcolo del percorso appena dopo il click sulla mappa
     calculateRoute([lngLat.lng, lngLat.lat]);
   };
-// Funzione per calcolare la rotta
+
+  // Funzione per calcolare la rotta
   const calculateRoute = async (destination) => {
     if (!userLocation || !destination) return;// mi assicuro che ci siano sia la posizione dell'utente che il marker
 
@@ -140,7 +144,8 @@ const navTo=useNavigate()
       console.error("Error fetching directions:", error);
     }
   };
-// Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
+
+  // Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
   const handleResetPosition = () => {
     if (userLocation) {
       mapRef.current.flyTo({
@@ -149,7 +154,8 @@ const navTo=useNavigate()
       });
     }
   };
-// Funzione per cercare un luogo tramite il nome
+
+  // Funzione per cercare un luogo tramite il nome e ottenere i suggerimenti in tempo reale
   const handleSearch = async () => {
     if (!searchQuery) return;
 
@@ -160,6 +166,8 @@ const navTo=useNavigate()
     try {
       const response = await fetch(url);
       const data = await response.json();
+      setSuggestions(data.features); // Salviamo i suggerimenti nel nostro stato
+
       const firstResult = data.features[0];
 
       if (firstResult) {
@@ -192,37 +200,70 @@ const navTo=useNavigate()
     }
   };
 
+  // Funzione per gestire la selezione di un suggerimento dalla lista
+  const handleSuggestionSelect = (suggestion) => {
+    setSearchQuery(suggestion.place_name); // Impostiamo il nome del luogo nel campo di ricerca
+    const [longitude, latitude] = suggestion.center;
+    mapRef.current.flyTo({
+      center: [longitude, latitude],
+      zoom: 15,
+    });
+
+    // Aggiungiamo il marker
+    if (marker) {
+      marker.remove();
+    }
+
+    const newMarker = new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(mapRef.current);
+
+    setMarker(newMarker);
+
+    // Calcoliamo il percorso
+    calculateRoute([longitude, latitude]);
+  };
+
   return (
     <>
-    
       <div>
-      
-
         <div className="search-location">
-        <a className="link-class" onClick={() => navTo("/home")}>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 18 28"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            className="Icon__StyledSVG-sc-lm07h6-0 rBpBu Chevronstyles__ChevronIcon-sc-1qql32m-0 gxjmBc GlobalBannerstyles__ControlIcon-sc-adnc4-6 llnoGO"
-          >
-            <path
-              d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </a>
-        <input
-          type="text"
-          placeholder="Cerca un luogo..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button className="btn-search" onClick={handleSearch}>Cerca</button>
+          <a className="link-class" onClick={() => navTo("/home")}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 18 28"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </a>
+          <input
+            type="text"
+            placeholder="Cerca un luogo..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              handleSearch();
+            }}
+          />
+          <button className="btn-search" onClick={handleSearch}>Cerca</button>
         </div>
-       
+
+        {/* Mostriamo i suggerimenti sotto il campo di ricerca */}
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map((suggestion, index) => (
+              <li key={index} onClick={() => handleSuggestionSelect(suggestion)}>
+                {suggestion.place_name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {userLocation ? (
