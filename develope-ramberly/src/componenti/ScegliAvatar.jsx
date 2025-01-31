@@ -49,7 +49,7 @@ export function ScegliAvatar() {
 
     localStorage.setItem("user", "");
 
-    login();
+    login();switch
   }
 
   return (
@@ -77,76 +77,88 @@ export function ScegliAvatar() {
         </div>
         <div className="avatar-container">
           <img
-            src="\src\assets\avatar\avatar (1).webp"
+            src="\src\assets\avatar\avatar (1).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (2).webp"
+            src="\src\assets\avatar\avatar (2).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (3).webp"
+            src="\src\assets\avatar\avatar (3).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (4).webp"
+            src="\src\assets\avatar\avatar (4).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (5).webp"
+            src="\src\assets\avatar\avatar (5).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (6).webp"
+            src="\src\assets\avatar\avatar (6).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (7).webp"
+            src="\src\assets\avatar\avatar (7).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (8).webp"
+            src="\src\assets\avatar\avatar (8).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (9).webp"
+            src="\src\assets\avatar\avatar (9).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (10).webp"
+            src="\src\assets\avatar\avatar (10).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (11).webp"
+            src="\src\assets\avatar\avatar (11).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (12).webp"
+            src="\src\assets\avatar\avatar (12).avif"
             width={70}
             alt="avatar1"
             onClick={handleImage}
+            loading="lazy"
           />
         </div>
 
