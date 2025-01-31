@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import persone from "../database";
+import eventiArr from "../databaseEventi";
 
 export const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
@@ -10,6 +11,7 @@ export function UserProvider({ children }) {
   const [userLogged, setUserLogged] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
   const [pers, setPers] = useState(persone);
+  const [eventi, setEventi] = useState(eventiArr);
 
   // da 17 a 24 è stato wrappato con uno useEffect che esegue il setItem di users solo una volta al richiamo del contesto, altrimenti si crea un loop.
 
@@ -42,9 +44,18 @@ export function UserProvider({ children }) {
     setIsLogged(false);
   };
 
+  useEffect(() => {
+    localStorage.setItem("eventi", JSON.stringify(eventi));
+    const events = localStorage.getItem("eventi");
+    const parseEvents = JSON.parse(events);
+
+    setEventi((prec) => [...prec, parseEvents]);
+    localStorage.setItem("eventi", JSON.stringify(eventi));
+  }, []);
+
   return (
     <UserContext.Provider
-      value={{ login, logout, userLogged, isLogged, setIsLogged }}
+      value={{ login, logout, userLogged, isLogged, setIsLogged, pers }}
     >
       {children}
     </UserContext.Provider>

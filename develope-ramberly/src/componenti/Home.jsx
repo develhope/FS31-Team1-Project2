@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
-import eventiArr from "../databaseEventi";
 import { useSwipeable } from "react-swipeable";
 import { useState } from "react";
 
 export function Home() {
-  const { userLogged } = useUserContext();
+  const { userLogged, pers } = useUserContext();
 
   const navTo = useNavigate();
 
+  const events = localStorage.getItem("eventi");
+  const parseEvents = JSON.parse(events);
+
+  // logica carosello
   const [currentIndex, setCurrentIndex] = useState(0);
   const handlers = useSwipeable({
     onSwipedLeft: () => handleSwipe("left"),
@@ -17,13 +20,24 @@ export function Home() {
   });
 
   const handleSwipe = (direction) => {
-    if (direction === "left" && currentIndex < eventiArr.length - 1) {
+    if (direction === "left" && currentIndex < parseEvents.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     }
     if (direction === "right" && currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     }
   };
+
+  // randomizzazione info post degli utenti
+  function randomPostInfo() {
+    const indiceCasuale = Math.floor(Math.random() * pers.length);
+    return pers[indiceCasuale];
+  }
+  const personaScelta = randomPostInfo();
+
+  // function handlePartecipa() {
+  //   localStorage.setItem("favorites");
+  // }
 
   return (
     <div className="home-container">
@@ -57,19 +71,15 @@ export function Home() {
             transition: "transform 0.3s ease-out",
           }}
         >
-          {eventiArr.map((evento) => (
+          {parseEvents.map((evento) => (
             <div key={evento.id} className="home-slide">
               <div className="home">
                 <div className="nav-post">
                   <div className="nav-post-user-info">
-                    <img
-                      id="post-avatar"
-                      src="https://placehold.co/40"
-                      alt="user-icon"
-                    />
+                    <img id="post-avatar" src={pers.img} alt="user-icon" />
                     <div className="post-info-container">
                       <div className="post-user-info">
-                        <h3>Luca</h3>
+                        <h3>{personaScelta.nome}</h3>
                         <h5>Amici</h5>
                         <a>
                           <img
@@ -79,7 +89,7 @@ export function Home() {
                           />
                         </a>
                       </div>
-                      <h5>Livello 17</h5>
+                      <h5>Livello {personaScelta.livello}</h5>
                     </div>
                   </div>
                   <div className="icons-container">
@@ -119,7 +129,9 @@ export function Home() {
                     />
                   </div>
                   <span style={{ fontSize: 12 }}>
-                    Simone e altri 6 partecipano
+                    {`${evento.partecipanti[0]} e altri ${
+                      evento.partecipanti.length - 1
+                    } stanno partecipando!`}
                   </span>
                 </div>
                 <div className="info-percorso">
@@ -154,7 +166,7 @@ export function Home() {
         </div>
       </div>
       <div className="carousel-dots">
-        {eventiArr.map((_, index) => (
+        {parseEvents.map((_, index) => (
           <span
             key={index}
             className={`dot ${index === currentIndex ? "active" : ""}`}
