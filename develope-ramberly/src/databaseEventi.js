@@ -10,6 +10,7 @@ const eventiArr = [
     data: "2025-02-24",
     img: null,
     privacy: "1",
+    partecipanti: ["Marco", "Laura", "Sergio"],
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const eventiArr = [
     data: "2025-01-18",
     img: null,
     privacy: "1",
+    partecipanti: ["Marcella", "Giovanni"],
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const eventiArr = [
     data: "2025-04-05",
     img: null,
     privacy: "1",
+    partecipanti: ["Tommaso", "Giuseppe", "Sergio", "Michela"],
   },
 ];
 
