@@ -27,7 +27,6 @@ function App() {
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
           <Route path="/creaevento" element={<CreaEvento />} />
           <Route path="/eventipreferiti" element={<EventiPreferiti />} />
-          <Route path="/map" element={<MapComponent />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>
