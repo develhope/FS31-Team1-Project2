@@ -10,7 +10,7 @@ export function CreaEvento() {
     finish: "",
     distanza: "",
     orario: "",
-    dataEvento: ""
+    dataEvento: "",
   });
 
   const handleChange = (event) => {
@@ -103,7 +103,7 @@ export function CreaEvento() {
         <div className="map-container">
           <div className="map">
             <div>
-              <MapComponent/>
+              <MapComponent />
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>
@@ -111,25 +111,57 @@ export function CreaEvento() {
 
         <div className="event-form">
           <div className="event-details">
-            
             <div className="event-items">
-              <label><img  className="event-icon" src="src\assets\icons\kilometers.svg" alt="distanza" />Distanza: </label>
-              <input type="number" name="distanza" onChange={handleChange} required />
+              <label>
+                <img
+                  className="event-icon"
+                  src="src\assets\icons\kilometers.svg"
+                  alt="distanza"
+                />
+                Distanza:{" "}
+              </label>
+              <input
+                type="number"
+                name="distanza"
+                onChange={handleChange}
+                required
+              />
               <span className="event-unit">km</span>
             </div>
-            
-            
+
             <div className="event-items">
-              <label><img  className="event-icon" src="src\assets\icons\clock.svg" alt="orario" />Orario:</label>
-              <input type="time" name="orario" onChange={handleChange} required />
+              <label>
+                <img
+                  className="event-icon"
+                  src="src\assets\icons\clock.svg"
+                  alt="orario"
+                />
+                Orario:
+              </label>
+              <input
+                type="time"
+                name="orario"
+                onChange={handleChange}
+                required
+              />
               <span className="event-unit">hr</span>
             </div>
-            
-            
-            
+
             <div className="event-items">
-              <label><img className="event-icon" src="/src/assets/icons/calendar.svg" alt="data" />Data:</label>
-              <input type="date" name="dataEvento" onChange={handleChange} required />
+              <label>
+                <img
+                  className="event-icon"
+                  src="/src/assets/icons/calendar.svg"
+                  alt="data"
+                />
+                Data:
+              </label>
+              <input
+                type="date"
+                name="dataEvento"
+                onChange={handleChange}
+                required
+              />
               <span className="event-unit">data</span>
             </div>
           </div>
