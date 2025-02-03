@@ -114,7 +114,7 @@ export function CreaEvento() {
                         value={searchQuery}
                         onChange={(e) => {
                           setSearchQuery(e.target.value);
-                          handleSearch();
+                          handleSearch(e);
                           handleChange();
                         }}
                       />
@@ -140,7 +140,7 @@ export function CreaEvento() {
                         value={searchQueryR}
                         onChange={(e) => {
                           setSearchQueryR(e.target.value);
-                          handleSearchR();
+                          handleSearchR(e);
                           handleChange();
                         }}
                       />

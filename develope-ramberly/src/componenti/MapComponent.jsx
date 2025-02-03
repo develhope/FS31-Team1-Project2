@@ -16,6 +16,7 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
+  const [destination, setDestination] = useState(null);
   const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
   const [markerR, setMarkerR] = useState(null); // Per tenere traccia del marker aggiunto
   const [suggestionsR, setSuggestionsR] = useState([]); // Stato per memorizzare i suggerimenti
@@ -193,9 +194,10 @@ export function MapComponent(width) {
           .addTo(mapRef.current);
 
         setMarkerR(newMarker);
-
+        console.log("Chiamata a calculateRoute con:", [longitude, latitude]);
         // Calcolo il percorso verso la nuova posizione cercata
-        calculateRoute([longitude, latitude]);
+        setDestination([longitude, latitude]);
+        calculateRoute(destination);
       } else {
         alert("No results found!");
       }
