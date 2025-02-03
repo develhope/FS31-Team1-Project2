@@ -35,9 +35,19 @@ export function Home() {
   }
   const personaScelta = randomPostInfo();
 
-  // function handlePartecipa() {
-  //   localStorage.setItem("favorites");
-  // }
+  function handlePartecipa(evento) {
+    const parseUsers = JSON.parse(localStorage.getItem("users"));
+    const parseUser = JSON.parse(localStorage.getItem("user"));
+
+    const findUser = parseUsers.findIndex(
+      (user) => user.email === parseUser.email
+    );
+    if (!parseUsers[findUser].eventi_preferiti) {
+      parseUsers[findUser].eventi_preferiti = [];
+    }
+    parseUsers[findUser].eventi_preferiti.push(evento);
+    localStorage.setItem("users", JSON.stringify(parseUsers));
+  }
 
   return (
     <div className="home-container">
@@ -159,7 +169,12 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-                <button style={{ fontSize: "18px" }}>Partecipa!</button>
+                <button
+                  onClick={handlePartecipa(evento)}
+                  style={{ fontSize: "18px" }}
+                >
+                  Partecipa!
+                </button>
               </div>
             </div>
           ))}
