@@ -16,6 +16,7 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
+  const [position, setPosition] = useState(null);
   const [destination, setDestination] = useState(null);
   const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
   const [markerR, setMarkerR] = useState(null); // Per tenere traccia del marker aggiunto
@@ -30,6 +31,7 @@ export function MapComponent(width) {
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
+          setPosition([userLocation]);
         },
         //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
@@ -55,7 +57,7 @@ export function MapComponent(width) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom: 10,
+      zoom: 50,
       preserveDrawingBuffer: true,
     });
     // Aggiungo il marker alla mappa
@@ -91,16 +93,16 @@ export function MapComponent(width) {
       mapRef.current.removeLayer(routeLayer.id);
       mapRef.current.removeSource(routeLayer.id);
     }
-
+    setDestination([lngLat.lng, lngLat.lat]);
     // Aggiungo il calcolo del percorso appena dopo il click sulla mappa
-    calculateRoute([lngLat.lng, lngLat.lat]);
+    calculateRoute(destination);
   };
 
   // Funzione per calcolare la rotta
   const calculateRoute = async (destination) => {
-    if (!userLocation || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
+    if (!position || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
-    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userLocation[0]},${userLocation[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+    const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
     try {
       const response = await fetch(url);
@@ -150,6 +152,12 @@ export function MapComponent(width) {
       console.error("Error fetching directions:", error);
     }
   };
+
+  useEffect(() => {
+    if (destination) {
+      calculateRoute(destination);
+    }
+  }, [userLocation]);
 
   // Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
   const handleResetPosition = () => {
@@ -243,8 +251,10 @@ export function MapComponent(width) {
         setMarker(newMarker);
 
         // Calcolo il percorso verso la nuova posizione cercata
-        setUserLocation([longitude, latitude]);
-        calculateRoute([longitude, latitude]);
+
+        setPosition([longitude, latitude]);
+        setUserLocation(position);
+        calculateRoute(destination);
       } else {
         alert("No results found!");
       }
