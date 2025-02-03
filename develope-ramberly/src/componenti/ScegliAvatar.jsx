@@ -49,7 +49,7 @@ export function ScegliAvatar() {
 
     localStorage.setItem("user", "");
 
-    login();switch
+    login();
   }
 
   return (

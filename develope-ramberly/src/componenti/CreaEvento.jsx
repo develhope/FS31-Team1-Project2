@@ -12,7 +12,17 @@ export function CreaEvento() {
     orario: "",
     dataEvento: ""
   });
-
+const {mapContainerRef,
+  userLocation,
+  marker,
+  distance,
+  searchQuery,
+  setSearchQuery,
+  suggestions,
+  handleMapClick,
+  handleSearch,
+  handleResetPosition,
+  takeScreenshot}=MapComponent()
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -103,7 +113,79 @@ export function CreaEvento() {
         <div className="map-container">
           <div className="map">
             <div>
-              <MapComponent/>
+              <>
+      <div>
+        <div className="search-location">
+          <a className="link-class" onClick={() => navTo("/home")}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 18 28"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </a>
+          <input
+            type="text"
+            placeholder="Cerca un luogo..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              handleSearch();
+            }}
+          />
+          <button className="btn-search" onClick={handleSearch}>
+            Cerca
+          </button>
+        </div>
+
+        {/* Mostriamo i suggerimenti sotto il campo di ricerca */}
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                onClick={() => handleSuggestionSelect(suggestion)}
+              >
+                {suggestion.place_name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {userLocation ? (
+        <div
+          id="map-box"
+          ref={mapContainerRef}
+          style={{ width:'250px', height: "500px" }}
+        />
+      ) : (
+        <p>Loading map...</p>
+      )}
+
+      <button className="map-reset-btm" onClick={handleResetPosition}>
+        Reset Position
+      </button>
+      <button
+        className="map-add-marker-btm"
+        onClick={() => mapRef.current.on("click", handleMapClick)}
+      >
+        Add Marker
+      </button>
+      <button onClick={takeScreenshot}>create screenshot</button>
+
+      {distance && (
+        <div>
+          <p>Distance: {distance} km</p>
+        </div>
+      )}
+    </>  
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>
