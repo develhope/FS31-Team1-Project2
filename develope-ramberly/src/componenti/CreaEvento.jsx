@@ -13,18 +13,26 @@ export function CreaEvento() {
     dataEvento: "",
   });
   const {
+    suggestionsR,
+    markerR,
+    handleSearchR,
     mapContainerRef,
     userLocation,
     marker,
     distance,
     searchQuery,
+    searchQueryR,
+    setSearchQueryR,
     setSearchQuery,
     suggestions,
     handleMapClick,
     handleSearch,
     handleResetPosition,
     takeScreenshot,
+    handleSuggestionSelectR,
+    handleSuggestionSelect,
   } = MapComponent();
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -89,61 +97,80 @@ export function CreaEvento() {
             required
           />
         </div>
-        <div className="startFinish">
-          <div>
-            <label htmlFor="">Start:</label>
-            <input
-              type="text"
-              name="start"
-              onChange={handleChange}
-              placeholder="Luogo partenza..."
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="">Finish:</label>
-            <input
-              type="text"
-              name="finish"
-              onChange={handleChange}
-              placeholder="Luogo d'arrivo..."
-              required
-            />
-          </div>
-        </div>
+
         {/* ----------------------- */}
         <div className="map-container">
           <div className="map">
             <div>
               <div>
                 <div className="search-location">
-                  <input
-                    type="text"
-                    placeholder="Cerca un luogo..."
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value);
-                      handleSearch();
-                    }}
-                  />
-                  <button className="btn-search" onClick={handleSearch}>
-                    Cerca
-                  </button>
+                  <div className="startFinish">
+                    <div>
+                      <label htmlFor="">Start:</label>
+                      <input
+                        type="text"
+                        placeholder="Luogo Partenza..."
+                        name="start"
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value);
+                          handleSearch();
+                          handleChange();
+                        }}
+                      />
+                      {suggestions.length > 0 && (
+                        <ul className="suggestions-list">
+                          {suggestions.map((suggestion, index) => (
+                            <li
+                              key={index}
+                              onClick={() => handleSuggestionSelect(suggestion)}
+                            >
+                              {suggestion.place_name}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <div>
+                      <label htmlFor="">Finish:</label>
+                      <input
+                        type="text"
+                        placeholder="Luogo arrivo..."
+                        name="finish"
+                        value={searchQueryR}
+                        onChange={(e) => {
+                          setSearchQueryR(e.target.value);
+                          handleSearchR();
+                          handleChange();
+                        }}
+                      />
+                      {suggestionsR.length > 0 && (
+                        <ul className="suggestions-list">
+                          {suggestionsR.map((suggestionR, index) => (
+                            <li
+                              key={index}
+                              onClick={() =>
+                                handleSuggestionSelectR(suggestionR)
+                              }
+                            >
+                              {suggestionR.place_name}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
                 </div>
-
+                <button
+                  className="btn-search"
+                  onClick={() => {
+                    handleSearch();
+                    handleSearchR();
+                  }}
+                >
+                  Cerca
+                </button>
                 {/* Mostriamo i suggerimenti sotto il campo di ricerca */}
-                {suggestions.length > 0 && (
-                  <ul className="suggestions-list">
-                    {suggestions.map((suggestion, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleSuggestionSelect(suggestion)}
-                      >
-                        {suggestion.place_name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
 
               {userLocation ? (
