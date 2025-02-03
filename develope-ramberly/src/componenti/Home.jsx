@@ -5,11 +5,13 @@ import { useState } from "react";
 
 export function Home() {
   const { userLogged, pers } = useUserContext();
-
+  const [participatedEvents, setParticipatedEvents] = useState({});
   const navTo = useNavigate();
 
   const events = localStorage.getItem("eventi");
   const parseEvents = JSON.parse(events);
+  const parseUsers = JSON.parse(localStorage.getItem("users"));
+  const parseUser = JSON.parse(localStorage.getItem("user"));
 
   // logica carosello
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,18 +37,37 @@ export function Home() {
   }
   const personaScelta = randomPostInfo();
 
-  function handlePartecipa(evento) {
-    const parseUsers = JSON.parse(localStorage.getItem("users"));
-    const parseUser = JSON.parse(localStorage.getItem("user"));
+  // funzioni bottone partecipa
+  const findUser = parseUsers.findIndex(
+    (user) => user.email === parseUser.email
+  );
 
-    const findUser = parseUsers.findIndex(
-      (user) => user.email === parseUser.email
-    );
+  function handlePartecipa(evento) {
     if (!parseUsers[findUser].eventi_preferiti) {
       parseUsers[findUser].eventi_preferiti = [];
     }
     parseUsers[findUser].eventi_preferiti.push(evento);
     localStorage.setItem("users", JSON.stringify(parseUsers));
+    setParticipatedEvents({
+      ...participatedEvents,
+      [evento.id]: true, // Aggiungi l'evento come "partecipato"
+    });
+  }
+
+  function handleRemovePartecipa(evento) {
+    if (parseUsers[findUser].eventi_preferiti) {
+      const currentEvent = parseUsers[findUser].eventi_preferiti.findIndex(
+        (index) => index.id === evento.id
+      );
+      if (currentEvent !== -1) {
+        parseUsers[findUser].eventi_preferiti.splice(currentEvent, 1);
+        localStorage.setItem("users", JSON.stringify(parseUsers));
+      }
+    }
+    setParticipatedEvents({
+      ...participatedEvents,
+      [evento.id]: false, // Rimuovi l'evento come "partecipato"
+    });
   }
 
   return (
@@ -169,12 +190,21 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-                <button
-                  onClick={handlePartecipa(evento)}
-                  style={{ fontSize: "18px" }}
-                >
-                  Partecipa!
-                </button>
+                {!participatedEvents[evento.id] ? (
+                  <button
+                    onClick={() => handlePartecipa(evento)}
+                    style={{ fontSize: "18px" }}
+                  >
+                    Partecipa!
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleRemovePartecipa(evento)}
+                    style={{ fontSize: "18px", backgroundColor: "red" }}
+                  >
+                    Abbandona
+                  </button>
+                )}
               </div>
             </div>
           ))}

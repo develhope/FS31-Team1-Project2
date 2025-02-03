@@ -631,6 +631,7 @@ h3 {
   border-radius: var(--border-radius);
   padding: var(--padding);
   background-color: var(--form-bg-color);
+  margin-top: 10px;
 }
 .title-preferiti {
   display: flex;

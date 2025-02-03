@@ -2,6 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 export function EventiPreferiti() {
 
+  // metodo per trovare eventi preferiti
+const parseUsers= JSON.parse(localStorage.getItem('users'))
+const findUser= parseUsers.find((user)=> user.eventi_preferiti)
+console.log(findUser)
+// ----------------------
   const navTo=useNavigate()
   return (
     <>
@@ -28,7 +33,10 @@ export function EventiPreferiti() {
 
         </div>
       </div>
-      <div className="eventi-preferiti">
+      {findUser ? (
+  findUser.eventi_preferiti && findUser.eventi_preferiti.length > 0 ? (
+    findUser.eventi_preferiti.map((evento) => (
+      <div className="eventi-preferiti" key={evento.id}>
         <div className="utente-titolo">
           <img id="post-avatar" src="https://placehold.co/40" alt="user-icon" />
           <div className="post-info-container">
@@ -46,7 +54,7 @@ export function EventiPreferiti() {
             <h5>Livello 17</h5>
           </div>
 
-          <p>Corsetta Mattutina</p>
+          <p>{evento.nome_evento}</p>
         </div>
 
         <div className="info-evento-preferiti">
@@ -56,7 +64,7 @@ export function EventiPreferiti() {
               width={150}
               alt="Mappa"
               className="mappa"
-            />{" "}
+            />
           </div>
           <div className="box-dati-preferiti">
             <div className="km-preferiti">
@@ -65,15 +73,15 @@ export function EventiPreferiti() {
                 alt="distanza"
                 width={25}
               />
-              <p>10</p>
+              <p>{evento.distanza}</p>
             </div>
             <div className="orario-preferiti">
               <img src="src\assets\icons\clock.svg" alt="orario" width={25} />
-              <p>18:00 </p>
+              <p>{evento.orario}</p>
             </div>
             <div className="data-preferiti">
               <img src="src\assets\icons\calendar.svg" alt="data" width={25} />
-              <p>25/02/2025</p>
+              <p>{evento.data}</p>
             </div>
           </div>
         </div>
@@ -82,6 +90,14 @@ export function EventiPreferiti() {
           <button className="red-btn">Rimuovi</button>
         </div>
       </div>
-    </>
+    ))
+  ) : (
+    <p>Non ci sono eventi preferiti</p>
+  )
+) : (
+  <p>Non ci sono eventi disponibili</p>
+)}
+
+</>     
   );
 }
