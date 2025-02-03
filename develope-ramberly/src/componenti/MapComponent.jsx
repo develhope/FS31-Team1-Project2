@@ -31,7 +31,7 @@ export function MapComponent(width) {
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
-          setPosition([userLocation]);
+          setPosition(userLocation);
         },
         //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
@@ -161,7 +161,7 @@ export function MapComponent(width) {
 
   // Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
   const handleResetPosition = () => {
-    if (userLocation) {
+    if (position) {
       mapRef.current.flyTo({
         center: userLocation,
         zoom: 15,
@@ -253,7 +253,7 @@ export function MapComponent(width) {
         // Calcolo il percorso verso la nuova posizione cercata
 
         setPosition([longitude, latitude]);
-        setUserLocation(position);
+
         calculateRoute(destination);
       } else {
         alert("No results found!");
