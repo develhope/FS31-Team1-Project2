@@ -48,7 +48,9 @@ export function MapComponent(width) {
 
   useEffect(() => {
     //controllo che userLocation esista prima di operare ulteriormente
+
     if (!userLocation) return;
+
     //impostiamo un valore a mapboxgl.accessToken per avere il riferimento al profilo utilizzato per la libreria
     mapboxgl.accessToken =
       "pk.eyJ1Ijoia2FyYXN1MDBnIiwiYSI6ImNtNmMxb2RjODBjNGQyanNjYWh2anl3aDYifQ.6Y73zxmEAj307vBJe-AmIw";
@@ -57,13 +59,14 @@ export function MapComponent(width) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom: 15,
+      zoom: 5,
       preserveDrawingBuffer: true,
     });
     // Aggiungo il marker alla mappa
-    const userMarker = new mapboxgl.Marker()
-      .setLngLat(userLocation)
-      .addTo(mapRef.current);
+
+    setMarker(
+      new mapboxgl.Marker().setLngLat(userLocation).addTo(mapRef.current)
+    );
 
     return () => {
       if (mapRef.current) {
@@ -82,11 +85,12 @@ export function MapComponent(width) {
     }
 
     // Creo un nuovo marker
-    const newMarker = new mapboxgl.Marker()
-      .setLngLat([lngLat.lng, lngLat.lat])
-      .addTo(mapRef.current);
 
-    setMarker(newMarker);
+    setMarker(
+      new mapboxgl.Marker()
+        .setLngLat([lngLat.lng, lngLat.lat])
+        .addTo(mapRef.current)
+    );
 
     // Rimuovo il percorso precedente, se esistente
     if (routeLayer) {
