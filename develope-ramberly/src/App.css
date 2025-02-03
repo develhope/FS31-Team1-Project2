@@ -604,23 +604,22 @@ h3 {
 }
 .event-privacy {
   margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .privacy-label {
-  display: block;
-  margin-bottom: 8px;
   font-family: "Avenir-Medium";
+  font-size: 16px;
 }
-.privacy-select {
-  width: 100%;
-  padding: 12px;
+.privacy-select{
+  min-width: 20rem;
   color: var(--btn-color);
-  background-color: var(--form-bgr-color);
-  border: none;
+  background-color: var(--form-bg-color);
   border-radius: var(--border-radius);
   font-size: 16px;
-  cursor: pointer;
-  box-shadow: var(--box-shadow);
 }
+
 
 /* Eventi preferiti */
 .utente-titolo {
