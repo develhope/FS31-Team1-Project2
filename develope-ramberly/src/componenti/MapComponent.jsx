@@ -15,6 +15,11 @@ export function MapComponent(width) {
   const [routeLayer, setRouteLayer] = useState(null); // Stato per il layer del percorso
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
+
+  const [destination, setDestination] = useState(null);
+  const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
+  const [markerR, setMarkerR] = useState(null); // Per tenere traccia del marker aggiunto
+  const [suggestionsR, setSuggestionsR] = useState([]); // Stato per memorizzare i suggerimenti
   const navTo = useNavigate();
 
   useEffect(() => {
@@ -155,6 +160,51 @@ export function MapComponent(width) {
       });
     }
   };
+  //Funzione di ritorno per cercare un luogo tramite il nome e ottenere i suggerimenti in tempo reale
+  const handleSearchR = async () => {
+    if (!searchQueryR) return;
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      searchQueryR
+    )}.json?access_token=${mapboxgl.accessToken}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setSuggestionsR(data.features); // Salviamo i suggerimenti nel nostro stato
+
+      const firstResult = data.features[0];
+
+      if (firstResult) {
+        const [longitude, latitude] = firstResult.center;
+        // Centriamo la mappa sulla posizione trovata
+        mapRef.current.flyTo({
+          center: [longitude, latitude],
+          zoom: 15,
+        });
+
+        // Rimuovo il marker precedente se esiste
+        if (markerR) {
+          markerR.remove();
+        }
+
+        // Creo un nuovo marker sulla posizione trovata
+        const newMarker = new mapboxgl.Marker()
+          .setLngLat([longitude, latitude])
+          .addTo(mapRef.current);
+
+        setMarkerR(newMarker);
+        console.log("Chiamata a calculateRoute con:", [longitude, latitude]);
+        // Calcolo il percorso verso la nuova posizione cercata
+        setDestination([longitude, latitude]);
+        calculateRoute(destination);
+      } else {
+        alert("No results found!");
+      }
+    } catch (error) {
+      console.error("Error fetching geocoding data:", error);
+    }
+  };
 
   // Funzione per cercare un luogo tramite il nome e ottenere i suggerimenti in tempo reale
   const handleSearch = async () => {
@@ -186,12 +236,14 @@ export function MapComponent(width) {
 
         // Creo un nuovo marker sulla posizione trovata
         const newMarker = new mapboxgl.Marker()
+
           .setLngLat([longitude, latitude])
           .addTo(mapRef.current);
 
         setMarker(newMarker);
 
         // Calcolo il percorso verso la nuova posizione cercata
+        setUserLocation([longitude, latitude]);
         calculateRoute([longitude, latitude]);
       } else {
         alert("No results found!");
@@ -225,6 +277,29 @@ export function MapComponent(width) {
     calculateRoute([longitude, latitude]);
   };
 
+  const handleSuggestionSelectR = (suggestionR) => {
+    setSearchQueryR(suggestionR.place_name); // Impostiamo il nome del luogo nel campo di ricerca
+    const [longitude, latitude] = suggestionR.center;
+    mapRef.current.flyTo({
+      center: [longitude, latitude],
+      zoom: 15,
+    });
+
+    // Aggiungiamo il marker
+    if (markerR) {
+      markerR.remove();
+    }
+
+    const newMarker = new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(mapRef.current);
+
+    setMarkerR(newMarker);
+
+    // Calcoliamo il percorso
+    calculateRoute([longitude, latitude]);
+  };
+
   const takeScreenshot = () => {
     if (mapRef.current) {
       const canvas = mapRef.current.getCanvas();
@@ -235,89 +310,97 @@ export function MapComponent(width) {
     }
   };
 
-  return {mapContainerRef,
+  return {
+    mapContainerRef,
     userLocation,
     marker,
     distance,
     searchQuery,
     setSearchQuery,
     suggestions,
+    searchQueryR,
+    setSearchQueryR,
+    suggestionsR,
+    markerR,
+    handleSearchR,
     handleMapClick,
     handleSearch,
     handleResetPosition,
-    takeScreenshot}
-    // <>
-    //   <div>
-    //     <div className="search-location">
-    //       <a className="link-class" onClick={() => navTo("/home")}>
-    //         <svg
-    //           width="20"
-    //           height="20"
-    //           viewBox="0 0 18 28"
-    //           aria-hidden="true"
-    //           xmlns="http://www.w3.org/2000/svg"
-    //         >
-    //           <path
-    //             d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
-    //             fill="currentColor"
-    //           ></path>
-    //         </svg>
-    //       </a>
-    //       <input
-    //         type="text"
-    //         placeholder="Cerca un luogo..."
-    //         value={searchQuery}
-    //         onChange={(e) => {
-    //           setSearchQuery(e.target.value);
-    //           handleSearch();
-    //         }}
-    //       />
-    //       <button className="btn-search" onClick={handleSearch}>
-    //         Cerca
-    //       </button>
-    //     </div>
+    takeScreenshot,
+    handleSuggestionSelectR,
+    handleSuggestionSelect,
+  };
+  // <>
+  //   <div>
+  //     <div className="search-location">
+  //       <a className="link-class" onClick={() => navTo("/home")}>
+  //         <svg
+  //           width="20"
+  //           height="20"
+  //           viewBox="0 0 18 28"
+  //           aria-hidden="true"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M1.825 28L18 14 1.825 0 0 1.715 14.196 14 0 26.285z"
+  //             fill="currentColor"
+  //           ></path>
+  //         </svg>
+  //       </a>
+  //       <input
+  //         type="text"
+  //         placeholder="Cerca un luogo..."
+  //         value={searchQuery}
+  //         onChange={(e) => {
+  //           setSearchQuery(e.target.value);
+  //           handleSearch();
+  //         }}
+  //       />
+  //       <button className="btn-search" onClick={handleSearch}>
+  //         Cerca
+  //       </button>
+  //     </div>
 
-    //     {/* Mostriamo i suggerimenti sotto il campo di ricerca */}
-    //     {suggestions.length > 0 && (
-    //       <ul className="suggestions-list">
-    //         {suggestions.map((suggestion, index) => (
-    //           <li
-    //             key={index}
-    //             onClick={() => handleSuggestionSelect(suggestion)}
-    //           >
-    //             {suggestion.place_name}
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     )}
-    //   </div>
+  //     {/* Mostriamo i suggerimenti sotto il campo di ricerca */}
+  //     {suggestions.length > 0 && (
+  //       <ul className="suggestions-list">
+  //         {suggestions.map((suggestion, index) => (
+  //           <li
+  //             key={index}
+  //             onClick={() => handleSuggestionSelect(suggestion)}
+  //           >
+  //             {suggestion.place_name}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     )}
+  //   </div>
 
-    //   {userLocation ? (
-    //     <div
-    //       id="map-box"
-    //       ref={mapContainerRef}
-    //       style={{ width, height: "500px" }}
-    //     />
-    //   ) : (
-    //     <p>Loading map...</p>
-    //   )}
+  //   {userLocation ? (
+  //     <div
+  //       id="map-box"
+  //       ref={mapContainerRef}
+  //       style={{ width, height: "500px" }}
+  //     />
+  //   ) : (
+  //     <p>Loading map...</p>
+  //   )}
 
-    //   <button className="map-reset-btm" onClick={handleResetPosition}>
-    //     Reset Position
-    //   </button>
-    //   <button
-    //     className="map-add-marker-btm"
-    //     onClick={() => mapRef.current.on("click", handleMapClick)}
-    //   >
-    //     Add Marker
-    //   </button>
-    //   <button onClick={takeScreenshot}>create screenshot</button>
+  //   <button className="map-reset-btm" onClick={handleResetPosition}>
+  //     Reset Position
+  //   </button>
+  //   <button
+  //     className="map-add-marker-btm"
+  //     onClick={() => mapRef.current.on("click", handleMapClick)}
+  //   >
+  //     Add Marker
+  //   </button>
+  //   <button onClick={takeScreenshot}>create screenshot</button>
 
-    //   {distance && (
-    //     <div>
-    //       <p>Distance: {distance} km</p>
-    //     </div>
-    //   )}
-    // </>
-  
+  //   {distance && (
+  //     <div>
+  //       <p>Distance: {distance} km</p>
+  //     </div>
+  //   )}
+  // </>
 }
