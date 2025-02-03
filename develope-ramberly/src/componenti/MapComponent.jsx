@@ -99,11 +99,11 @@ export function MapComponent(width) {
     }
     setDestination([lngLat.lng, lngLat.lat]);
     // Aggiungo il calcolo del percorso appena dopo il click sulla mappa
-    calculateRoute(destination);
+    calculateRoute();
   };
 
   // Funzione per calcolare la rotta
-  const calculateRoute = async (destination) => {
+  const calculateRoute = async () => {
     if (!position || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
     const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
@@ -121,8 +121,12 @@ export function MapComponent(width) {
 
         // Rimuovo il percorso precedente se esistente
         if (routeLayer) {
-          mapRef.current.removeLayer(routeLayer.id);
-          mapRef.current.removeSource(routeLayer.id);
+          if (mapRef.current.getLayer("route")) {
+            mapRef.current.removeLayer("route");
+          }
+          if (mapRef.current.getSource("route")) {
+            mapRef.current.removeSource("route");
+          }
         }
 
         const newRouteLayer = {
@@ -157,21 +161,32 @@ export function MapComponent(width) {
     }
   };
 
-  useEffect(() => {
-    if (destination) {
-      calculateRoute(destination);
-    }
-  }, [userLocation]);
-
   // Funzione per resettare la posizione sulla mappa (centrando sulla posizione dell'utente)
   const handleResetPosition = () => {
-    if (position) {
-      mapRef.current.flyTo({
-        center: userLocation,
-        zoom: 15,
-      });
+    if (markerR) {
+      markerR.remove();
     }
+
+    setSuggestions([]);
+    setSuggestionsR([]);
+
+    setSearchQuery("");
+    setSearchQueryR("");
+
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: userLocation,
+      zoom: 5,
+      preserveDrawingBuffer: true,
+    });
+
+    setMarker(
+      new mapboxgl.Marker().setLngLat(userLocation).addTo(mapRef.current)
+    );
   };
+
+  //HandleinputChange serve a far si che quando si cerca qualcosa nel campo input, suggestion che è un array vuoto, si carica con i consigli della mappa.
 
   const handleInputChange = async () => {
     if (!searchQuery) return;
@@ -223,10 +238,6 @@ export function MapComponent(width) {
       if (firstResult) {
         const [longitude, latitude] = firstResult.center;
         // Centriamo la mappa sulla posizione trovata
-        mapRef.current.flyTo({
-          center: [longitude, latitude],
-          zoom: 15,
-        });
 
         // Rimuovo il marker precedente se esiste
         if (markerR) {
@@ -242,7 +253,6 @@ export function MapComponent(width) {
         console.log("Chiamata a calculateRoute con:", [longitude, latitude]);
         // Calcolo il percorso verso la nuova posizione cercata
         setDestination([longitude, latitude]);
-        calculateRoute(destination);
       } else {
         alert("No results found!");
       }
@@ -269,10 +279,6 @@ export function MapComponent(width) {
       if (firstResult) {
         const [longitude, latitude] = firstResult.center;
         // Centriamo la mappa sulla posizione trovata
-        mapRef.current.flyTo({
-          center: [longitude, latitude],
-          zoom: 15,
-        });
 
         // Rimuovo il marker precedente se esiste
         if (marker) {
@@ -290,8 +296,6 @@ export function MapComponent(width) {
         // Calcolo il percorso verso la nuova posizione cercata
 
         setPosition([longitude, latitude]);
-
-        calculateRoute(destination);
       } else {
         alert("No results found!");
       }

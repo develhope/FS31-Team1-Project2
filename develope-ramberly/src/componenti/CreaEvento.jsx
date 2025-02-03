@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contesti/useContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
@@ -98,7 +98,6 @@ export function CreaEvento() {
             name="evento"
             onChange={handleChange}
             placeholder="Inserisci nome evento"
-            required
           />
         </div>
 
@@ -119,7 +118,7 @@ export function CreaEvento() {
                         onChange={(e) => {
                           setSearchQuery(e.target.value);
                           handleInputChange();
-                          handleChange();
+                          handleChange(e);
                         }}
                       />
                       {suggestions.length > 0 && (
@@ -146,7 +145,7 @@ export function CreaEvento() {
                           setSearchQueryR(e.target.value);
 
                           handleInputChangeR();
-                          handleChange();
+                          handleChange(e);
                         }}
                       />
                       {suggestionsR.length > 0 && (
@@ -168,10 +167,11 @@ export function CreaEvento() {
                 </div>
                 <button
                   className="btn-search"
+                  type="button"
                   onClick={() => {
+                    calculateRoute();
                     handleSearch();
                     handleSearchR();
-                    calculateRoute(destination);
                   }}
                 >
                   Cerca
@@ -189,7 +189,11 @@ export function CreaEvento() {
                 <p>Loading map...</p>
               )}
 
-              <button className="map-reset-btm" onClick={handleResetPosition}>
+              <button
+                className="map-reset-btm"
+                type="button"
+                onClick={handleResetPosition}
+              >
                 Reset Position
               </button>
               <button
@@ -221,12 +225,7 @@ export function CreaEvento() {
                 />
                 Distanza:{" "}
               </label>
-              <input
-                type="number"
-                name="distanza"
-                onChange={handleChange}
-                required
-              />
+              <input type="text" name="distanza" value={distance} />
               <span className="event-unit">km</span>
             </div>
 
@@ -239,12 +238,7 @@ export function CreaEvento() {
                 />
                 Orario:
               </label>
-              <input
-                type="time"
-                name="orario"
-                onChange={handleChange}
-                required
-              />
+              <input type="time" name="orario" onChange={handleChange} />
               <span className="event-unit">hr</span>
             </div>
 
@@ -257,12 +251,7 @@ export function CreaEvento() {
                 />
                 Data:
               </label>
-              <input
-                type="date"
-                name="dataEvento"
-                onChange={handleChange}
-                required
-              />
+              <input type="date" name="dataEvento" onChange={handleChange} />
               <span className="event-unit">data</span>
             </div>
           </div>
