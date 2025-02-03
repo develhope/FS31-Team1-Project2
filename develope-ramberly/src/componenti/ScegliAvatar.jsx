@@ -78,84 +78,84 @@ export function ScegliAvatar() {
         </div>
         <div className="avatar-container">
           <img
-            src="\src\assets\avatar\avatar (1).avif"
+            src="\src\assets\avatar\Avatar-old-Walking-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (2).avif"
+            src="\src\assets\avatar\Avatar-Senior-Helmet-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (3).avif"
+            src="\src\assets\avatar\Avatar-Senior-Helmet-Male.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (4).avif"
+            src="\src\assets\avatar\Avatar-Senior-Hiking-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (5).avif"
+            src="\src\assets\avatar\Avatar-Senior-Hiking-Male.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (6).avif"
+            src="\src\assets\avatar\Avatar-Senior-Running-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (7).avif"
+            src="\src\assets\avatar\Avatar-Senior-Running-Male.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (8).avif"
+            src="\src\assets\avatar\Avatar-Senior-Walking-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (9).avif"
+            src="\src\assets\avatar\Avatar-Yung-Helmet-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (10).avif"
+            src="\src\assets\avatar\Avatar-Yung-Helmet-Male.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (11).avif"
+            src="\src\assets\avatar\Avatar-Yung-Hiking-Lady.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
             loading="lazy"
           />
           <img
-            src="\src\assets\avatar\avatar (12).avif"
+            src="\src\assets\avatar\Avatar-Yung-Hiking-Male.webp"
             width={70}
             alt="avatar1"
             onClick={handleImage}
