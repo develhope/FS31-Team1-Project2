@@ -168,6 +168,39 @@ export function MapComponent(width) {
       });
     }
   };
+
+  const handleInputChange = async () => {
+    if (!searchQuery) return;
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      searchQuery
+    )}.json?access_token=${mapboxgl.accessToken}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setSuggestions(data.features); // Salviamo i suggerimenti nel nostro stato
+    } catch (error) {
+      console.error("Error fetching geocoding data:", error);
+    }
+  };
+
+  const handleInputChangeR = async () => {
+    if (!searchQueryR) return;
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      searchQueryR
+    )}.json?access_token=${mapboxgl.accessToken}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setSuggestionsR(data.features); // Salviamo i suggerimenti nel nostro stato
+    } catch (error) {
+      console.error("Error fetching geocoding data:", error);
+    }
+  };
+
   //Funzione di ritorno per cercare un luogo tramite il nome e ottenere i suggerimenti in tempo reale
   const handleSearchR = async () => {
     if (!searchQueryR) return;
@@ -266,48 +299,14 @@ export function MapComponent(width) {
   // Funzione per gestire la selezione di un suggerimento dalla lista
   const handleSuggestionSelect = (suggestion) => {
     setSearchQuery(suggestion.place_name); // Impostiamo il nome del luogo nel campo di ricerca
-    const [longitude, latitude] = suggestion.center;
-    mapRef.current.flyTo({
-      center: [longitude, latitude],
-      zoom: 15,
-    });
-
-    // Aggiungiamo il marker
-    if (marker) {
-      marker.remove();
-    }
-
-    const newMarker = new mapboxgl.Marker()
-      .setLngLat([longitude, latitude])
-      .addTo(mapRef.current);
-
-    setMarker(newMarker);
 
     // Calcoliamo il percorso
-    calculateRoute([longitude, latitude]);
   };
 
   const handleSuggestionSelectR = (suggestionR) => {
     setSearchQueryR(suggestionR.place_name); // Impostiamo il nome del luogo nel campo di ricerca
-    const [longitude, latitude] = suggestionR.center;
-    mapRef.current.flyTo({
-      center: [longitude, latitude],
-      zoom: 15,
-    });
-
-    // Aggiungiamo il marker
-    if (markerR) {
-      markerR.remove();
-    }
-
-    const newMarker = new mapboxgl.Marker()
-      .setLngLat([longitude, latitude])
-      .addTo(mapRef.current);
-
-    setMarkerR(newMarker);
 
     // Calcoliamo il percorso
-    calculateRoute([longitude, latitude]);
   };
 
   const takeScreenshot = () => {
@@ -339,6 +338,10 @@ export function MapComponent(width) {
     takeScreenshot,
     handleSuggestionSelectR,
     handleSuggestionSelect,
+    handleInputChange,
+    handleInputChangeR,
+    calculateRoute,
+    destination,
   };
   // <>
   //   <div>

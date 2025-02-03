@@ -14,6 +14,7 @@ export function CreaEvento() {
   });
   const {
     suggestionsR,
+    destination,
     markerR,
     handleSearchR,
     mapContainerRef,
@@ -31,6 +32,9 @@ export function CreaEvento() {
     takeScreenshot,
     handleSuggestionSelectR,
     handleSuggestionSelect,
+    handleInputChange,
+    handleInputChangeR,
+    calculateRoute,
   } = MapComponent();
 
   const handleChange = (event) => {
@@ -114,7 +118,7 @@ export function CreaEvento() {
                         value={searchQuery}
                         onChange={(e) => {
                           setSearchQuery(e.target.value);
-                          handleSearch(e);
+                          handleInputChange();
                           handleChange();
                         }}
                       />
@@ -140,7 +144,8 @@ export function CreaEvento() {
                         value={searchQueryR}
                         onChange={(e) => {
                           setSearchQueryR(e.target.value);
-                          handleSearchR(e);
+
+                          handleInputChangeR();
                           handleChange();
                         }}
                       />
@@ -166,6 +171,7 @@ export function CreaEvento() {
                   onClick={() => {
                     handleSearch();
                     handleSearchR();
+                    calculateRoute(destination);
                   }}
                 >
                   Cerca
@@ -174,7 +180,11 @@ export function CreaEvento() {
               </div>
 
               {userLocation ? (
-                <div id="map-box" ref={mapContainerRef} />
+                <div
+                  id="map-box"
+                  ref={mapContainerRef}
+                  style={{ width: "100%", height: "500px" }}
+                />
               ) : (
                 <p>Loading map...</p>
               )}

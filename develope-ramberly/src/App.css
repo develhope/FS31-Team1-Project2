@@ -562,6 +562,10 @@ h3 {
   gap: 10px;
 }
 
+.startFinish input {
+  width: 200px;
+}
+
 /*Crea Evento*/
 .event-details {
   display: flex;
@@ -729,4 +733,5 @@ input {
 
 .suggestions-list {
   list-style: none;
+  width: 200px;
 }
