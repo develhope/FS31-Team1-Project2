@@ -57,7 +57,7 @@ export function MapComponent(width) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom: 50,
+      zoom: 15,
       preserveDrawingBuffer: true,
     });
     // Aggiungo il marker alla mappa

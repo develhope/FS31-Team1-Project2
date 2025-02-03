@@ -174,11 +174,7 @@ export function CreaEvento() {
               </div>
 
               {userLocation ? (
-                <div
-                  id="map-box"
-                  ref={mapContainerRef}
-                  style={{ width: "100%", height: "500px" }}
-                />
+                <div id="map-box" ref={mapContainerRef} />
               ) : (
                 <p>Loading map...</p>
               )}
