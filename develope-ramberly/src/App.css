@@ -230,15 +230,8 @@ button {
   font-family: "Avenir-medium";
 }
 
-.map {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
 .map-container {
-  width: 80%;
-  height: 500px;
+  width: 100%;
 }
 
 #map-box {
