@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useNavigate } from "react-router-dom";
+import html2canvas from "html2canvas";
 
 export function MapComponent(width) {
   //impostiamo i riferimenti per la manipolzione della mappa e per la gestione del suo conteniutore
@@ -317,12 +318,14 @@ export function MapComponent(width) {
     // Calcoliamo il percorso
   };
 
-  const takeScreenshot = () => {
-    if (mapRef.current) {
-      const canvas = mapRef.current.getCanvas();
+  const takeScreenshot = async () => {
+    if (mapContainerRef.current) {
+      const canvas = await html2canvas(mapContainerRef.current);
       canvas.toBlob((blob) => {
-        const url = URL.createObjectURL(blob);
-        localStorage.setItem("mapScreenshotURL", url);
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          localStorage.setItem("mapScreenshotURL", url);
+        }
       }, "image/png");
     }
   };

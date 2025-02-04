@@ -202,7 +202,9 @@ export function CreaEvento() {
               >
                 Add Marker
               </button>
-              <button onClick={takeScreenshot}>create screenshot</button>
+              <button type="button" onClick={takeScreenshot}>
+                create screenshot
+              </button>
 
               {distance && (
                 <div>
