@@ -17,6 +17,7 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
+  const [countM, setCountM] = useState([]); // serve a contare i marker
   const [position, setPosition] = useState(null);
   const [destination, setDestination] = useState(null);
   const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
@@ -32,7 +33,7 @@ export function MapComponent(width) {
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
-          setPosition(userLocation);
+          setPosition([longitude, latitude]);
         },
         //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
@@ -75,32 +76,89 @@ export function MapComponent(width) {
       }
     };
   }, [userLocation]); //impostiamo la dipendenza con userLocation in modo che ogni volta che questo valore cambia la mappa venga reinizializzata
-
+  useEffect(() => {
+    console.log(countM);
+  }, [countM]);
   // Gestisce il click sulla mappa e posiziona un marker
-  const handleMapClick = (e) => {
-    const { lngLat } = e;
+  const handleMapClick = async (e) => {
+    if (e.lngLat) {
+      const { lngLat } = e;
 
-    // Rimuovo il marker esistente se esiste
-    if (marker) {
-      marker.remove();
-    }
-
-    // Creo un nuovo marker
-
-    setMarker(
-      new mapboxgl.Marker()
+      const newMarker = new mapboxgl.Marker()
         .setLngLat([lngLat.lng, lngLat.lat])
-        .addTo(mapRef.current)
-    );
+        .addTo(mapRef.current);
 
-    // Rimuovo il percorso precedente, se esistente
-    if (routeLayer) {
-      mapRef.current.removeLayer(routeLayer.id);
-      mapRef.current.removeSource(routeLayer.id);
+      setCountM((c) => [...c, newMarker]);
+
+      if (!position || ![lngLat.lng, lngLat.lat]) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
+
+      const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${lngLat.lng},${lngLat.lat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.routes && data.routes.length > 0) {
+          const route = data.routes[0].geometry.coordinates;
+          const distanceInMeters = data.routes[0].distance;
+          const distanceInKilometers = (distanceInMeters / 1000).toFixed(2);
+
+          setDistance(distanceInKilometers);
+
+          // Rimuovo il percorso precedente se esistente
+          if (routeLayer) {
+            if (mapRef.current.getLayer("route")) {
+              mapRef.current.removeLayer("route");
+            }
+            if (mapRef.current.getSource("route")) {
+              mapRef.current.removeSource("route");
+            }
+          }
+
+          const newRouteLayer = {
+            id: "route", // Identificativo unico per il layer della linea
+            type: "line", // Tipo di layer: in questo caso una linea per rappresentare il percorso
+            source: {
+              type: "geojson", // Tipo di sorgente: formato GeoJSON per rappresentare i dati geografici
+              data: {
+                type: "Feature", // Specifica che stiamo usando una "feature" GeoJSON
+                properties: {}, // Proprietà opzionali della feature (può essere usato per metadati)
+                geometry: {
+                  type: "LineString", // Tipo di geometria: una linea con coordinate connesse
+                  coordinates: route, // Coordinate del percorso ottenute dalla Directions API
+                },
+              },
+            },
+            layout: {
+              "line-join": "round", // Unisce i segmenti della linea con angoli arrotondati
+              "line-cap": "round", // Termina le estremità della linea in modo arrotondato
+            },
+            paint: {
+              "line-color": "#ff0000", // Colore della linea: rosso (#ff0000)
+              "line-width": 4, // Spessore della linea in pixel
+            },
+          };
+          // Aggiungi la rotta alla mappa
+          mapRef.current.addLayer(newRouteLayer);
+          setRouteLayer(newRouteLayer);
+
+          // ***AGGIUNGIAMO LO ZOOM AUTOMATICO***
+          const bounds = new mapboxgl.LngLatBounds();
+
+          // Aggiunge tutte le coordinate al bounding box
+          route.forEach((coord) => bounds.extend(coord));
+
+          // Applica lo zoom per includere l'intero percorso
+          mapRef.current.fitBounds(bounds, {
+            padding: 50, // Distanza dai bordi
+            maxZoom: 15, // Zoom massimo
+            duration: 1000, // Durata animazione in ms
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching directions:", error);
+      }
     }
-    setDestination([lngLat.lng, lngLat.lat]);
-    // Aggiungo il calcolo del percorso appena dopo il click sulla mappa
-    calculateRoute();
   };
 
   // Funzione per calcolare la rotta
@@ -162,10 +220,6 @@ export function MapComponent(width) {
 
         // Aggiunge tutte le coordinate al bounding box
         route.forEach((coord) => bounds.extend(coord));
-
-        console.log("Route coordinates:", route);
-        console.log("Bounds before fitBounds:", bounds);
-        console.log("Map reference:", mapRef.current);
 
         // Applica lo zoom per includere l'intero percorso
         mapRef.current.fitBounds(bounds, {
@@ -355,6 +409,7 @@ export function MapComponent(width) {
   };
 
   return {
+    mapRef,
     mapContainerRef,
     userLocation,
     marker,

@@ -14,6 +14,7 @@ export function CreaEvento() {
     img: "",
   });
   const {
+    mapRef,
     suggestionsR,
     destination,
     markerR,
@@ -220,6 +221,7 @@ export function CreaEvento() {
                 Reset Position
               </button>
               <button
+                type="button"
                 className="map-add-marker-btm"
                 onClick={() => mapRef.current.on("click", handleMapClick)}
               >
