@@ -317,17 +317,24 @@ export function MapComponent(width) {
 
     // Calcoliamo il percorso
   };
-
   const takeScreenshot = async () => {
-    if (mapContainerRef.current) {
-      const canvas = await html2canvas(mapContainerRef.current);
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const url = URL.createObjectURL(blob);
-          localStorage.setItem("mapScreenshotURL", url);
-        }
-      }, "image/png");
-    }
+    if (!mapContainerRef.current) return null;
+
+    return new Promise((resolve, reject) => {
+      html2canvas(mapContainerRef.current)
+        .then((canvas) => {
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              localStorage.setItem("mapScreenshotURL", url);
+              resolve(url); // Restituisce l'URL dello screenshot
+            } else {
+              reject(new Error("Errore nel creare il blob"));
+            }
+          }, "image/png");
+        })
+        .catch(reject);
+    });
   };
 
   return {
@@ -353,6 +360,7 @@ export function MapComponent(width) {
     handleInputChangeR,
     calculateRoute,
     destination,
+    screen,
   };
   // <>
   //   <div>

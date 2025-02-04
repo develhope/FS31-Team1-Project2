@@ -11,6 +11,7 @@ export function CreaEvento() {
     distanza: "",
     orario: "",
     dataEvento: "",
+    img: "",
   });
   const {
     suggestionsR,
@@ -49,9 +50,31 @@ export function CreaEvento() {
   const { userLogged } = useUserContext();
   const navTo = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navTo("/home");
+
+    try {
+      const screenshotUrl = await takeScreenshot();
+
+      if (!screenshotUrl) {
+        throw new Error("Screenshot non acquisito");
+      }
+
+      const newData = { ...data, img: screenshotUrl };
+
+      const existData = localStorage.getItem("evento");
+      let utentiRegistrati = existData ? JSON.parse(existData) : [];
+
+      utentiRegistrati.push(newData);
+
+      localStorage.setItem("evento", JSON.stringify(utentiRegistrati));
+
+      console.log("Dati salvati con successo!", utentiRegistrati);
+
+      navTo("/home");
+    } catch (error) {
+      console.error("Errore nel salvataggio:", error);
+    }
   };
 
   return (
@@ -202,15 +225,6 @@ export function CreaEvento() {
               >
                 Add Marker
               </button>
-              <button type="button" onClick={takeScreenshot}>
-                create screenshot
-              </button>
-
-              {distance && (
-                <div>
-                  <p>Distance: {distance} km</p>
-                </div>
-              )}
             </div>
             <button className="difficulty-button">Difficile</button>
           </div>
