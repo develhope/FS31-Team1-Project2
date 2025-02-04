@@ -1,18 +1,33 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function EventiPreferiti() {
-
   // metodo per trovare eventi preferiti
-const parseUsers= JSON.parse(localStorage.getItem('users'))
-const findUser= parseUsers.find((user)=> user.eventi_preferiti)
-console.log(findUser)
-// ----------------------
-  const navTo=useNavigate()
+  const parseUsers = JSON.parse(localStorage.getItem("users"));
+  const findUser = parseUsers.find((user) => user.eventi_preferiti);
+  console.log(findUser);
+  const navTo = useNavigate();
+  // ----------------------------------
+
+  const [eventiPreferiti, setEventiPreferiti] = useState(
+    findUser.eventi_preferiti
+  );
+
+  function handleRemoveEvento(eventoId) {
+    const updatedEventi = eventiPreferiti.filter(
+      (evento) => evento.id !== eventoId
+    );
+
+    setEventiPreferiti(updatedEventi);
+
+    findUser.eventi_preferiti = updatedEventi;
+    localStorage.setItem("users", JSON.stringify(parseUsers));
+  }
+
   return (
     <>
       <div className="title-preferiti">
-
-      <a className="link-class" onClick={() => navTo("/home")}>
+        <a className="link-class" onClick={() => navTo("/home")}>
           <svg
             width="20"
             height="20"
@@ -27,77 +42,87 @@ console.log(findUser)
             ></path>
           </svg>
         </a>
-
         <div>
-        <h3>EVENTI PREFERITI</h3>
-
+          <h3>EVENTI PREFERITI</h3>
         </div>
       </div>
-      {findUser ? (
-  findUser.eventi_preferiti && findUser.eventi_preferiti.length > 0 ? (
-    findUser.eventi_preferiti.map((evento) => (
-      <div className="eventi-preferiti" key={evento.id}>
-        <div className="utente-titolo">
-          <img id="post-avatar" src="https://placehold.co/40" alt="user-icon" />
-          <div className="post-info-container">
-            <div className="post-user-info">
-              <h3>Luca</h3>
-              <h5>Amici</h5>
-              <a>
-                <img
-                  id="post-settings-icon"
-                  src="\friends-svgrepo-com.svg"
-                  alt="post settings"
-                />
-              </a>
-            </div>
-            <h5>Livello 17</h5>
-          </div>
 
-          <p>{evento.nome_evento}</p>
-        </div>
-
-        <div className="info-evento-preferiti">
-          <div className="map-preferiti">
-            <img
-              src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-              width={150}
-              alt="Mappa"
-              className="mappa"
-            />
-          </div>
-          <div className="box-dati-preferiti">
-            <div className="km-preferiti">
+      {eventiPreferiti.length > 0 ? (
+        eventiPreferiti.map((evento) => (
+          <div className="eventi-preferiti" key={evento.id}>
+            <div className="utente-titolo">
               <img
-                src="src\assets\icons\kilometers.svg"
-                alt="distanza"
-                width={25}
+                id="post-avatar"
+                src="https://placehold.co/40"
+                alt="user-icon"
               />
-              <p>{evento.distanza}</p>
+              <div className="post-info-container">
+                <div className="post-user-info">
+                  <h3>Luca</h3>
+                  <h5>Amici</h5>
+                  <a>
+                    <img
+                      id="post-settings-icon"
+                      src="\friends-svgrepo-com.svg"
+                      alt="post settings"
+                    />
+                  </a>
+                </div>
+                <h5>Livello 17</h5>
+              </div>
+              <p>{evento.nome_evento}</p>
             </div>
-            <div className="orario-preferiti">
-              <img src="src\assets\icons\clock.svg" alt="orario" width={25} />
-              <p>{evento.orario}</p>
+
+            <div className="info-evento-preferiti">
+              <div className="map-preferiti">
+                <img
+                  src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                  width={150}
+                  alt="Mappa"
+                  className="mappa"
+                />
+              </div>
+              <div className="box-dati-preferiti">
+                <div className="km-preferiti">
+                  <img
+                    src="src\assets\icons\kilometers.svg"
+                    alt="distanza"
+                    width={25}
+                  />
+                  <p>{evento.distanza}</p>
+                </div>
+                <div className="orario-preferiti">
+                  <img
+                    src="src\assets\icons\clock.svg"
+                    alt="orario"
+                    width={25}
+                  />
+                  <p>{evento.orario}</p>
+                </div>
+                <div className="data-preferiti">
+                  <img
+                    src="src\assets\icons\calendar.svg"
+                    alt="data"
+                    width={25}
+                  />
+                  <p>{evento.data}</p>
+                </div>
+              </div>
             </div>
-            <div className="data-preferiti">
-              <img src="src\assets\icons\calendar.svg" alt="data" width={25} />
-              <p>{evento.data}</p>
+            <div className="btn-eventi-preferiti">
+              <button className="btn-facile">Facile</button>
+              <button
+                onClick={() => handleRemoveEvento(evento.id)}
+                className="red-btn"
+              >
+                Rimuovi
+              </button>
             </div>
           </div>
-        </div>
-        <div className="btn-eventi-preferiti">
-          <button className="btn-facile">Facile</button>
-          <button className="red-btn">Rimuovi</button>
-        </div>
-      </div>
-    ))
-  ) : (
-    <p>Non ci sono eventi preferiti</p>
-  )
-) : (
-  <p>Non ci sono eventi disponibili</p>
-)}
-
-</>     
+        ))
+      ) : (
+        <p>Non ci sono eventi preferiti</p>
+      )}
+    </>
   );
 }
