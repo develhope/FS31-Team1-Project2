@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../contesti/useContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
@@ -8,12 +7,13 @@ export function CreaEvento() {
     nome_evento: "",
     start: "",
     finish: "",
-    distanza: Number,
+    distanza: "",
     orario: "",
     data: "",
     img: "",
-    partecipanti: ['Gianlorenzo','Francesco', 'Clarissa']
+    partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
   });
+
   const {
     suggestionsR,
     destination,
@@ -48,7 +48,6 @@ export function CreaEvento() {
     }));
   };
 
-  const { userLogged } = useUserContext();
   const navTo = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -61,7 +60,7 @@ export function CreaEvento() {
         throw new Error("Screenshot non acquisito");
       }
 
-      const newData = { ...data, img: screenshotUrl };
+      const newData = { ...data, distanza: distance, img: screenshotUrl };
 
       const existData = localStorage.getItem("eventi");
       let utentiRegistrati = existData ? JSON.parse(existData) : [];
@@ -99,21 +98,9 @@ export function CreaEvento() {
 
         <h3 className="link-h3-class">Crea il tuo evento!</h3>
       </div>
-      <div className="nav-post-container">
-        <div className="nav-user-info">
-          <img
-            id="home-user-avatar"
-            src={userLogged.img}
-            width={60}
-            alt="user-icon"
-          />
-          <div>
-            <h3>{userLogged.nome}</h3>
-            <h5>Livello 1</h5>
-          </div>
-        </div>
-      </div>
+
       {/* ------------------------------------ */}
+
       <form className="form" onSubmit={handleSubmit}>
         <div className="eventName">
           <label htmlFor="">Nome evento:</label>
@@ -121,8 +108,8 @@ export function CreaEvento() {
             type="text"
             name="nome_evento"
             onChange={handleChange}
-            
             placeholder="Inserisci nome evento"
+            required
           />
         </div>
 
@@ -145,6 +132,7 @@ export function CreaEvento() {
                           handleInputChange();
                           handleChange(e);
                         }}
+                        required
                       />
                       {suggestions.length > 0 && (
                         <ul className="suggestions-list">
@@ -168,10 +156,10 @@ export function CreaEvento() {
                         value={searchQueryR}
                         onChange={(e) => {
                           setSearchQueryR(e.target.value);
-
                           handleInputChangeR();
                           handleChange(e);
                         }}
+                        required
                       />
                       {suggestionsR.length > 0 && (
                         <ul className="suggestions-list">
@@ -241,9 +229,9 @@ export function CreaEvento() {
                   src="src\assets\icons\kilometers.svg"
                   alt="distanza"
                 />
-                Distanza:{" "}
+                Distanza:
               </label>
-              <input onChange={handleChange} type="text" name='distanza' value={distance} />
+              <input type="text" name="distanza" value={distance} />
               <span className="event-unit">km</span>
             </div>
 
@@ -256,7 +244,12 @@ export function CreaEvento() {
                 />
                 Orario:
               </label>
-              <input type="time" name="orario" onChange={handleChange} />
+              <input
+                type="time"
+                name="orario"
+                onChange={handleChange}
+                required
+              />
               <span className="event-unit">hr</span>
             </div>
 
@@ -269,7 +262,7 @@ export function CreaEvento() {
                 />
                 Data:
               </label>
-              <input type="date" name="data" onChange={handleChange} />
+              <input type="date" name="data" onChange={handleChange} required />
               <span className="event-unit">data</span>
             </div>
           </div>
