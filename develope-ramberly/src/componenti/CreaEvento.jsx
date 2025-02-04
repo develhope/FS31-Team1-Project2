@@ -5,13 +5,14 @@ import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
   const [data, setData] = useState({
-    evento: "",
+    nome_evento: "",
     start: "",
     finish: "",
-    distanza: "",
+    distanza: Number,
     orario: "",
-    dataEvento: "",
+    data: "",
     img: "",
+    partecipanti: ['Gianlorenzo','Francesco', 'Clarissa']
   });
   const {
     suggestionsR,
@@ -62,12 +63,12 @@ export function CreaEvento() {
 
       const newData = { ...data, img: screenshotUrl };
 
-      const existData = localStorage.getItem("evento");
+      const existData = localStorage.getItem("eventi");
       let utentiRegistrati = existData ? JSON.parse(existData) : [];
 
       utentiRegistrati.push(newData);
 
-      localStorage.setItem("evento", JSON.stringify(utentiRegistrati));
+      localStorage.setItem("eventi", JSON.stringify(utentiRegistrati));
 
       console.log("Dati salvati con successo!", utentiRegistrati);
 
@@ -118,8 +119,9 @@ export function CreaEvento() {
           <label htmlFor="">Nome evento:</label>
           <input
             type="text"
-            name="evento"
+            name="nome_evento"
             onChange={handleChange}
+            
             placeholder="Inserisci nome evento"
           />
         </div>
@@ -241,7 +243,7 @@ export function CreaEvento() {
                 />
                 Distanza:{" "}
               </label>
-              <input type="text" name="distanza" value={distance} />
+              <input onChange={handleChange} type="text" name='distanza' value={distance} />
               <span className="event-unit">km</span>
             </div>
 
@@ -267,7 +269,7 @@ export function CreaEvento() {
                 />
                 Data:
               </label>
-              <input type="date" name="dataEvento" onChange={handleChange} />
+              <input type="date" name="data" onChange={handleChange} />
               <span className="event-unit">data</span>
             </div>
           </div>

@@ -10,7 +10,7 @@ export function EventiPreferiti() {
   // ----------------------------------
 
   const [eventiPreferiti, setEventiPreferiti] = useState(
-    findUser.eventi_preferiti
+    findUser ? findUser.eventi_preferiti : []
   );
 
   function handleRemoveEvento(eventoId) {
@@ -76,7 +76,7 @@ export function EventiPreferiti() {
             <div className="info-evento-preferiti">
               <div className="map-preferiti">
                 <img
-                  src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
+                  src={evento.img}
                   width={150}
                   alt="Mappa"
                   className="mappa"

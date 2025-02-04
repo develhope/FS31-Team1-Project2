@@ -144,8 +144,9 @@ export function Home() {
                 </div>
                 <div className="map-container">
                   <img
-                    src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-                    // width={290}
+                    src={evento.img}
+                  
+                    width={290}
                     alt="Mappa"
                     className="mappa"
                   />
