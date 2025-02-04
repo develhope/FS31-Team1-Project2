@@ -45,12 +45,12 @@ export function UserProvider({ children }) {
   };
 
   useEffect(() => {
-    localStorage.setItem("evento", JSON.stringify(eventi));
-    const events = localStorage.getItem("evento");
+    localStorage.setItem("eventi", JSON.stringify(eventi));
+    const events = localStorage.getItem("eventi");
     const parseEvents = JSON.parse(events);
 
     setEventi((prec) => [...prec, parseEvents]);
-    localStorage.setItem("evento", JSON.stringify(eventi));
+    localStorage.setItem("eventi", JSON.stringify(eventi));
   }, []);
 
   return (
