@@ -60,7 +60,7 @@ export function MapComponent(width) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom: 5,
+      zoom: 10,
       preserveDrawingBuffer: true,
     });
     // Aggiungo il marker alla mappa
@@ -156,6 +156,23 @@ export function MapComponent(width) {
         // Aggiungi la rotta alla mappa
         mapRef.current.addLayer(newRouteLayer);
         setRouteLayer(newRouteLayer);
+
+        // ***AGGIUNGIAMO LO ZOOM AUTOMATICO***
+        const bounds = new mapboxgl.LngLatBounds();
+
+        // Aggiunge tutte le coordinate al bounding box
+        route.forEach((coord) => bounds.extend(coord));
+
+        console.log("Route coordinates:", route);
+        console.log("Bounds before fitBounds:", bounds);
+        console.log("Map reference:", mapRef.current);
+
+        // Applica lo zoom per includere l'intero percorso
+        mapRef.current.fitBounds(bounds, {
+          padding: 50, // Distanza dai bordi
+          maxZoom: 15, // Zoom massimo
+          duration: 1000, // Durata animazione in ms
+        });
       }
     } catch (error) {
       console.error("Error fetching directions:", error);
@@ -178,7 +195,7 @@ export function MapComponent(width) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom: 5,
+      zoom: 10,
       preserveDrawingBuffer: true,
     });
 
