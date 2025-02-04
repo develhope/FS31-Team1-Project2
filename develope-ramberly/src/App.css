@@ -240,8 +240,8 @@ button {
 }
 
 .map-container img {
-  max-width: 80%;
-
+  height: 100%;
+  max-width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: fill;
   object-position: center;
@@ -414,6 +414,10 @@ button {
 }
 .avatar-container img {
   border-radius: 18px;
+  transition: transform 0.3 ease-in-out;
+}
+.avatar-container img:active {
+  transform: scale(1.2);
 }
 
 #user-avatar {
@@ -421,6 +425,7 @@ button {
 }
 
 #post-avatar {
+  width: 40px;
   border-radius: 50%;
 }
 

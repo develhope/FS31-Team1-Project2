@@ -139,13 +139,13 @@ export function Home() {
                     {evento.nome_evento.toUpperCase()}
                   </h3>
                   <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
-                    {`${evento.start} - ${evento.finish}`}
+                    {`${evento.start}`} <br /> {`${evento.finish}`}
                   </p>
                 </div>
                 <div className="map-container">
                   <img
-                    src="/src/assets/placeholder-mappa/placeholder-mappa.jpg"
-                    // width={290}
+                    src={evento.img}
+                    width={290}
                     alt="Mappa"
                     className="mappa"
                   />
