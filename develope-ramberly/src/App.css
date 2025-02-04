@@ -414,6 +414,10 @@ button {
 }
 .avatar-container img {
   border-radius: 18px;
+  transition: transform 0.3  ease-in-out;
+}
+.avatar-container img:active{
+  transform: scale(1.2);
 }
 
 #user-avatar {
