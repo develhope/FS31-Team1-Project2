@@ -8,7 +8,7 @@ export default function ListaEventi() {
     <ul>
       {eventi.map((x, index) => (
         <li key={index}>
-          {x.evento} - {x.dataEvento}
+          {x.evento} - {x.img}
         </li>
       ))}
     </ul>
