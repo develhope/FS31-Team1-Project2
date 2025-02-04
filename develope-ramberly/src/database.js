@@ -1,5 +1,6 @@
 const persone = [
   {
+    id: 1,
     nome: "Marco",
     cognome: "Filannino",
     eta: "22",
@@ -21,6 +22,7 @@ const persone = [
     },
   },
   {
+    id: 2,
     nome: "Luca",
     cognome: "Rossi",
     eta: "25",
@@ -42,6 +44,7 @@ const persone = [
     },
   },
   {
+    id: 3,
     nome: "Anna",
     cognome: "Bianchi",
     eta: "29",
@@ -58,6 +61,7 @@ const persone = [
     sports: { running: true, escursione: true, biking: false, camminata: true },
   },
   {
+    id: 4,
     nome: "Giulia",
     cognome: "Verdi",
     eta: "27",
@@ -79,6 +83,7 @@ const persone = [
     },
   },
   {
+    id: 5,
     nome: "Simone",
     cognome: "Neri",
     eta: "30",
@@ -95,6 +100,7 @@ const persone = [
     sports: { running: true, escursione: true, biking: false, camminata: true },
   },
   {
+    id: 6,
     nome: "Chiara",
     cognome: "Gialli",
     eta: "24",
@@ -116,6 +122,7 @@ const persone = [
     },
   },
   {
+    id: 7,
     nome: "Davide",
     cognome: "Blu",
     eta: "28",
@@ -137,6 +144,7 @@ const persone = [
     },
   },
   {
+    id: 8,
     nome: "Francesca",
     cognome: "Viola",
     eta: "26",
@@ -153,6 +161,7 @@ const persone = [
     sports: { running: true, escursione: true, biking: true, camminata: false },
   },
   {
+    id: 9,
     nome: "Alessandro",
     cognome: "Bianco",
     eta: "23",
@@ -174,6 +183,7 @@ const persone = [
     },
   },
   {
+    id: 10,
     nome: "Martina",
     cognome: "Rosso",
     eta: "21",
