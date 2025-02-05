@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
@@ -13,6 +13,10 @@ export function CreaEvento() {
     img: "",
     partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
   });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const {
     clickMap,

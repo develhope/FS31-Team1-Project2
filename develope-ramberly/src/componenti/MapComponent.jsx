@@ -17,6 +17,7 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
+  const [countM2, setCountM2] = useState(0); // serve a contare i marker nella mappa
   const [countM, setCountM] = useState(0); // serve a contare i marker nella mappa
   const [position, setPosition] = useState(null);
   const [destination, setDestination] = useState(null);
@@ -91,7 +92,6 @@ export function MapComponent(width) {
         markers[0].remove();
         markers.shift(); // Rimuove il riferimento dall'array
       }
-      console.log(markers);
     }, 1000);
   };
 
@@ -110,11 +110,11 @@ export function MapComponent(width) {
 
       markers.push(newMarker);
 
-      setCountM((c) => c + 1);
-
       //calcolo la nuova rotta
 
       if (!position || ![lngLat.lng, lngLat.lat]) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
+
+      getAddressFromCoordsD(lngLat.lng, lngLat.lat);
 
       const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${lngLat.lng},${lngLat.lat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
@@ -187,6 +187,9 @@ export function MapComponent(width) {
 
   // Funzione per calcolare la rotta
   const calculateRoute = async () => {
+    if (marker || markerR || markers > 0) {
+      marker.remove();
+    }
     if (!position || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
     const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
@@ -431,6 +434,71 @@ export function MapComponent(width) {
         })
         .catch(reject);
     });
+  };
+  //con getAddress ci è possibile catturare la posizione di un marker e ricavare la via e il nome della citta.
+  useEffect(() => {
+    if (position && position.length === 2) {
+      getAddressFromCoords(position[0], position[1]);
+      console.log(position[0], position[1]);
+    }
+  }, [position]);
+
+  const getAddressFromCoordsD = (lng, lat) => {
+    if (!lng || !lat) return;
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${mapboxgl.accessToken}
+`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.features.length > 0) {
+          const place = data.features.find((feature) =>
+            feature.place_type.includes("place")
+          ); // Nome della città
+          const street = data.features.find((feature) =>
+            feature.place_type.includes("address")
+          ); // Nome della via
+
+          const address = `${street ? street.text : "Sconosciuto"}, ${
+            place ? place.text : "Sconosciuto"
+          }`;
+          console.log(address);
+
+          setCountM2(address);
+
+          setSearchQueryR(address);
+        }
+      })
+      .catch((error) =>
+        console.error("Errore nella richiesta di geocoding:", error)
+      );
+  };
+
+  const getAddressFromCoords = (lng, lat) => {
+    if (!lng || !lat) return;
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${position[0]},${position[1]}.json?access_token=${mapboxgl.accessToken}
+`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.features.length > 0) {
+          const place = data.features.find((feature) =>
+            feature.place_type.includes("place")
+          ); // Nome della città
+          const street = data.features.find((feature) =>
+            feature.place_type.includes("address")
+          ); // Nome della via
+
+          const address = `${street ? street.text : "Sconosciuto"}, ${
+            place ? place.text : "Sconosciuto"
+          }`;
+          console.log(address);
+
+          setCountM(address);
+
+          setSearchQuery((c) => (c ? c : address));
+        }
+      })
+      .catch((error) =>
+        console.error("Errore nella richiesta di geocoding:", error)
+      );
   };
 
   return {
