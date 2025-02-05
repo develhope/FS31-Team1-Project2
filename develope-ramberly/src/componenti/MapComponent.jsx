@@ -102,6 +102,9 @@ export function MapComponent(width) {
       markerR.remove();
     }
 
+    setSuggestions([]);
+    setSuggestionsR([]);
+
     if (e.lngLat) {
       const { lngLat } = e;
 
@@ -190,6 +193,7 @@ export function MapComponent(width) {
   const calculateRoute = async () => {
     if (marker || markerR || markers > 0) {
       marker.remove();
+      markerR.remove();
     }
     if (!position || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
