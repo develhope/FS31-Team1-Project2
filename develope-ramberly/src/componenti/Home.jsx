@@ -244,7 +244,7 @@ export function Home() {
           />
         </a>
         <a>
-          <img src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
+          <img onClick={()=> navTo('/impostazioni')} src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
         </a>
       </navbar>
     </div>

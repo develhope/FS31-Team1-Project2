@@ -740,3 +740,59 @@ input {
   list-style: none;
   width: 200px;
 }
+
+
+/* impostazioni */
+.titolo-impostazioni{
+  padding: 15px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  
+}
+.titolo-impostazioni a{
+  position: absolute;
+  right: 368px;
+}
+.titolo-impostazioni h4{
+  font-family: 'Avenir-Heavy';
+}
+
+
+.impostazioni {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--padding);
+  justify-content: center; 
+  height: 70vh; 
+  background-color: var(--form-bg-color);
+}
+.impostazioni p{
+  font-family: 'Avenir-Light';
+}
+.impostazioni em{
+  font-family: 'Avenir-Heavy';
+  display: flex;
+justify-content: center;
+}
+
+.impostazioni p{
+  display: flex;
+  text-align: justify;
+}
+.impostazioni h6{
+  text-align: justify;
+}
+
+.impostazioni select{
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  
+}
+
+.visibilita{
+  position: relative;
+  right: 105px;
+}
