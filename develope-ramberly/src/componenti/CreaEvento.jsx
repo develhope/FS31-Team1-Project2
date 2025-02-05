@@ -15,6 +15,7 @@ export function CreaEvento() {
   });
 
   const {
+    clickMap,
     mapRef,
     suggestionsR,
     destination,
@@ -213,7 +214,7 @@ export function CreaEvento() {
               <button
                 type="button"
                 className="map-add-marker-btm"
-                onClick={() => mapRef.current.on("click", handleMapClick)}
+                onClick={() => mapRef.current.on("click", clickMap)}
               >
                 Add Marker
               </button>

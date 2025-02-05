@@ -17,7 +17,7 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
-  const [countM, setCountM] = useState([]); // serve a contare i marker
+  const [countM, setCountM] = useState(0); // serve a contare i marker nella mappa
   const [position, setPosition] = useState(null);
   const [destination, setDestination] = useState(null);
   const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
@@ -76,11 +76,32 @@ export function MapComponent(width) {
       }
     };
   }, [userLocation]); //impostiamo la dipendenza con userLocation in modo che ogni volta che questo valore cambia la mappa venga reinizializzata
-  useEffect(() => {
-    console.log(countM);
-  }, [countM]);
+
+  const markers = []; // Array per tenere traccia dei marker
+
+  const clickMap = (e) => {
+    if (markers.length >= 2) {
+      console.log("Hai già inserito 2 marker. Non puoi aggiungerne altri.");
+      return; // Esce dalla funzione se ci sono già 2 marker
+    }
+
+    handleMapClick(e);
+
+    setTimeout(() => {
+      if (markers.length > 1) {
+        markers[0].remove(); // Rimuove il primo marker
+        markers.shift(); // Rimuove il riferimento dall'array
+      }
+      console.log(markers);
+    }, 1000);
+  };
+
   // Gestisce il click sulla mappa e posiziona un marker
   const handleMapClick = async (e) => {
+    if (markerR) {
+      markerR.remove();
+    }
+
     if (e.lngLat) {
       const { lngLat } = e;
 
@@ -88,7 +109,11 @@ export function MapComponent(width) {
         .setLngLat([lngLat.lng, lngLat.lat])
         .addTo(mapRef.current);
 
-      setCountM((c) => [...c, newMarker]);
+      markers.push(newMarker);
+
+      setCountM((c) => c + 1);
+
+      //calcolo la nuova rotta
 
       if (!position || ![lngLat.lng, lngLat.lat]) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
@@ -433,6 +458,7 @@ export function MapComponent(width) {
     calculateRoute,
     destination,
     screen,
+    clickMap,
   };
   // <>
   //   <div>
