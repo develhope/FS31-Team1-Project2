@@ -81,7 +81,6 @@ export function MapComponent(width) {
 
   const clickMap = (e) => {
     if (markers.length >= 2) {
-      console.log("Hai già inserito 2 marker. Non puoi aggiungerne altri.");
       return; // Esce dalla funzione se ci sono già 2 marker
     }
 
@@ -89,7 +88,7 @@ export function MapComponent(width) {
 
     setTimeout(() => {
       if (markers.length > 1) {
-        markers[0].remove(); // Rimuove il primo marker
+        markers[0].remove();
         markers.shift(); // Rimuove il riferimento dall'array
       }
       console.log(markers);
