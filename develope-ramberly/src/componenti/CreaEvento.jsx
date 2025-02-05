@@ -1,23 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
-  const [data, setData] = useState({
-    nome_evento: "",
-    start: "",
-    finish: "",
-    distanza: "",
-    orario: "",
-    data: "",
-    img: "",
-    partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
-  });
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const {
     clickMap,
     mapRef,
@@ -45,6 +30,28 @@ export function CreaEvento() {
     calculateRoute,
   } = MapComponent();
 
+  const [data, setData] = useState({
+    nome_evento: "",
+    start: "",
+    finish: "",
+    distanza: "",
+    orario: "",
+    data: "",
+    img: "",
+    partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
+  });
+
+  const inputRef = useRef(""); // Riferimento all'input
+
+  useEffect(() => {
+    if (searchQueryR) {
+      setData((prevData) => ({
+        ...prevData,
+        finish: searchQueryR,
+      }));
+    }
+  }, [searchQueryR]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -53,6 +60,10 @@ export function CreaEvento() {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const navTo = useNavigate();
 
@@ -159,6 +170,7 @@ export function CreaEvento() {
                         type="text"
                         placeholder="Luogo arrivo..."
                         name="finish"
+                        ref={inputRef}
                         value={searchQueryR}
                         onChange={(e) => {
                           setSearchQueryR(e.target.value);
