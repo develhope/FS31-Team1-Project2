@@ -28,6 +28,7 @@ export function CreaEvento() {
     handleInputChange,
     handleInputChangeR,
     calculateRoute,
+    position,
   } = MapComponent();
 
   const [data, setData] = useState({
@@ -51,6 +52,15 @@ export function CreaEvento() {
       }));
     }
   }, [searchQueryR]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      setData((prevData) => ({
+        ...prevData,
+        start: searchQuery,
+      }));
+    }
+  }, [searchQuery]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

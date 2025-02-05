@@ -35,6 +35,7 @@ export function MapComponent(width) {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
           setPosition([longitude, latitude]);
+          getAddressFromCoords(position[0], position[1]);
         },
         //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
@@ -527,6 +528,7 @@ export function MapComponent(width) {
     destination,
     screen,
     clickMap,
+    position,
   };
   // <>
   //   <div>
