@@ -280,6 +280,7 @@ export function MapComponent(width) {
     setMarker(
       new mapboxgl.Marker().setLngLat(userLocation).addTo(mapRef.current)
     );
+    setPosition(userLocation);
   };
 
   //HandleinputChange serve a far si che quando si cerca qualcosa nel campo input, suggestion che è un array vuoto, si carica con i consigli della mappa.
