@@ -22,7 +22,7 @@ export function UserProvider({ children }) {
     const parseUsers = JSON.parse(users);
 
     setPers((pre) => [...pre, parseUsers]);
-    localStorage.setItem("users", JSON.stringify(pers));
+    localStorage.setItem("users", JSON.stringify(pers));  //pers è un array non è una persona singola
   }, []);
 
   useEffect(() => {

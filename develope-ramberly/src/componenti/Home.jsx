@@ -107,7 +107,7 @@ export function Home() {
               <div className="home">
                 <div className="nav-post">
                   <div className="nav-post-user-info">
-                    <img id="post-avatar" src={pers.img} alt="user-icon" />
+                    <img id="post-avatar" src={pers[1].img} alt="user-icon" />
                     <div className="post-info-container">
                       <div className="post-user-info">
                         <h3>{personaScelta.nome}</h3>
