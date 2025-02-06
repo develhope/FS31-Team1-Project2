@@ -1,20 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
-  const [data, setData] = useState({
-    nome_evento: "",
-    start: "",
-    finish: "",
-    distanza: "",
-    orario: "",
-    data: "",
-    img: "",
-    partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
-  });
-
   const {
+    clickMap,
     mapRef,
     suggestionsR,
     destination,
@@ -38,7 +28,39 @@ export function CreaEvento() {
     handleInputChange,
     handleInputChangeR,
     calculateRoute,
+    position,
   } = MapComponent();
+
+  const [data, setData] = useState({
+    nome_evento: "",
+    start: "",
+    finish: "",
+    distanza: "",
+    orario: "",
+    data: "",
+    img: "",
+    partecipanti: ["Gianlorenzo", "Francesco", "Clarissa"],
+  });
+
+  const inputRef = useRef(""); // Riferimento all'input
+
+  useEffect(() => {
+    if (searchQueryR) {
+      setData((prevData) => ({
+        ...prevData,
+        finish: searchQueryR,
+      }));
+    }
+  }, [searchQueryR]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      setData((prevData) => ({
+        ...prevData,
+        start: searchQuery,
+      }));
+    }
+  }, [searchQuery]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,6 +70,10 @@ export function CreaEvento() {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const navTo = useNavigate();
 
@@ -154,6 +180,7 @@ export function CreaEvento() {
                         type="text"
                         placeholder="Luogo arrivo..."
                         name="finish"
+                        ref={inputRef}
                         value={searchQueryR}
                         onChange={(e) => {
                           setSearchQueryR(e.target.value);
@@ -213,7 +240,7 @@ export function CreaEvento() {
               <button
                 type="button"
                 className="map-add-marker-btm"
-                onClick={() => mapRef.current.on("click", handleMapClick)}
+                onClick={() => mapRef.current.on("click", clickMap)}
               >
                 Add Marker
               </button>

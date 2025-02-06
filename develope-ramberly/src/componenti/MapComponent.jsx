@@ -17,7 +17,8 @@ export function MapComponent(width) {
   const [searchQuery, setSearchQuery] = useState(""); // Stato per la query di ricerca
   const [suggestions, setSuggestions] = useState([]); // Stato per memorizzare i suggerimenti
 
-  const [countM, setCountM] = useState([]); // serve a contare i marker
+  const [countM2, setCountM2] = useState(0); // serve a contare i marker nella mappa
+  const [countM, setCountM] = useState(0); // serve a contare i marker nella mappa
   const [position, setPosition] = useState(null);
   const [destination, setDestination] = useState(null);
   const [searchQueryR, setSearchQueryR] = useState(""); // Stato per la query di ricerca
@@ -34,6 +35,7 @@ export function MapComponent(width) {
           const { latitude, longitude } = position.coords;
           setUserLocation([longitude, latitude]);
           setPosition([longitude, latitude]);
+          getAddressFromCoords(position[0], position[1]);
         },
         //in caso di errore nel caricamento della posizione imposto una posizione generica di render, in questo caso newyork
         (error) => {
@@ -76,11 +78,33 @@ export function MapComponent(width) {
       }
     };
   }, [userLocation]); //impostiamo la dipendenza con userLocation in modo che ogni volta che questo valore cambia la mappa venga reinizializzata
-  useEffect(() => {
-    console.log(countM);
-  }, [countM]);
+
+  const markers = []; // Array per tenere traccia dei marker
+
+  const clickMap = (e) => {
+    if (markers.length >= 2) {
+      return; // Esce dalla funzione se ci sono già 2 marker
+    }
+
+    handleMapClick(e);
+
+    setTimeout(() => {
+      if (markers.length > 1) {
+        markers[0].remove();
+        markers.shift(); // Rimuove il riferimento dall'array
+      }
+    }, 1000);
+  };
+
   // Gestisce il click sulla mappa e posiziona un marker
   const handleMapClick = async (e) => {
+    if (markerR) {
+      markerR.remove();
+    }
+
+    setSuggestions([]);
+    setSuggestionsR([]);
+
     if (e.lngLat) {
       const { lngLat } = e;
 
@@ -88,9 +112,13 @@ export function MapComponent(width) {
         .setLngLat([lngLat.lng, lngLat.lat])
         .addTo(mapRef.current);
 
-      setCountM((c) => [...c, newMarker]);
+      markers.push(newMarker);
+
+      //calcolo la nuova rotta
 
       if (!position || ![lngLat.lng, lngLat.lat]) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
+
+      getAddressFromCoordsD(lngLat.lng, lngLat.lat);
 
       const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${lngLat.lng},${lngLat.lat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
@@ -163,6 +191,10 @@ export function MapComponent(width) {
 
   // Funzione per calcolare la rotta
   const calculateRoute = async () => {
+    if (marker || markerR || markers > 0) {
+      marker.remove();
+      markerR.remove();
+    }
     if (!position || !destination) return; // mi assicuro che ci siano sia la posizione dell'utente che il marker
 
     const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${position[0]},${position[1]};${destination[0]},${destination[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
@@ -256,6 +288,7 @@ export function MapComponent(width) {
     setMarker(
       new mapboxgl.Marker().setLngLat(userLocation).addTo(mapRef.current)
     );
+    setPosition(userLocation);
   };
 
   //HandleinputChange serve a far si che quando si cerca qualcosa nel campo input, suggestion che è un array vuoto, si carica con i consigli della mappa.
@@ -407,6 +440,71 @@ export function MapComponent(width) {
         .catch(reject);
     });
   };
+  //con getAddress ci è possibile catturare la posizione di un marker e ricavare la via e il nome della citta.
+  useEffect(() => {
+    if (position && position.length === 2) {
+      getAddressFromCoords(position[0], position[1]);
+      console.log(position[0], position[1]);
+    }
+  }, [position]);
+
+  const getAddressFromCoordsD = (lng, lat) => {
+    if (!lng || !lat) return;
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${mapboxgl.accessToken}
+`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.features.length > 0) {
+          const place = data.features.find((feature) =>
+            feature.place_type.includes("place")
+          ); // Nome della città
+          const street = data.features.find((feature) =>
+            feature.place_type.includes("address")
+          ); // Nome della via
+
+          const address = `${street ? street.text : "Sconosciuto"}, ${
+            place ? place.text : "Sconosciuto"
+          }`;
+          console.log(address);
+
+          setCountM2(address);
+
+          setSearchQueryR(address);
+        }
+      })
+      .catch((error) =>
+        console.error("Errore nella richiesta di geocoding:", error)
+      );
+  };
+
+  const getAddressFromCoords = (lng, lat) => {
+    if (!lng || !lat) return;
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${position[0]},${position[1]}.json?access_token=${mapboxgl.accessToken}
+`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.features.length > 0) {
+          const place = data.features.find((feature) =>
+            feature.place_type.includes("place")
+          ); // Nome della città
+          const street = data.features.find((feature) =>
+            feature.place_type.includes("address")
+          ); // Nome della via
+
+          const address = `${street ? street.text : "Sconosciuto"}, ${
+            place ? place.text : "Sconosciuto"
+          }`;
+          console.log(address);
+
+          setCountM(address);
+
+          setSearchQuery((c) => (c ? c : address));
+        }
+      })
+      .catch((error) =>
+        console.error("Errore nella richiesta di geocoding:", error)
+      );
+  };
 
   return {
     mapRef,
@@ -433,6 +531,8 @@ export function MapComponent(width) {
     calculateRoute,
     destination,
     screen,
+    clickMap,
+    position,
   };
   // <>
   //   <div>
