@@ -4,7 +4,6 @@ import { useUserContext } from "../contesti/useContext";
 export function Impostazioni() {
   const { userLogged } = useUserContext();
   const navTo = useNavigate();
-
   console.log(userLogged);
   return (
     <div>
@@ -27,7 +26,7 @@ export function Impostazioni() {
       </div>
       <div className="impostazioni">
         <div className="gestione-account">
-          <em>Gestione Account</em>
+          <em>GESTIONE ACCOUNT</em>
           <p>Nome: {userLogged.nome}</p>
           <p>Cognome: {userLogged.cognome}</p>
           <p>Email: {userLogged.email}</p>
@@ -35,32 +34,40 @@ export function Impostazioni() {
         </div>
         <hr />
         <div className="privacy">
-          <em>Privacy</em>
-          <label className="visibilita">Visibilità:</label>
-          <select name="visibilita" className="visibilita">
-            <option value="">Seleziona</option>
-            <option value="pubblica">Pubblica</option>
-            <option value="solo amici">Solo amici</option>
-          </select>
-          <h6>
-            Il profilo completo, comprese le statistiche personali, il numero di
-            attività e le informazioni di contatto, sarà visibile a tutti.
-          </h6>
-          <label>Autenticazione a due fattori (2A):</label>
-          <select name="autenticazione">
-            <option value="">Seleziona</option>
-            <option value="si">Si</option>
-            <option value="no">No</option>
-          </select>
-          <h6>
-            Per migliorare la sicurezza dell'account, l'utente può abilitare
-            l'autenticazione a due fattori.
-          </h6>
-        </div>
+  <em>PRIVACY</em>
+  
+  <div className="privacy-option">
+    <label className="visibilita">Visibilità:</label>
+    <select name="visibilita" className="visibilita">
+      <option value="">Seleziona</option>
+      <option value="pubblica">Pubblica</option>
+      <option value="solo amici">Solo amici</option>
+    </select>
+  </div>
+  
+  <h6 className="privacy-description">
+    Il profilo completo, comprese le statistiche personali, il numero di
+    attività e le informazioni di contatto, sarà visibile a tutti.
+  </h6>
+  
+  <div className="privacy-option">
+    <label>Autenticazione a due fattori (2A):</label>
+    <select name="autenticazione">
+      <option value="">Seleziona</option>
+      <option value="si">Si</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  
+  <h6 className="privacy-description">
+    Per migliorare la sicurezza dell'account, l'utente può abilitare
+    l'autenticazione a due fattori.
+  </h6>
+</div>
         <hr />
 
         <div className="amici-seguaci">
-          <em>Gestione amicizie</em>
+          <em>GESTIONE AMICIZIE</em>
           <p>Lista di amici</p>
           <p>Segnalazione di abusi o comportamenti inappropriati</p>
           <h6>
@@ -70,8 +77,8 @@ export function Impostazioni() {
         </div>
         <hr />
         <div className="logout">
-          <em>Logout e assistenza</em>
-          <p>Logout</p>
+          <em>LOGOUT E ASSISTENZA</em>
+          <p onClick={()=>navTo('/login')}>Logout</p>
           <p>Centro Assistenza</p>
           <p>Contattaci</p>
         </div>

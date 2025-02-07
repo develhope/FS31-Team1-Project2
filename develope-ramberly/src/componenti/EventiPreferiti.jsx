@@ -74,6 +74,11 @@ export function EventiPreferiti() {
                 <h5>Livello 17</h5>
               </div>
               <p>{evento.nome_evento}</p>
+              
+            </div>
+            <div>
+            <p>{evento.start}</p>
+            <p>{evento.finish}</p>
             </div>
 
             <div className="info-evento-preferiti">
