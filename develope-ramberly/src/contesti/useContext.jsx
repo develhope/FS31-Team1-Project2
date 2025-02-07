@@ -14,8 +14,6 @@ export function UserProvider({ children }) {
   const [eventi, setEventi] = useState(eventiArr);
   const [personaScelta, setPersonaScelta] = useState(pers);
 
-  // da 17 a 24 è stato wrappato con uno useEffect che esegue il setItem di users solo una volta al richiamo del contesto, altrimenti si crea un loop.
-
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(pers));
 
@@ -23,7 +21,7 @@ export function UserProvider({ children }) {
     const parseUsers = JSON.parse(users);
 
     setPers((pre) => [...pre, parseUsers]);
-    localStorage.setItem("users", JSON.stringify(pers));  //pers è un array non è una persona singola
+    localStorage.setItem("users", JSON.stringify(pers)); //pers è un array non è una persona singola
   }, []);
 
   useEffect(() => {
