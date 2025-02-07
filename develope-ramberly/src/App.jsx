@@ -27,9 +27,8 @@ function App() {
           <Route path="/sceglieresport" element={<ScegliSport />} />
           <Route path="/potresticonoscere" element={<PotrestiConoscere />} />
           <Route path="/creaevento" element={<CreaEvento />} />
-          <Route path="/impostazioni" element={<Impostazioni />}/>
-          <Route path="/eventipreferiti" element={<EventiPreferiti />}           />
-          
+          <Route path="/impostazioni" element={<Impostazioni />} />
+          <Route path="/eventipreferiti" element={<EventiPreferiti />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

@@ -322,7 +322,7 @@ button {
   height: auto;
 }
 
-#nav-bottom-home-addEvent {
+/* #nav-bottom-home-addEvent {
   position: relative;
   display: flex;
   align-items: center;
@@ -343,7 +343,7 @@ button {
 
 #nav-bottom-home-addEvent img {
   z-index: 1;
-}
+} */
 
 /* --------------------- */
 /* -------------- */
@@ -741,58 +741,54 @@ input {
   width: 200px;
 }
 
-
 /* impostazioni */
-.titolo-impostazioni{
+.titolo-impostazioni {
   padding: 15px;
   background-color: var(--primary-color);
   display: flex;
   justify-content: center;
-  
 }
-.titolo-impostazioni a{
+.titolo-impostazioni a {
   position: absolute;
   right: 368px;
 }
-.titolo-impostazioni h4{
-  font-family: 'Avenir-Heavy';
+.titolo-impostazioni h4 {
+  font-family: "Avenir-Heavy";
 }
-
 
 .impostazioni {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: var(--padding);
-  justify-content: center; 
-  height: 70vh; 
+  justify-content: center;
+  height: 70vh;
   background-color: var(--form-bg-color);
 }
-.impostazioni p{
-  font-family: 'Avenir-Light';
+.impostazioni p {
+  font-family: "Avenir-Light";
 }
-.impostazioni em{
-  font-family: 'Avenir-Heavy';
+.impostazioni em {
+  font-family: "Avenir-Heavy";
   display: flex;
-justify-content: center;
+  justify-content: center;
 }
 
-.impostazioni p{
+.impostazioni p {
   display: flex;
   text-align: justify;
 }
-.impostazioni h6{
+.impostazioni h6 {
   text-align: justify;
 }
 
-.impostazioni select{
+.impostazioni select {
   border: var(--border);
   border-radius: var(--border-radius);
   padding: var(--padding);
-  
 }
 
-.visibilita{
+.visibilita {
   position: relative;
   right: 105px;
 }

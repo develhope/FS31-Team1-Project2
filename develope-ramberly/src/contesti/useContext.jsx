@@ -12,6 +12,7 @@ export function UserProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [pers, setPers] = useState(persone);
   const [eventi, setEventi] = useState(eventiArr);
+  const [personaScelta, setPersonaScelta] = useState(pers);
 
   // da 17 a 24 è stato wrappato con uno useEffect che esegue il setItem di users solo una volta al richiamo del contesto, altrimenti si crea un loop.
 
@@ -53,9 +54,30 @@ export function UserProvider({ children }) {
     localStorage.setItem("eventi", JSON.stringify(eventi));
   }, []);
 
+  // logica randomizzazione post utenti home e preferiti
+
+  useEffect(() => {
+    localStorage.setItem("eventi", JSON.stringify(eventi));
+    const events = localStorage.getItem("eventi");
+    const parseEvents = JSON.parse(events);
+    const utentiPostMappati = parseEvents.map(() => {
+      const indiceCasuale = Math.floor(Math.random() * pers.length);
+      return pers[indiceCasuale];
+    });
+    setPersonaScelta(utentiPostMappati);
+  }, []);
+
   return (
     <UserContext.Provider
-      value={{ login, logout, userLogged, isLogged, setIsLogged, pers }}
+      value={{
+        login,
+        logout,
+        userLogged,
+        isLogged,
+        setIsLogged,
+        pers,
+        personaScelta,
+      }}
     >
       {children}
     </UserContext.Provider>

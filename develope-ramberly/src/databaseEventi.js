@@ -2,6 +2,7 @@ const eventiArr = [
   {
     id: 1,
     creatore_evento: 1,
+    creatore_nome: "Marco",
     nome_evento: "corsetta mattutina",
     start: "Via Roma",
     finish: "Via Italia",
@@ -15,6 +16,7 @@ const eventiArr = [
   {
     id: 2,
     creatore_evento: 1,
+    creatore_nome: "Anna",
     nome_evento: "corsetta pomeridiana",
     start: "Via Pascoli",
     finish: "Via Lecce",
@@ -28,6 +30,7 @@ const eventiArr = [
   {
     id: 3,
     creatore_evento: 1,
+    creatore_nome: "Michele",
     nome_evento: "arrampicata notturna",
     start: "Via Bari",
     finish: "Via Messina",

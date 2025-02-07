@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useUserContext } from "../contesti/useContext";
 
 export function EventiPreferiti() {
+  const { personaScelta } = useUserContext();
+
   // metodo per trovare eventi preferiti
   const parseUsers = JSON.parse(localStorage.getItem("users"));
   const findUser = parseUsers.find((user) => user.eventi_preferiti);
@@ -48,17 +51,17 @@ export function EventiPreferiti() {
       </div>
 
       {eventiPreferiti.length > 0 ? (
-        eventiPreferiti.map((evento) => (
+        eventiPreferiti.map((evento, index) => (
           <div className="eventi-preferiti" key={evento.id}>
             <div className="utente-titolo">
               <img
                 id="post-avatar"
-                src="https://placehold.co/40"
+                src={personaScelta[index].img}
                 alt="user-icon"
               />
               <div className="post-info-container">
                 <div className="post-user-info">
-                  <h3>Luca</h3>
+                  <h3>{personaScelta[index].nome}</h3>
                   <h5>Amici</h5>
                   <a>
                     <img

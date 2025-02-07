@@ -4,8 +4,10 @@ import { useSwipeable } from "react-swipeable";
 import { useState } from "react";
 
 export function Home() {
-  const { userLogged, pers } = useUserContext();
+  const { userLogged, personaScelta } = useUserContext();
   const [participatedEvents, setParticipatedEvents] = useState({});
+  // const [personaScelta, setPersonaScelta] = useState(pers);
+
   const navTo = useNavigate();
 
   const events = localStorage.getItem("eventi");
@@ -29,13 +31,6 @@ export function Home() {
       setCurrentIndex((prev) => prev - 1);
     }
   };
-
-  // randomizzazione info post degli utenti
-  function randomPostInfo() {
-    const indiceCasuale = Math.floor(Math.random() * pers.length);
-    return pers[indiceCasuale];
-  }
-  const personaScelta = randomPostInfo();
 
   // funzioni bottone partecipa
   const findUser = parseUsers.findIndex(
@@ -82,7 +77,7 @@ export function Home() {
           />
           <div>
             <h3>{userLogged.nome}</h3>
-            <h5>Livello 1</h5>
+            <h5>Livello {userLogged.livello}</h5>
           </div>
         </div>
         <div className="icons-container">
@@ -102,15 +97,19 @@ export function Home() {
             transition: "transform 0.3s ease-out",
           }}
         >
-          {parseEvents.map((evento) => (
+          {parseEvents.map((evento, index) => (
             <div key={evento.id} className="home-slide">
               <div className="home">
                 <div className="nav-post">
                   <div className="nav-post-user-info">
-                    <img id="post-avatar" src={pers.img} alt="user-icon" />
+                    <img
+                      id="post-avatar"
+                      src={personaScelta[index].img || userLogged.img}
+                      alt="user-icon"
+                    />
                     <div className="post-info-container">
                       <div className="post-user-info">
-                        <h3>{personaScelta.nome}</h3>
+                        <h3>{personaScelta[index].nome || userLogged.nome}</h3>
                         <h5>Amici</h5>
                         <a>
                           <img
@@ -120,7 +119,10 @@ export function Home() {
                           />
                         </a>
                       </div>
-                      <h5>Livello {personaScelta.livello}</h5>
+                      <h5>
+                        Livello{" "}
+                        {personaScelta[index].livello || userLogged.livello}
+                      </h5>
                     </div>
                   </div>
                   <div className="icons-container">
@@ -244,7 +246,11 @@ export function Home() {
           />
         </a>
         <a>
-          <img onClick={()=> navTo('/impostazioni')} src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
+          <img
+            onClick={() => navTo("/impostazioni")}
+            src="src\assets\navbar\impostazioni.svg"
+            alt="impostazioni"
+          />
         </a>
       </navbar>
     </div>
