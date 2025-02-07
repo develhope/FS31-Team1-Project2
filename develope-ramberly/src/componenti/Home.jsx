@@ -86,9 +86,7 @@ export function Home() {
           </div>
         </div>
         <div className="icons-container">
-          <a>
-            <img src="\calendar-day-svgrepo-com.svg" alt="calendar" />
-          </a>
+          
           <a>
             <img src="\bell-svgrepo-com.svg" alt="notify" />
           </a>
@@ -223,8 +221,12 @@ export function Home() {
       {/* ------------------------------------ */}
 
       <navbar className="nav-bottom-home">
-        <a>
-          <img src="src\assets\navbar\utente.svg" alt="utente" />
+      <a>
+          <img onClick={()=> navTo('/impostazioni')} src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
+        </a>
+       
+        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
+          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
         </a>
         <a>
           <img
@@ -233,19 +235,7 @@ export function Home() {
             onClick={() => navTo("/eventipreferiti")}
           />
         </a>
-        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
-          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
-        </a>
-        <a>
-          <img
-            src="src\assets\navbar\map.svg"
-            alt="map"
-            onClick={() => navTo("/map")}
-          />
-        </a>
-        <a>
-          <img onClick={()=> navTo('/impostazioni')} src="src\assets\navbar\impostazioni.svg" alt="impostazioni" />
-        </a>
+     
       </navbar>
     </div>
   );
