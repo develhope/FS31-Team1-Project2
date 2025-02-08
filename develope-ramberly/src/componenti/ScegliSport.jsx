@@ -41,10 +41,10 @@ export default function ScegliSport() {
 
   return (
     <div className="main-container">
+      
       <div className="form">
-        <p className="superscript">Step 2/4</p>
-        <div className="caratteristiche">
-          <a
+        <div className="scegli-sport-title">
+        <a
             href="/caratteristiche"
             className="link-class"
             onClick={caratteristiche}
@@ -64,7 +64,15 @@ export default function ScegliSport() {
             </svg>
           </a>
 
-          <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
+        <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
+      <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
+
+        </div>
+
+        <p className="superscript">Step 2/4</p>
+        <div className="caratteristiche">
+        
+          
         </div>
 
         <form className="form-sports" onSubmit={handleSubmit}>

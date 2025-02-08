@@ -76,6 +76,7 @@ export function Caratteristiche() {
           </svg>
         </a>
         <h3 className="link-h3-class">Le tue caratteristiche!</h3>
+        <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
       </div>
 
       <form className="form" onSubmit={handleSubmit}>
