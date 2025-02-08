@@ -138,7 +138,7 @@ export function Registrazione() {
           Hai già un account? <Link to="/login" style={{color:'#F7A441'}}>Login</Link>
         </p>
       </form>
-      <img src="src\assets\loghi\freccia-trasparente.svg" alt="freccia trasparente" />
+      <img src="src\assets\loghi\freccia.svg" style={{position:'absolute', top:'695px', zIndex:'-1'}} alt="freccia trasparente" />
     </div>
   );
 }

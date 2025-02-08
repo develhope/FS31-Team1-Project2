@@ -807,3 +807,28 @@ input {
   position: relative;
   right: 105px;
 }
+/* Benvenuto su ramberly */
+.benvenuto{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid rgb(244, 186, 186);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 80vh;
+  
+  margin: 15px;
+}
+
+.benvenuto h2{
+  color: var(--primary-color);
+}
+.benvenuto button{
+  padding: 12px;
+  color: white;
+  font-family: 'Avenir-Light';
+}

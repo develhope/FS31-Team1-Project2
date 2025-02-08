@@ -12,6 +12,7 @@ import { CreaEvento } from "./componenti/CreaEvento";
 import { EventiPreferiti } from "./componenti/EventiPreferiti";
 import { MapComponent } from "./componenti/MapComponent";
 import { Impostazioni } from "./componenti/Impostazioni";
+import { Benvenuto } from "./componenti/Benvenuto";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/creaevento" element={<CreaEvento />} />
           <Route path="/impostazioni" element={<Impostazioni />} />
           <Route path="/eventipreferiti" element={<EventiPreferiti />} />
+          <Route path="/benvenuto" element={<Benvenuto />} />
+
         </Routes>
       </UserProvider>
     </BrowserRouter>

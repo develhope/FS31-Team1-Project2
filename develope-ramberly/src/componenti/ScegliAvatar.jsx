@@ -6,9 +6,7 @@ export function ScegliAvatar() {
   const [url, setUrl] = useState("");
 
   const navTo = useNavigate();
-  const potrestiConoscere = () => {
-    navTo("/potresticonoscere");
-  };
+  ;
 
   const { setIsLogged } = useContext(UserContext);
 
@@ -37,8 +35,8 @@ export function ScegliAvatar() {
     localStorage.setItem("user", JSON.stringify(UpdatedUserImg));
   }
 
-  const login = () => {
-    navTo("/login");
+  const benvenuto = () => {
+    navTo("/benvenuto");
   };
 
   function handleSubmit(event) {
@@ -49,7 +47,7 @@ export function ScegliAvatar() {
 
     localStorage.setItem("user", "");
 
-    login();
+    benvenuto();
     //switch
   }
 
