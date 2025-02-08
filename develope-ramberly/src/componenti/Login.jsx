@@ -41,7 +41,12 @@ export function Login() {
 
   return (
     <div className="main-container">
-      <h3>Logo Ramberly</h3>
+      <img
+        className="logo-img"
+        src="src\assets\loghi\logo.svg"
+        width={250}
+        alt="logo ramberly"
+      />
       <form className="form" onSubmit={handleLogin}>
         <label htmlFor="">Email:</label>
         <input
@@ -62,7 +67,7 @@ export function Login() {
 
         <button type="submit">Login</button>
         <p>
-          Non sei registrato? <Link to="/registrazione">Registrati</Link>
+          Non sei registrato? <Link to="/registrazione" style={{color:'#F7A441'}} >Registrati</Link>
         </p>
         {messaggio && (
           <p className="err-msg" style={{ textAlign: "center" }}>
@@ -70,6 +75,7 @@ export function Login() {
           </p>
         )}
       </form>
+      <img src="src\assets\loghi\freccia.svg" alt="freccia" />
     </div>
   );
 }

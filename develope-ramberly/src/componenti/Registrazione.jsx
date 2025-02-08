@@ -77,6 +77,13 @@ export function Registrazione() {
 
   return (
     <div className="main-container">
+      <img
+        className="logo-img"
+        src="src\assets\loghi\logo.svg"
+        width={250}
+        alt="logo ramberly"
+      />
+
       <form className="form registrazione" onSubmit={handleSubmit}>
         <label htmlFor="Nome">Nome:</label>
         <input
@@ -128,9 +135,10 @@ export function Registrazione() {
           Avanti
         </button>
         <p>
-          Hai già un account? <Link to="/login">Login</Link>
+          Hai già un account? <Link to="/login" style={{color:'#F7A441'}}>Login</Link>
         </p>
       </form>
+      <img src="src\assets\loghi\freccia.svg" style={{position:'absolute', top:'695px', zIndex:'-1'}} alt="freccia trasparente" />
     </div>
   );
 }
