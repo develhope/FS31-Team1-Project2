@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useUserContext } from "../contesti/useContext";
 
 export function EventiPreferiti() {
-  const { personaScelta } = useUserContext();
+  const { personeRandom } = useUserContext();
 
   // metodo per trovare eventi preferiti
   const parseUsers = JSON.parse(localStorage.getItem("users"));
@@ -56,12 +56,12 @@ export function EventiPreferiti() {
             <div className="utente-titolo">
               <img
                 id="post-avatar"
-                src={personaScelta[index].img}
+                src={personeRandom[index].img}
                 alt="user-icon"
               />
               <div className="post-info-container">
                 <div className="post-user-info">
-                  <h3>{personaScelta[index].nome}</h3>
+                  <h3>{personeRandom[index].nome}</h3>
                   <h5>Amici</h5>
                   <a>
                     <img
@@ -71,14 +71,13 @@ export function EventiPreferiti() {
                     />
                   </a>
                 </div>
-                <h5>Livello 17</h5>
+                <h5>Livello {personeRandom[index].livello}</h5>
               </div>
               <p>{evento.nome_evento}</p>
-              
             </div>
             <div>
-            <p>{evento.start}</p>
-            <p>{evento.finish}</p>
+              <p>{evento.start}</p>
+              <p>{evento.finish}</p>
             </div>
 
             <div className="info-evento-preferiti">

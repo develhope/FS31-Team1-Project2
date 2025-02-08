@@ -30,6 +30,7 @@ const eventiArr = [
   {
     id: 3,
     creatore_evento: 1,
+    creatore_nome: "Michele",
     nome_evento: "passeggiata notturna",
     start: "Via Roma, Torino",
     finish: "Via Trinchese, Torino",

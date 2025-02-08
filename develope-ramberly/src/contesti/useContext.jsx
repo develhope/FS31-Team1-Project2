@@ -8,11 +8,31 @@ export const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
 
 export function UserProvider({ children }) {
-  const [userLogged, setUserLogged] = useState(null);
+  const [userLogged, setUserLogged] = useState(() => {
+    const data = localStorage.getItem("user");
+    return data ? JSON.parse(data) : null;
+  });
   const [isLogged, setIsLogged] = useState(false);
   const [pers, setPers] = useState(persone);
   const [eventi, setEventi] = useState(eventiArr);
-  const [personaScelta, setPersonaScelta] = useState(pers);
+  const [personeRandom, setPersoneRandom] = useState(() => {
+    const data = localStorage.getItem("personeRandom");
+    return data ? JSON.parse(data) : [];
+  });
+
+  // logica randomizzazione post utenti home e preferiti
+
+  useEffect(() => {
+    localStorage.setItem("eventi", JSON.stringify(eventi));
+    const events = localStorage.getItem("eventi");
+    const parseEvents = JSON.parse(events);
+    const utentiPostCasuali = parseEvents.map(() => {
+      const indiceCasuale = Math.floor(Math.random() * pers.length);
+      return pers[indiceCasuale];
+    });
+    setPersoneRandom(utentiPostCasuali);
+    localStorage.setItem("personeRandom", JSON.stringify(utentiPostCasuali));
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(pers));
@@ -23,13 +43,6 @@ export function UserProvider({ children }) {
     setPers((pre) => [...pre, parseUsers]);
     localStorage.setItem("users", JSON.stringify(pers)); //pers è un array non è una persona singola
   }, []);
-
-  useEffect(() => {
-    const data = localStorage.getItem("user");
-    if (data) {
-      setUserLogged(JSON.parse(data));
-    }
-  }, [isLogged]);
 
   const login = (user) => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -52,19 +65,6 @@ export function UserProvider({ children }) {
     localStorage.setItem("eventi", JSON.stringify(eventi));
   }, []);
 
-  // logica randomizzazione post utenti home e preferiti
-
-  useEffect(() => {
-    localStorage.setItem("eventi", JSON.stringify(eventi));
-    const events = localStorage.getItem("eventi");
-    const parseEvents = JSON.parse(events);
-    const utentiPostMappati = parseEvents.map(() => {
-      const indiceCasuale = Math.floor(Math.random() * pers.length);
-      return pers[indiceCasuale];
-    });
-    setPersonaScelta(utentiPostMappati);
-  }, []);
-
   return (
     <UserContext.Provider
       value={{
@@ -74,7 +74,7 @@ export function UserProvider({ children }) {
         isLogged,
         setIsLogged,
         pers,
-        personaScelta,
+        personeRandom,
       }}
     >
       {children}

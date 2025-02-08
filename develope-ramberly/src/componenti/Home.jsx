@@ -4,9 +4,8 @@ import { useSwipeable } from "react-swipeable";
 import { useState } from "react";
 
 export function Home() {
-  const { userLogged, personaScelta } = useUserContext();
+  const { userLogged, personeRandom } = useUserContext();
   const [participatedEvents, setParticipatedEvents] = useState({});
-  // const [personaScelta, setPersonaScelta] = useState(pers);
 
   const navTo = useNavigate();
 
@@ -101,12 +100,12 @@ export function Home() {
                   <div className="nav-post-user-info">
                     <img
                       id="post-avatar"
-                      src={personaScelta[index].img || userLogged.img}
+                      src={personeRandom[index]?.img || userLogged.img}
                       alt="user-icon"
                     />
                     <div className="post-info-container">
                       <div className="post-user-info">
-                        <h3>{personaScelta[index].nome || userLogged.nome}</h3>
+                        <h3>{personeRandom[index]?.nome || userLogged.nome}</h3>
                         <h5>Amici</h5>
                         <a>
                           <img
@@ -118,7 +117,7 @@ export function Home() {
                       </div>
                       <h5>
                         Livello{" "}
-                        {personaScelta[index].livello || userLogged.livello}
+                        {personeRandom[index]?.livello || userLogged.livello}
                       </h5>
                     </div>
                   </div>
@@ -238,23 +237,6 @@ export function Home() {
             src="src\assets\navbar\preferiti.svg"
             alt="preferiti"
             onClick={() => navTo("/eventipreferiti")}
-          />
-        </a>
-        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
-          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
-        </a>
-        <a>
-          <img
-            src="src\assets\navbar\map.svg"
-            alt="map"
-            onClick={() => navTo("/map")}
-          />
-        </a>
-        <a>
-          <img
-            onClick={() => navTo("/impostazioni")}
-            src="src\assets\navbar\impostazioni.svg"
-            alt="impostazioni"
           />
         </a>
       </navbar>
