@@ -73,6 +73,7 @@ export function Home() {
             src={userLogged.img}
             width={60}
             alt="user-icon"
+            onClick={()=>navTo('/account')}
           />
           <div>
             <h3>{userLogged.nome}</h3>
@@ -239,6 +240,8 @@ export function Home() {
             onClick={() => navTo("/eventipreferiti")}
           />
         </a>
+
+        
       </navbar>
     </div>
   );

@@ -13,6 +13,7 @@ import { EventiPreferiti } from "./componenti/EventiPreferiti";
 import { MapComponent } from "./componenti/MapComponent";
 import { Impostazioni } from "./componenti/Impostazioni";
 import { Benvenuto } from "./componenti/Benvenuto";
+import { Account } from "./componenti/Account";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <Route path="/impostazioni" element={<Impostazioni />} />
           <Route path="/eventipreferiti" element={<EventiPreferiti />} />
           <Route path="/benvenuto" element={<Benvenuto />} />
+          <Route path="/account" element={<Account />} />
+
 
         </Routes>
       </UserProvider>

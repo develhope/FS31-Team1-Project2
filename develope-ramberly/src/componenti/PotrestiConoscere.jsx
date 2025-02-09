@@ -69,6 +69,8 @@ export function PotrestiConoscere() {
           </a>
 
           <h3 className="link-h3-class">Potresti conoscere:</h3>
+          <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
+
         </div>
         <div className="list-container">
           <ul>

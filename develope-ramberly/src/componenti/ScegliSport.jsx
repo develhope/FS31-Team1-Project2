@@ -41,7 +41,8 @@ export default function ScegliSport() {
 
   return (
     <div className="main-container">
-      
+            <img style={{marginBottom:'20px'}} src="src/assets/loghi/logo.svg" width={160} alt="logo" />
+
       <div className="form">
         <div className="scegli-sport-title">
         <a
@@ -65,7 +66,6 @@ export default function ScegliSport() {
           </a>
 
         <h3 className="link-h3-class">Scegli il tuo sport preferito!</h3>
-      <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
 
         </div>
 

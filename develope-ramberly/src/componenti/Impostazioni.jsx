@@ -8,8 +8,8 @@ export function Impostazioni() {
   return (
     <div>
       <div className="titolo-impostazioni">
-      <a className="link-class" onClick={() => navTo("/home")}>
-        <svg
+        <a className="link-class" onClick={() => navTo("/home")}>
+          <svg
             width="20"
             height="20"
             viewBox="0 0 18 28"
@@ -26,61 +26,44 @@ export function Impostazioni() {
       </div>
       <div className="impostazioni">
         <div className="gestione-account">
-          <em>GESTIONE ACCOUNT</em>
-          <p>Nome: {userLogged.nome}</p>
-          <p>Cognome: {userLogged.cognome}</p>
-          <p>Email: {userLogged.email}</p>
-          <p>Password: {userLogged.password.replace(/./g, "*")}</p>
+          <em>Informazioni personali</em>
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Nome:</p>
+          <p>{userLogged.nome}</p>
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Cognome:</p>
+          <p>{userLogged.cognome}</p>
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Email: </p>
+          <p>{userLogged.email}</p>
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Password: </p>
+          <p>{userLogged.password.replace(/./g, "*")}</p>
         </div>
         <hr />
         <div className="privacy">
-  <em>PRIVACY</em>
-  
-  <div className="privacy-option">
-    <label className="visibilita">Visibilità:</label>
-    <select name="visibilita" className="visibilita">
-      <option value="">Seleziona</option>
-      <option value="pubblica">Pubblica</option>
-      <option value="solo amici">Solo amici</option>
-    </select>
-  </div>
-  
-  <h6 className="privacy-description">
-    Il profilo completo, comprese le statistiche personali, il numero di
-    attività e le informazioni di contatto, sarà visibile a tutti.
-  </h6>
-  
-  <div className="privacy-option">
-    <label>Autenticazione a due fattori (2A):</label>
-    <select name="autenticazione">
-      <option value="">Seleziona</option>
-      <option value="si">Si</option>
-      <option value="no">No</option>
-    </select>
-  </div>
-  
-  <h6 className="privacy-description">
-    Per migliorare la sicurezza dell'account, l'utente può abilitare
-    l'autenticazione a due fattori.
-  </h6>
-</div>
+          <em>PRIVACY</em>
+
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Visibilità:</p>
+          <p>pubblica</p>
+          <p style={{ fontFamily: "Avenir-Heavy" }}>Utenti Bloccati: </p>
+          <p>0</p>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Autenticazione a due fattori(2A):</p>
+          <p>Si</p>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Autorizzazzione di condivisione:</p>
+          <p>Si</p>
+        </div>
         <hr />
 
         <div className="amici-seguaci">
-          <em>GESTIONE AMICIZIE</em>
-          <p>Lista di amici</p>
-          <p>Segnalazione di abusi o comportamenti inappropriati</p>
-          <h6>
-            Possibilità di segnalare comportamenti molesti o indesiderati da
-            parte di altri utenti.
-          </h6>
+          <em>AMICI</em>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Gestisci amici</p>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Lista di amici</p>
+         <p style={{fontFamily:'Avenir-Heavy'}}>Lista di amici privata</p>
+         <p style={{fontFamily:'Avenir-Heavy'}}>Segnala utenti</p>
         </div>
         <hr />
         <div className="logout">
           <em>LOGOUT E ASSISTENZA</em>
-          <p onClick={()=>navTo('/login')}>Logout</p>
-          <p>Centro Assistenza</p>
-          <p>Contattaci</p>
+          <p onClick={() => navTo("/login")} style={{fontFamily:'Avenir-Heavy'}}>Logout</p>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Centro Assistenza</p>
+          <p style={{fontFamily:'Avenir-Heavy'}}>Contattaci</p>
         </div>
       </div>
     </div>

@@ -53,6 +53,8 @@ export function ScegliAvatar() {
 
   return (
     <div className="main-container">
+            <img style={{marginBottom:'20px'}} src="src/assets/loghi/logo.svg" width={160} alt="logo" />
+
       <div className="form">
         <p className="superscript">Step 4/4</p>
         <div className="caratteristiche">
@@ -73,6 +75,8 @@ export function ScegliAvatar() {
           </a>
 
           <h3 className="link-h3-class">Scegli il tuo avatar!</h3>
+         
+
         </div>
         <div className="avatar-container">
           <img
