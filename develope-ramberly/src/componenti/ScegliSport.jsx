@@ -42,7 +42,7 @@ export default function ScegliSport() {
   return (
     <div className="main-container">
             <img style={{marginBottom:'20px'}} src="src/assets/loghi/logo.svg" width={160} alt="logo" />
-
+<img src="src/assets/icons/step2.svg" width={290} style={{marginBottom:'10px'}} alt="" />
       <div className="form">
         <div className="scegli-sport-title">
         <a
@@ -69,7 +69,7 @@ export default function ScegliSport() {
 
         </div>
 
-        <p className="superscript">Step 2/4</p>
+        
         <div className="caratteristiche">
         
           

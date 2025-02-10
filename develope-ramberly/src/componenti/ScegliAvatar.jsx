@@ -54,9 +54,10 @@ export function ScegliAvatar() {
   return (
     <div className="main-container">
             <img style={{marginBottom:'20px'}} src="src/assets/loghi/logo.svg" width={160} alt="logo" />
+            <img src="src/assets/icons/step4.svg" width={280} style={{marginBottom:'10px'}} alt="" />
 
       <div className="form">
-        <p className="superscript">Step 4/4</p>
+       
         <div className="caratteristiche">
           <a href="/potresticonoscere" className="link-class">
             <svg

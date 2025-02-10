@@ -78,9 +78,9 @@ export function Caratteristiche() {
         <h3 className="link-h3-class">Le tue caratteristiche!</h3>
         <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
       </div>
-
+<img src="src/assets/icons/step1.svg" width={350} style={{marginBottom:'10px'}} alt="step1" />
       <form className="form" onSubmit={handleSubmit}>
-        <p className="superscript">Step 1/4</p>
+       
         <label>Sesso:</label>
         <select id="sesso" required onChange={handleChange}>
           Scegli un opzione:

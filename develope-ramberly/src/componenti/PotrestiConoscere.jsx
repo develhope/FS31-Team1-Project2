@@ -45,8 +45,11 @@ export function PotrestiConoscere() {
 
   return (
     <div className="main-container">
+     <img src="src/assets/loghi/logo.svg" width={110} style={{marginBottom:'10px'}} alt="logo" />
+
+      <img src="src/assets/icons/step3.svg" width={310} style={{marginBottom:'10px'}} alt="" />
+
       <div className="form">
-        <p className="superscript">Step 3/4</p>
         <div className="caratteristiche">
           <a
             href="/sceglieresport"
@@ -69,7 +72,6 @@ export function PotrestiConoscere() {
           </a>
 
           <h3 className="link-h3-class">Potresti conoscere:</h3>
-          <img src="src/assets/loghi/logo.svg" width={60} alt="logo" />
 
         </div>
         <div className="list-container">
