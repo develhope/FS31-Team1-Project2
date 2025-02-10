@@ -6,7 +6,7 @@
   --font-color-soft: #362c287b;
   --btn-color: black;
   --primary-color: rgb(11, 76, 59);
-  --secondary-color: #fdbd81;
+  --secondary-color: #f7a441;
   --root-bg-color: #69747c1f;
   --home-bg-color: #f7fdf1;
   --form-bg-color: white;
@@ -114,9 +114,10 @@ button {
   padding: 5px 0;
   width: 100%;
   display: flex;
-  gap: 1rem;
+justify-content: space-between;
+
   align-items: center;
-  justify-content: space-around;
+  
   box-shadow: var(--box-shadow-secondary);
 }
 
@@ -125,6 +126,7 @@ button {
   align-items: start;
   gap: 10px;
   text-align: left;
+  
 }
 
 .nav-post {
@@ -230,7 +232,17 @@ button {
   color: white;
   font-family: "Avenir-light";
 }
+.start-finish-box{
+  display: flex;
+  gap: 10px;
+  padding: var(--padding);
+  justify-content: center;
+}
 
+.start-finish-box span{
+  color: var(--primary-color);
+  margin: 5px;
+}
 .descrizione-evento p {
   font-family: "Avenir-medium";
 }

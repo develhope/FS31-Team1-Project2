@@ -67,23 +67,21 @@ export function Home() {
   return (
     <div className="home-container">
       <div className="nav-top-home">
+        <div style={{ marginLeft: "10px" }}>
+          <img src="src/assets/loghi/logo.svg" width={70} alt="" />
+        </div>
         <div className="nav-top-home-info">
           <img
             id="home-user-avatar"
             src={userLogged.img}
             width={60}
             alt="user-icon"
-            onClick={()=>navTo('/account')}
+            onClick={() => navTo("/account")}
           />
-          <div>
+          <div style={{ marginRight: "10px" }}>
             <h3>{userLogged.nome}</h3>
             <h5>Livello {userLogged.livello}</h5>
           </div>
-        </div>
-        <div className="icons-container">
-          <a>
-            <img src="\bell-svgrepo-com.svg" alt="notify" />
-          </a>
         </div>
       </div>
       <div className="home-wrapper" {...handlers}>
@@ -107,7 +105,7 @@ export function Home() {
                     <div className="post-info-container">
                       <div className="post-user-info">
                         <h3>{personeRandom[index]?.nome || userLogged.nome}</h3>
-                        <h5>Amici</h5>
+                        <h5 style={{ color: "#f7a441" }}>Amici</h5>
                         <a>
                           <img
                             id="post-settings-icon"
@@ -123,7 +121,7 @@ export function Home() {
                     </div>
                   </div>
                   <div className="icons-container">
-                    <button>Live chat</button>
+                    <button style={{ backgroundColor: "#0B4C3B" }}>Chat</button>
                     <a>
                       <img
                         id="post-settings-icon"
@@ -137,9 +135,23 @@ export function Home() {
                   <h3 style={{ fontSize: "clamp(1vw, 5vw, 2rem)" }}>
                     {evento.nome_evento.toUpperCase()}
                   </h3>
-                  <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
-                    {`${evento.start}`} <br /> {`${evento.finish}`}
-                  </p>
+                  <div className="start-finish-box">
+                    <div className="start">
+                      <img src="src/assets/icons/start.svg" alt="start-flag" />
+                      <span>START</span>
+                      <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
+                        {evento.start}
+                      </p>
+                    </div>
+                    <hr />
+                    <div className="finish">
+                      <img src="src/assets/icons/start.svg" alt="start-flag" />
+                      <span>FINISH</span>
+                      <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
+                        {evento.finish}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="map-container">
                   <img
@@ -192,14 +204,18 @@ export function Home() {
                 {!participatedEvents[evento.id] ? (
                   <button
                     onClick={() => handlePartecipa(evento)}
-                    style={{ fontSize: "18px" }}
+                    style={{ fontSize: "18px", color: "white" }}
                   >
                     Partecipa!
                   </button>
                 ) : (
                   <button
                     onClick={() => handleRemovePartecipa(evento)}
-                    style={{ fontSize: "18px", backgroundColor: "red" }}
+                    style={{
+                      fontSize: "18px",
+                      backgroundColor: "red",
+                      color: "white",
+                    }}
                   >
                     Abbandona
                   </button>
@@ -240,8 +256,6 @@ export function Home() {
             onClick={() => navTo("/eventipreferiti")}
           />
         </a>
-
-        
       </navbar>
     </div>
   );
