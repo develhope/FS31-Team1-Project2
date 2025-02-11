@@ -114,10 +114,10 @@ button {
   padding: 5px 0;
   width: 100%;
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
 
   align-items: center;
-  
+
   box-shadow: var(--box-shadow-secondary);
 }
 
@@ -126,7 +126,6 @@ justify-content: space-between;
   align-items: start;
   gap: 10px;
   text-align: left;
-  
 }
 
 .nav-post {
@@ -232,14 +231,14 @@ justify-content: space-between;
   color: white;
   font-family: "Avenir-light";
 }
-.start-finish-box{
+.start-finish-box {
   display: flex;
   gap: 10px;
   padding: var(--padding);
   justify-content: center;
 }
 
-.start-finish-box span{
+.start-finish-box span {
   color: var(--primary-color);
   margin: 5px;
 }
@@ -560,11 +559,14 @@ h3 {
 
 .caratteristiche {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   gap: 10px;
+  color: white;
+  background-color: var(--primary-color);
+
   padding: var(--padding);
 }
 
@@ -596,24 +598,48 @@ h3 {
 }
 
 /*Crea Evento*/
-.event-details {
+.crea-evento-box {
+  background-color: var(--form-bg-color);
+  min-width: 15rem;
+  /* border: var(--border); */
+  padding: 20px;
   display: flex;
-  justify-content: column;
-  align-items: center;
-  background-color: #f4a261;
+  flex-direction: column;
+}
+.crea-evento-box button {
+  color: white;
+}
+.event-details {
+  background-color: var(--secondary-color);
   border-radius: 8px;
   padding: 15px;
-  width: 90%;
-  margin: auto;
-  gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.maps-button {
+  position: absolute;
+  bottom: 150px;
+  left: 230px;
+
+  width: 35%;
+  top: 620px;
+}
+.maps-button button {
+  background-color: var(--secondary-color);
+  color: black;
+  font-family: "Avenir-Light";
 }
 .event-items {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
+  gap: 10px;
   width: 100%;
-  justify-content: space-between;
 }
 .event-items label {
   display: flex;
@@ -633,8 +659,8 @@ h3 {
   outline: none;
   font-size: 16px;
   text-align: center;
-  flex: 1;
-  max-width: 120px;
+  
+  
 }
 .event-unit {
   font-size: 14px;
@@ -647,6 +673,9 @@ h3 {
   flex-direction: column;
   gap: 10px;
 }
+.event-privacy select{
+  padding: var(--padding);
+}
 .privacy-label {
   font-family: "Avenir-Medium";
   font-size: 16px;
@@ -658,7 +687,22 @@ h3 {
   border-radius: var(--border-radius);
   font-size: 16px;
 }
+.cerca-evento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 
+  padding: var(--padding);
+}
+.suggestions-list {
+  position: absolute;
+  z-index: 1;
+
+  background-color: var(--home-bg-color);
+  border-radius: var(--border-radius);
+}
 /* Eventi preferiti */
 .utente-titolo {
   display: flex;
@@ -745,7 +789,7 @@ input {
 
 .search-location {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--padding);

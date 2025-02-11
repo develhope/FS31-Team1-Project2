@@ -71,6 +71,10 @@ export function Home() {
           <img src="src/assets/loghi/logo.svg" width={70} alt="" />
         </div>
         <div className="nav-top-home-info">
+          <div style={{ marginRight: "10px" }}>
+            <h3>{userLogged.nome}</h3>
+            <h5>Livello {userLogged.livello}</h5>
+          </div>
           <img
             id="home-user-avatar"
             src={userLogged.img}
@@ -78,10 +82,6 @@ export function Home() {
             alt="user-icon"
             onClick={() => navTo("/account")}
           />
-          <div style={{ marginRight: "10px" }}>
-            <h3>{userLogged.nome}</h3>
-            <h5>Livello {userLogged.livello}</h5>
-          </div>
         </div>
       </div>
       <div className="home-wrapper" {...handlers}>
@@ -246,14 +246,30 @@ export function Home() {
           />
         </a>
 
-        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
-          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
-        </a>
+        
         <a>
           <img
             src="src\assets\navbar\preferiti.svg"
             alt="preferiti"
             onClick={() => navTo("/eventipreferiti")}
+          />
+        </a>
+        <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
+          <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
+        </a>
+        <a onClick={()=>navTo('/account')}>
+          <img
+            src="src/assets/navbar/utente.svg"
+            width={35}
+            alt="logo-utente"
+            
+          />
+        </a>
+        <a>
+          <img
+            src="src/assets/navbar/cerca.svg"
+            width={35}
+            alt="logo-utente"
           />
         </a>
       </navbar>

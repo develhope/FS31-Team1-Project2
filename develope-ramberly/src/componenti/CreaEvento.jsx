@@ -105,7 +105,7 @@ export function CreaEvento() {
   };
 
   return (
-    <div className="form">
+    <div>
       <div className="caratteristiche">
         <a className="link-class" onClick={() => navTo("/home")}>
           <svg
@@ -128,8 +128,76 @@ export function CreaEvento() {
 
       {/* ------------------------------------ */}
 
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="eventName">
+      <form className="crea-evento-box" onSubmit={handleSubmit}>
+        <div className="cerca-evento"></div>
+       
+
+        {/* ----------------------- */}
+        <div className="map-container">
+          <div className="map">
+            <div>
+              <div className="search-location">
+                <div>
+                  <div>
+                    <label htmlFor="">Start:</label>
+                    <input
+                      type="text"
+                      placeholder="Luogo Partenza..."
+                      name="start"
+                      value={searchQuery}
+                      onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                        handleInputChange();
+                        handleChange(e);
+                      }}
+                      required
+                    />
+                    {suggestions.length > 0 && (
+                      <ul className="suggestions-list">
+                        {suggestions.map((suggestion, index) => (
+                          <li
+                            key={index}
+                            onClick={() => {
+                              handleSuggestionSelect(suggestion);
+                              setSuggestions([]); // Nasconde la lista dopo la selezione
+                            }}
+                          >
+                            {suggestion.place_name}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="">Finish:</label>
+                    <input
+                      type="text"
+                      placeholder="Luogo arrivo..."
+                      name="finish"
+                      ref={inputRef}
+                      value={searchQueryR}
+                      onChange={(e) => {
+                        setSearchQueryR(e.target.value);
+                        handleInputChangeR();
+                        handleChange(e);
+                      }}
+                      required
+                    />
+                    {suggestionsR.length > 0 && (
+                      <ul className="suggestions-list">
+                        {suggestionsR.map((suggestionR, index) => (
+                          <li
+                            key={index}
+                            onClick={() => handleSuggestionSelectR(suggestionR)}
+                          >
+                            {suggestionR.place_name}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+                <div className="eventName">
           <label htmlFor="">Nome evento:</label>
           <input
             type="text"
@@ -139,73 +207,6 @@ export function CreaEvento() {
             required
           />
         </div>
-
-        {/* ----------------------- */}
-        <div className="map-container">
-          <div className="map">
-            <div>
-              <div>
-                <div className="search-location">
-                  <div className="startFinish">
-                    <div>
-                      <label htmlFor="">Start:</label>
-                      <input
-                        type="text"
-                        placeholder="Luogo Partenza..."
-                        name="start"
-                        value={searchQuery}
-                        onChange={(e) => {
-                          setSearchQuery(e.target.value);
-                          handleInputChange();
-                          handleChange(e);
-                        }}
-                        required
-                      />
-                      {suggestions.length > 0 && (
-                        <ul className="suggestions-list">
-                          {suggestions.map((suggestion, index) => (
-                            <li
-                              key={index}
-                              onClick={() => handleSuggestionSelect(suggestion)}
-                            >
-                              {suggestion.place_name}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    <div>
-                      <label htmlFor="">Finish:</label>
-                      <input
-                        type="text"
-                        placeholder="Luogo arrivo..."
-                        name="finish"
-                        ref={inputRef}
-                        value={searchQueryR}
-                        onChange={(e) => {
-                          setSearchQueryR(e.target.value);
-                          handleInputChangeR();
-                          handleChange(e);
-                        }}
-                        required
-                      />
-                      {suggestionsR.length > 0 && (
-                        <ul className="suggestions-list">
-                          {suggestionsR.map((suggestionR, index) => (
-                            <li
-                              key={index}
-                              onClick={() =>
-                                handleSuggestionSelectR(suggestionR)
-                              }
-                            >
-                              {suggestionR.place_name}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </div>
                 <button
                   className="btn-search"
                   type="button"
@@ -229,23 +230,23 @@ export function CreaEvento() {
               ) : (
                 <p>Loading map...</p>
               )}
-
-              <button
-                className="map-reset-btm"
-                type="button"
-                onClick={handleResetPosition}
-              >
-                Reset Position
-              </button>
-              <button
-                type="button"
-                className="map-add-marker-btm"
-                onClick={() => mapRef.current.on("click", clickMap)}
-              >
-                Add Marker
-              </button>
+              <div className="maps-button">
+                <button
+                  className="map-reset-btm"
+                  type="button"
+                  onClick={handleResetPosition}
+                >
+                  Reset Position
+                </button>
+                <button
+                  type="button"
+                  className="map-add-marker-btm"
+                  onClick={() => mapRef.current.on("click", clickMap)}
+                >
+                  Add Marker
+                </button>
+              </div>
             </div>
-            <button className="difficulty-button">Difficile</button>
           </div>
         </div>
 
@@ -261,7 +262,6 @@ export function CreaEvento() {
                 Distanza:
               </label>
               <input type="text" name="distanza" value={distance} />
-              <span className="event-unit">km</span>
             </div>
 
             <div className="event-items">
@@ -279,7 +279,7 @@ export function CreaEvento() {
                 onChange={handleChange}
                 required
               />
-              <span className="event-unit">hr</span>
+              
             </div>
 
             <div className="event-items">
@@ -292,7 +292,6 @@ export function CreaEvento() {
                 Data:
               </label>
               <input type="date" name="data" onChange={handleChange} required />
-              <span className="event-unit">data</span>
             </div>
           </div>
         </div>
