@@ -146,7 +146,7 @@ export function CreaEvento() {
             <div>
               <div className="search-location">
                 <div>
-                  <div>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <label htmlFor="">Start:</label>
                     <input
                       type="text"
@@ -176,7 +176,7 @@ export function CreaEvento() {
                       </ul>
                     )}
                   </div>
-                  <div>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <label htmlFor="">Finish:</label>
                     <input
                       type="text"
