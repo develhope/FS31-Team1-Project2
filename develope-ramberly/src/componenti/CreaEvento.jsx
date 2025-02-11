@@ -55,6 +55,13 @@ export function CreaEvento() {
     }
   }, [searchQueryR]);
 
+  const cerca = () => {
+    setTimeout(() => {
+      setSuggestions([]);
+      setSuggestionsR([]);
+    }, 100);
+  };
+
   useEffect(() => {
     if (searchQuery) {
       setData((prevData) => ({
@@ -215,6 +222,7 @@ export function CreaEvento() {
                   className="btn-search"
                   type="button"
                   onClick={() => {
+                    cerca();
                     calculateRoute();
                     handleSearch();
                     handleSearchR();
