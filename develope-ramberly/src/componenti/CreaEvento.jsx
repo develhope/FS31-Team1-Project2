@@ -4,6 +4,8 @@ import { MapComponent } from "./MapComponent";
 
 export function CreaEvento() {
   const {
+    setSuggestions,
+    setSuggestionsR,
     clickMap,
     mapRef,
     suggestionsR,
@@ -130,7 +132,6 @@ export function CreaEvento() {
 
       <form className="crea-evento-box" onSubmit={handleSubmit}>
         <div className="cerca-evento"></div>
-       
 
         {/* ----------------------- */}
         <div className="map-container">
@@ -188,7 +189,10 @@ export function CreaEvento() {
                         {suggestionsR.map((suggestionR, index) => (
                           <li
                             key={index}
-                            onClick={() => handleSuggestionSelectR(suggestionR)}
+                            onClick={() => {
+                              handleSuggestionSelectR(suggestionR);
+                              setSuggestionsR([]);
+                            }}
                           >
                             {suggestionR.place_name}
                           </li>
@@ -198,15 +202,15 @@ export function CreaEvento() {
                   </div>
                 </div>
                 <div className="eventName">
-          <label htmlFor="">Nome evento:</label>
-          <input
-            type="text"
-            name="nome_evento"
-            onChange={handleChange}
-            placeholder="Inserisci nome evento"
-            required
-          />
-        </div>
+                  <label htmlFor="">Nome evento:</label>
+                  <input
+                    type="text"
+                    name="nome_evento"
+                    onChange={handleChange}
+                    placeholder="Inserisci nome evento"
+                    required
+                  />
+                </div>
                 <button
                   className="btn-search"
                   type="button"
@@ -279,7 +283,6 @@ export function CreaEvento() {
                 onChange={handleChange}
                 required
               />
-              
             </div>
 
             <div className="event-items">

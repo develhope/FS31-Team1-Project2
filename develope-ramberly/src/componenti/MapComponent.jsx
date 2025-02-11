@@ -86,6 +86,15 @@ export function MapComponent(width) {
       return; // Esce dalla funzione se ci sono già 2 marker
     }
 
+    if (routeLayer) {
+      if (mapRef.current.getLayer("route")) {
+        mapRef.current.removeLayer("route");
+      }
+      if (mapRef.current.getSource("route")) {
+        mapRef.current.removeSource("route");
+      }
+    }
+
     handleMapClick(e);
 
     setTimeout(() => {
@@ -515,9 +524,11 @@ export function MapComponent(width) {
     searchQuery,
     setSearchQuery,
     suggestions,
+    setSuggestions,
     searchQueryR,
     setSearchQueryR,
     suggestionsR,
+    setSuggestionsR,
     markerR,
     handleSearchR,
     handleMapClick,
