@@ -558,9 +558,6 @@ h3 {
 }
 
 .caratteristiche {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
   gap: 10px;
@@ -573,6 +570,7 @@ h3 {
 .link-h3-class {
   text-align: center;
   flex-grow: 1;
+ 
 }
 
 .form-sports {
@@ -598,110 +596,174 @@ h3 {
 }
 
 /*Crea Evento*/
-.crea-evento-box {
-  background-color: var(--form-bg-color);
-  min-width: 15rem;
-  /* border: var(--border); */
-  padding: 20px;
+.caratteristiche {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
-.crea-evento-box button {
+
+.link-class {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.link-h3-class {
+  margin-right: 60px;
   color: white;
 }
-.event-details {
-  background-color: var(--secondary-color);
+
+/* Form container */
+.crea-evento-box {
+  background-color: white;
   border-radius: 8px;
-  padding: 15px;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.maps-button {
+.search-location label {
+  font-weight: bold;
+  color: #0B4C3B;
+  margin-bottom: 8px;
+}
+
+
+.maps-button{
   position: absolute;
-  bottom: 150px;
-  left: 230px;
-
-  width: 35%;
-  top: 620px;
+  width: 40%;
+  bottom: 1rem;
+  top: 50rem;
+  left: 12rem;
 }
-.maps-button button {
-  background-color: var(--secondary-color);
-  color: black;
-  font-family: "Avenir-Light";
+input[type="text"], input[type="time"], input[type="date"], select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #F7FDF1;
+}
+
+input[type="text"]:focus, input[type="time"]:focus, input[type="date"]:focus, select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  padding-left: 0;
+  background-color: white;
+  border: 1px solid #F7A441;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #F7A441;
+  color: white;
+}
+
+.event-form {
+  margin-top: 20px;
+}
+.event-details{
+  border: 1px solid var(--secondary-color);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  margin-right: 10px;
 }
 .event-items {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 10px;
-  gap: 10px;
-  width: 100%;
-}
-.event-items label {
-  display: flex;
-  align-items: center;
+  margin-bottom: 15px;
 }
 
-.event-items .event-icon {
-  margin-right: 8px;
+.event-items label {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.event-items input {
+  flex: 1;
+  border: none;
+  background-color: #F7FDF1;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 .event-icon {
   width: 20px;
-  height: 20px;
+  margin-right: 10px;
 }
-.event-items input {
-  border: none;
-  outline: none;
-  font-size: 16px;
-  text-align: center;
-  
-  
-}
-.event-unit {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
+
 .event-privacy {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin-top: 20px;
 }
-.event-privacy select{
-  padding: var(--padding);
-}
+
 .privacy-label {
-  font-family: "Avenir-Medium";
-  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
+
 .privacy-select {
-  min-width: 20rem;
-  color: var(--btn-color);
-  background-color: var(--form-bg-color);
-  border-radius: var(--border-radius);
-  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  background-color: #F7FDF1;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
 }
-.cerca-evento {
+
+button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0B4C3B;
+}
+
+button:disabled {
+  background-color: #A0A0A0;
+  cursor: not-allowed;
+}
+
+.map-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 20px;
-
-  padding: var(--padding);
+  margin-bottom: 30px;
 }
-.suggestions-list {
-  position: absolute;
-  z-index: 1;
 
-  background-color: var(--home-bg-color);
-  border-radius: var(--border-radius);
+.map-reset-btm, .map-add-marker-btm {
+  padding: 10px 20px;
+  background-color: #F7A441;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.map-reset-btm:hover, .map-add-marker-btm:hover {
+  background-color: #0B4C3B;
+}
+
+#map-box {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  margin-top: 20px;
 }
 /* Eventi preferiti */
 .utente-titolo {
