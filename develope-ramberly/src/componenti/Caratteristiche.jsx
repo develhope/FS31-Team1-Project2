@@ -55,7 +55,7 @@ export function Caratteristiche() {
 
   return (
     <div className="main-container">
-      <div className="caratteristiche">
+      <div className="caratteristiche-title">
         <a
           href="/registrazione"
           className="link-class"

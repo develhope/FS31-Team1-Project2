@@ -69,11 +69,7 @@ export default function ScegliSport() {
 
         </div>
 
-        
-        <div className="caratteristiche">
-        
-          
-        </div>
+       
 
         <form className="form-sports" onSubmit={handleSubmit}>
           <div className="sports-input">

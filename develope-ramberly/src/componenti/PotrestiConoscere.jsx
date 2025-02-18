@@ -50,7 +50,7 @@ export function PotrestiConoscere() {
       <img src="src/assets/icons/step3.svg" width={310} style={{marginBottom:'10px'}} alt="" />
 
       <div className="form">
-        <div className="caratteristiche">
+        <div className="title-potresti-consoscere">
           <a
             href="/sceglieresport"
             className="link-class"
