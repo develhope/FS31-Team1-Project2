@@ -849,6 +849,17 @@ input {
 .suggestions-list {
   list-style: none;
   width: 200px;
+  background-color: white;
+}
+
+.suggestions-start {
+  position: absolute;
+  top: 100%;
+}
+
+.suggestions-finish {
+  position: absolute;
+  top: 100%;
 }
 
 /* impostazioni */

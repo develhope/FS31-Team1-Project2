@@ -146,7 +146,13 @@ export function CreaEvento() {
             <div>
               <div className="search-location">
                 <div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      position: "relative",
+                    }}
+                  >
                     <label htmlFor="">Start:</label>
                     <input
                       type="text"
@@ -161,7 +167,7 @@ export function CreaEvento() {
                       required
                     />
                     {suggestions.length > 0 && (
-                      <ul className="suggestions-list">
+                      <ul className="suggestions-list suggestions-start ">
                         {suggestions.map((suggestion, index) => (
                           <li
                             key={index}
@@ -176,7 +182,13 @@ export function CreaEvento() {
                       </ul>
                     )}
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      position: "relative",
+                    }}
+                  >
                     <label htmlFor="">Finish:</label>
                     <input
                       type="text"
@@ -192,7 +204,7 @@ export function CreaEvento() {
                       required
                     />
                     {suggestionsR.length > 0 && (
-                      <ul className="suggestions-list">
+                      <ul className="suggestions-list suggestions-finish">
                         {suggestionsR.map((suggestionR, index) => (
                           <li
                             key={index}
@@ -273,7 +285,8 @@ export function CreaEvento() {
                 />
                 Distanza:
               </label>
-              <input type="text" name="distanza" value={distance} />
+
+              {distance ? <p>{distance}</p> : <p>Inserisci una destinazione</p>}
             </div>
 
             <div className="event-items">
