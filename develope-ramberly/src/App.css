@@ -432,16 +432,15 @@ button {
   grid-template-rows: repeat(2, 1fr); /* 2 righe, ognuna di 100px */
   gap: 20px;
 }
-.avatar-title{
+.avatar-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
-.avatar-title a{
- position: absolute;
- right: 320px;
- bottom: 527px;
+.avatar-title a {
+  position: absolute;
+  right: 320px;
+  bottom: 527px;
 }
 .avatar-container img {
   border-radius: 18px;
@@ -480,7 +479,7 @@ button {
   padding: 15px;
   gap: 5px;
 }
-.title-potresti-consoscere{
+.title-potresti-consoscere {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -583,7 +582,7 @@ h3 {
   background-color: var(--primary-color);
   padding: 15px;
 }
-.caratteristiche-title{
+.caratteristiche-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -636,7 +635,6 @@ h3 {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  
 }
 
 .maps-button {
@@ -679,8 +677,6 @@ h3 {
   outline: none;
   font-size: 16px;
   text-align: center;
-  
-  
 }
 .event-unit {
   font-size: 14px;
@@ -693,7 +689,7 @@ h3 {
   flex-direction: column;
   gap: 10px;
 }
-.event-privacy select{
+.event-privacy select {
   padding: var(--padding);
 }
 .privacy-label {
@@ -830,6 +826,17 @@ input {
 .suggestions-list {
   list-style: none;
   width: 200px;
+  background-color: white;
+}
+
+.suggestions-start {
+  position: absolute;
+  top: 100%;
+}
+
+.suggestions-finish {
+  position: absolute;
+  top: 100%;
 }
 
 /* impostazioni */
