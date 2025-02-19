@@ -285,7 +285,8 @@ export function CreaEvento() {
                 />
                 Distanza:
               </label>
-              <input type="text" name="distanza" value={distance} />
+
+              {distance ? <p>{distance}</p> : <p>Inserisci una destinazione</p>}
             </div>
 
             <div className="event-items">
