@@ -71,14 +71,13 @@ export function Home() {
           <img src="src/assets/loghi/logo.svg" width={70} alt="" />
         </div>
         <div className="nav-top-home-info">
-          <div style={{ marginRight: "10px" }}>
+          <div>
             <h3>{userLogged.nome}</h3>
             <h5>Livello {userLogged.livello}</h5>
           </div>
           <img
             id="home-user-avatar"
             src={userLogged.img}
-            width={60}
             alt="user-icon"
             onClick={() => navTo("/account")}
           />
@@ -132,24 +131,18 @@ export function Home() {
                   </div>
                 </div>
                 <div className="descrizione-evento">
-                  <h3 style={{ fontSize: "clamp(1vw, 5vw, 2rem)" }}>
-                    {evento.nome_evento.toUpperCase()}
-                  </h3>
+                  <h3>{evento.nome_evento.toUpperCase()}</h3>
                   <div className="start-finish-box">
-                    <div className="start">
+                    <div className="start-finish">
                       <img src="src/assets/icons/start.svg" alt="start-flag" />
                       <span>START</span>
-                      <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
-                        {evento.start}
-                      </p>
+                      <p>{evento.start}</p>
                     </div>
                     <hr />
-                    <div className="finish">
+                    <div className="start-finish">
                       <img src="src/assets/icons/start.svg" alt="start-flag" />
                       <span>FINISH</span>
-                      <p style={{ fontSize: "clamp(1vw, 4vw, 2rem)" }}>
-                        {evento.finish}
-                      </p>
+                      <p>{evento.finish}</p>
                     </div>
                   </div>
                 </div>
@@ -163,7 +156,7 @@ export function Home() {
                 </div>
                 <div className="container-partecipanti">
                   <button className="red-btn">Difficile</button>
-                  <div>
+                  <div className="icons-partecipanti">
                     <img
                       src="src\assets\icons\partecipanti.svg"
                       width={70}
@@ -246,7 +239,6 @@ export function Home() {
           />
         </a>
 
-        
         <a>
           <img
             src="src\assets\navbar\preferiti.svg"
@@ -257,20 +249,15 @@ export function Home() {
         <a id="nav-bottom-home-addEvent" onClick={() => navTo("/creaevento")}>
           <img src="src\assets\navbar\addEvent.svg" alt="addEvent" />
         </a>
-        <a onClick={()=>navTo('/account')}>
+        <a onClick={() => navTo("/account")}>
           <img
             src="src/assets/navbar/utente.svg"
-            width={35}
+            width={48}
             alt="logo-utente"
-            
           />
         </a>
         <a>
-          <img
-            src="src/assets/navbar/cerca.svg"
-            width={35}
-            alt="logo-utente"
-          />
+          <img src="src/assets/navbar/cerca.svg" width={48} alt="logo-utente" />
         </a>
       </navbar>
     </div>
